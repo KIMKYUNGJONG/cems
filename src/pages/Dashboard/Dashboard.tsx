@@ -1,22 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { ClusterData, SiteData, SiteInfo } from '../../constant/Dashboard'
-import DashboardCluster from './DashboardCluster'
 import DashboardMap from './DashboardMap'
-import DashboardSiteList from './DashboardSiteList'
 
-interface IProps {
-    clusterData: ClusterData
-    siteData: SiteData
-    siteInfo: SiteInfo
-}
-function Dashboard({ clusterData, siteData, siteInfo }: IProps) {
-    const [activeSite, setActiveSite] = useState(null)
-
+function Dashboard() {
     return (
         <>
             <MapDiv>
-                <DashboardMap setActiveSite={setActiveSite} siteInfo={siteInfo} />
+                <DashboardMap />
             </MapDiv>
         </>
     )

@@ -1,12 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
+import DashboardEx from './DashboardEx'
 import DashboardMap from './DashboardMap'
 
-function Dashboard() {
+function Dashboard(props:any) {
+    const getGraphView = (param:any) => {
+        props.handleGraphView(param);
+    }
     return (
         <>
+            <DashboardEx data={props.data.data} htValue={props.htValue} scene={props.scene} />
             <MapDiv>
-                <DashboardMap />
+                <DashboardMap pushdata={props.pushdata} getGraphView={getGraphView} scene={props.scene} />
             </MapDiv>
         </>
     )

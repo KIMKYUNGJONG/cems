@@ -19,11 +19,19 @@ const Layout = () => {
         if (!checked) setTheme('light')
     }
 
+    const [scene, setScene] = useState<string|undefined>('scenes/ioe/securebiz/mdf_room 40_10.11.json');
+    const [graphValue, setHtValue] = useState<object|undefined>({});
+    const handleGraphView: (param: object) => void = function (param) {
+        setHtValue(param);
+      };
+    const handleScene: (param: string) => void = function (param) {
+        setScene(param);
+      }; 
     return (
         <ThemeProvider theme={themes[theme]}>
             <GlobalStyle />
-            <Navbar changeTheme={changeTheme} />
-            <DashboardContainer />
+            <Navbar changeTheme={changeTheme} handleScene={handleScene}/>
+            <DashboardContainer htValue={graphValue} handleGraphView={handleGraphView} scene={scene} />
         </ThemeProvider>
     )
 }

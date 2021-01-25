@@ -1,0 +1,21 @@
+{
+  "modelType": "obj",
+  "obj": "assets/htdesign/objs/transport/sky/satellite_01.obj",
+  "mtl": "assets/htdesign/objs/transport/sky/satellite_01.mtl",
+  "image": "",
+  "prefix": "assets/htdesign/objs/transport/sky/",
+  "center": true,
+  "reverseFlipMtls": "*",
+  "ignoreImage": false,
+  "ignoreColor": false,
+  "s3": [
+    1,
+    1,
+    1
+  ],
+  "r3": [
+    0,
+    0,
+    0
+  ]
+}

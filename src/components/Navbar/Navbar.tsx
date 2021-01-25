@@ -4,15 +4,15 @@ import NavbarBottom from './NavbarBottom'
 import NavbarLogo from './NavbarLogo'
 import NavbarMenu from './NavbarMenu'
 
-function Navbar({ changeTheme }: { changeTheme: (checked: boolean) => void }) {
+function Navbar(props:any) {
     return (
         <NavbarBlock>
             <NavbarSection>
                 <NavbarLogo />
-                <NavbarMenu />
+                <NavbarMenu htValue={props.htValue} handleScene={props.handleScene} />
             </NavbarSection>
             <NavbarSection>
-                <NavbarBottom changeTheme={changeTheme} />
+                <NavbarBottom changeTheme={props.changeTheme} />
             </NavbarSection>
         </NavbarBlock>
     )

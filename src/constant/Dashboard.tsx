@@ -1,3 +1,4 @@
+
 export interface AsyncData {
     error?: Error | null
     isLoading: boolean

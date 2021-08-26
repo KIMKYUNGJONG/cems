@@ -4,15 +4,15 @@ interface Routes {
 }
 export const ROUTES: Routes[] = [
     {
-        name: 'temp1',
+        name: 'dashboard',
         icon: 'ic_nav1',
     },
     {
-        name: 'temp2',
+        name: 'SMS',
         icon: 'ic_nav2',
     },
     {
-        name: 'temp3',
+        name: 'report',
         icon: 'ic_nav3',
     },
 ]

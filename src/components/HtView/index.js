@@ -4,10 +4,10 @@ import resizeEvent from 'element-resize-event';
 export default class HtView extends React.Component {
   constructor(props) {
     super(props);
-	this.type = undefined;
+    this.type = undefined;
     this.dataModel = undefined;
     this.graphView = undefined;
-	this.scene = undefined;
+    this.scene = undefined;
     this.htView = React.createRef();
   }
   state = {
@@ -23,30 +23,30 @@ export default class HtView extends React.Component {
   getGraphView() {
     return this.graphView;
   }
-  clearDM(){
-	this.dataModel.clear();
+  clearDM() {
+    this.dataModel.clear();
   }
-  setScene(scene){
-	this.scene = scene;
+  setScene(scene) {
+    this.scene = scene;
   }
-  getScene(scene){
-	return this.scene;
+  getScene(scene) {
+    return this.scene;
   }
-  updateDM(list){
-	list.forEach((item) => {
-		let found = this.dataModel.getDataByTag(item.tag);
-		if(found){
-			found.a('data', item.data);
-			this.graphView.invalidateShape3dCachedImage(found);
-		}
-	});
+  updateDM(list) {
+    list.forEach((item) => {
+      let found = this.dataModel.getDataByTag(item.tag);
+      if (found) {
+        found.a('data', item.data);
+        this.graphView.invalidateShape3dCachedImage(found);
+      }
+    });
   }
   init = () => {
     ht.Default.convertURL = (url) => {
       return 'ht-static/' + url;
     };
     const type = this.props['type'] || '2d';
-	this.type = type;
+    this.type = type;
     const autoInvalidate = this.props.autoInvalidate;
     /* global ht */
     this.dataModel = new ht.DataModel();

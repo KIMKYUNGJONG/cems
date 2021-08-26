@@ -58,6 +58,7 @@ export interface Site {
     is_ess: boolean
     is_pv: boolean
 }
+
 export const clusterCard = {
     energy: {
         title: '현재사용량',

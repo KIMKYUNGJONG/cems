@@ -11,7 +11,7 @@ function NavbarBottom({
     return (
         <>
             <SwitchBlock>
-                Dark Mode
+                <span>Theme</span>
                 <Switch
                     style={{ width: 48, marginTop: 5 }}
                     onChange={changeTheme}
@@ -30,11 +30,13 @@ const SwitchBlock = styled.div`
     line-height: 13px;
     text-align: center;
     letter-spacing: 0.44px;
+    display: flex;
+    flex-direction: column;
+    margin-right:10px;
 `
 const LogoImg = styled.img`
-    width: 48px;
-    height: 48px;
-    margin-top: 19px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
 `
 

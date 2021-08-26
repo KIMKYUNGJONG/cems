@@ -1,24 +1,41 @@
 import React, { useEffect, useRef } from 'react';
-import { ROUTES } from '../../constant/routes'
-
-import Icon from '../Common/Icon'
+import { ROUTES } from '../../constant/routes';
+import styled from 'styled-components'
+import Icon from '../Common/Icon';
 
 function NavbarMenu(props:any) {
-    const onClick = () => {
-        //console.log(typeof props.htValue, props.htValue);
-    }
+  const onClick = () => {
+    //console.log(typeof props.htValue, props.htValue);
+    props.handleScene('scenes/ioe/securebiz/server_room 42_10.11.json')
+  };
+  const routes = ROUTES.map((route) => {
+    return (
+      <CustomButton key={route.name} onClick={onClick}>
+        <Icon name={route.icon} hover={'#f4f6f7'} />
+        <span>{route.name}</span>
+      </CustomButton>
 
-    const routes = ROUTES.map((route) => {
-        return (
-            <button key={route.name} onClick={onClick}>
-                <Icon name={route.icon} hover={'#55b1ff'} />
-            </button>
-        )
-    })
-    return <div>
-            <button onClick={()=>props.handleScene('scenes/ioe/securebiz/server_room 42_10.11.json')}>서버실</button>
-		<button onClick={()=>props.handleScene('scenes/workshop_1127/새만금.json')}>새만금</button>
-            {routes}
-           </div>
+    );
+  });
+  return (
+  <RouteWrapper>
+    {routes}
+  </RouteWrapper>);
 }
-export default NavbarMenu
+const RouteWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const CustomButton = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+
+  &::after {
+    margin-left: 10px;
+    content: '|';
+  }
+`;
+export default NavbarMenu;

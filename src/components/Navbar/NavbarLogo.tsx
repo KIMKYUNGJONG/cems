@@ -13,8 +13,8 @@ function NavbarLogo() {
 
 const ProjectLogo = styled.img`
     cursor: pointer;
-    width: 48px;
-    height: 48px;
+    width: 30px;
+    height: 30px;
     border-radius: 100%;
     background-color: #55b1ff;
     padding: 10px;
@@ -25,7 +25,7 @@ const ProjectText = styled.p`
     cursor: pointer;
     font-size: 14px;
     font-weight: 700;
-    margin-bottom: 28px;
+    margin-left: 10px;
     font-family: 'Roboto';
 `
 

@@ -9,10 +9,10 @@ interface IProps {
     fill?: string
     transform?: string
     hover?: string
-    hoverFill?: string
+    hoverfill?: string
 }
 
-function Icon({ name, stroke, size, transform, hover, fill, hoverFill }: IProps) {
+function Icon({ name, stroke, size, transform, hover, fill, hoverfill }: IProps) {
     return (
         <StyledSVGIcon
             src={`/icons/${name}.svg`}
@@ -21,7 +21,7 @@ function Icon({ name, stroke, size, transform, hover, fill, hoverFill }: IProps)
             transform={transform}
             hover={hover}
             fill={fill}
-            hoverFill={hoverFill}
+            hoverfill={hoverfill}
         />
     )
 }
@@ -32,10 +32,21 @@ const StyledSVGIcon = styled(ReactSVG)<{
     stroke?: string
     hover?: string
     fill?: string
-    hoverFill?: string
+    hoverfill?: string
 }>`
     svg {
         fill: transparent;
+
+        & path {
+            stroke: ${(props)=> props.theme.iconColor};
+        }
+
+        &:hover {
+            path {
+                stroke: ${(props)=> props.theme.iconHover};
+            }
+        }
+
         ${({ size }) =>
             size &&
             css`
@@ -49,32 +60,12 @@ const StyledSVGIcon = styled(ReactSVG)<{
             `}
     
     path {
-            ${({ stroke }) =>
-                stroke &&
-                css`
-                    stroke: ${stroke};
-                `}
 
             ${({ fill }) =>
                 fill &&
                 css`
                     fill: ${fill};
                 `}
-        }
-
-        &:hover {
-            path {
-                ${({ hover }) =>
-                    hover &&
-                    css`
-                        stroke: ${hover};
-                    `}
-                ${({ hoverFill }) =>
-                    hoverFill &&
-                    css`
-                        fill: ${hoverFill};
-                    `}
-            }
         }
     }
 `

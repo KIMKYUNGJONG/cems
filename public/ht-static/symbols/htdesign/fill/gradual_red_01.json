@@ -1,0 +1,36 @@
+{
+  "modified": "Mon Oct 14 2019 11:45:20 GMT+0800 (中国标准时间)",
+  "width": 1,
+  "height": 64,
+  "attachStyle": "close",
+  "comps": [
+    {
+      "type": "rect",
+      "background": "rgba(255,145,0,0.00)",
+      "borderColor": "#979797",
+      "gradient": "linear.northwest",
+      "gradientColor": "rgb(255,77,77)",
+      "rotation": 3.14159,
+      "rect": [
+        0,
+        0,
+        1,
+        64
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(255,194,194)",
+      "borderColor": "#979797",
+      "gradient": "linear.south",
+      "gradientColor": "rgba(255,184,77,0.00)",
+      "rotation": 3.14159,
+      "rect": [
+        -14.01288,
+        54.6811,
+        29.02575,
+        9.31887
+      ]
+    }
+  ]
+}

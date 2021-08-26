@@ -1,0 +1,21 @@
+{
+  "modelType": "obj",
+  "obj": "assets/htdesign/objs/outdoor/city/ny/ny2.obj",
+  "mtl": "assets/htdesign/objs/outdoor/city/ny/ny2.mtl",
+  "image": "",
+  "prefix": "assets/htdesign/objs/outdoor/city/ny/",
+  "center": true,
+  "reverseFlipMtls": "*",
+  "ignoreImage": false,
+  "ignoreColor": false,
+  "s3": [
+    1,
+    1,
+    1
+  ],
+  "r3": [
+    0,
+    0,
+    0
+  ]
+}

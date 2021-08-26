@@ -1,0 +1,29 @@
+{
+  "modified": "Wed Dec 11 2019 14:50:16 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "opacity",
+      "valueType": "Opacity",
+      "defaultValue": 1
+    }
+  ],
+  "width": 64,
+  "height": 64,
+  "comps": [
+    {
+      "type": "image",
+      "name": "assets/gradual_change_red_02.png",
+      "opacity": {
+        "func": "attr@opacity",
+        "value": 1
+      },
+      "displayName": "gradual_change_red_02",
+      "rect": [
+        0,
+        0,
+        64,
+        64
+      ]
+    }
+  ]
+}

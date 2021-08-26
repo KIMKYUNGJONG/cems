@@ -1,0 +1,21 @@
+{
+  "modelType": "obj",
+  "obj": "assets/htdesign/objs/equipment/power/wind_power_blade_01.obj",
+  "mtl": "assets/htdesign/objs/equipment/power/wind_power_blade_01.mtl",
+  "image": "",
+  "prefix": "assets/htdesign/objs/equipment/power/",
+  "center": true,
+  "reverseFlipMtls": "*",
+  "ignoreImage": false,
+  "ignoreColor": false,
+  "s3": [
+    3,
+    3,
+    3
+  ],
+  "r3": [
+    0,
+    0,
+    0
+  ]
+}

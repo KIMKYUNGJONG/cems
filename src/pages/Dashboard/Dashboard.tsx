@@ -1,15 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import DashboardEx from './DashboardEx';
+import DashboardList from './DashboardList';
 import DashboardMap from './DashboardMap';
-
-type defaultType = { 
-  htValue: any;
-  handleGraphView:Function;
-  scene: string;
-  data: any;
-  pushdata: [{ tag:string, data:object[] }]
-}
+import {defaultType} from './Interface';
 
 function Dashboard({data, pushdata, htValue, handleGraphView, scene}:defaultType) {
   const getGraphView = (param:any) => {
@@ -17,7 +10,7 @@ function Dashboard({data, pushdata, htValue, handleGraphView, scene}:defaultType
   };
   return (
     <DashboardWrapper>
-      <DashboardEx data={data.data} htValue={htValue} scene={scene} />
+      <DashboardList data={data} />
       <MapDiv>
         <DashboardMap pushdata={pushdata} getGraphView={getGraphView} scene={scene} />
       </MapDiv>

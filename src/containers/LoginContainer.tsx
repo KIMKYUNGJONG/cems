@@ -2,8 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import { useAsync } from 'react-async';
 import { apiGet } from '../lib/api';
-import Dashboard from '../pages/Dashboard/Dashboard';
-import HtView from '../components/HtView';
+import Login from '../pages/Login/Login';
 import { Data } from '../constant/Dashboard';
 
 const fetchClusterData = async () => {
@@ -14,17 +13,7 @@ const fetchClusterData = async () => {
 };
 const URL = 'ws://localhost:5000';
 
-// 더미데이터
-const data =
-{
-  code: '1073042884',
-  name: 'dummy Project',
-  coords: ['10.15151', '10.15151'],
-  regDate: '2021-08-30'
-};
-
-function DashboardContainer(props: any) {
-  const htView = useRef<any>();
+function LoginContainer(props: any) {
   const clusterData = useAsync({
     deferFn: fetchClusterData,
     initialValue: [],
@@ -74,7 +63,7 @@ function DashboardContainer(props: any) {
   useEffect(() => {
     clusterData.run();
   }, []);
-  return <Dashboard data={data} pushdata={[{ 'tag': 'dataPanel1', 'data': ui_data }]} htValue={props.htValue} handleGraphView={props.handleGraphView} scene={props.scene} />;
+  return <Login />;
 }
 
-export default DashboardContainer;
+export default LoginContainer;

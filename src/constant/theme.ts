@@ -31,7 +31,8 @@ export const LightTheme = {
     closeAllBtnHover: 'url(/icons/ic_minus_hover.svg) no-repeat;',
 
     iconColor: '#007aff',
-    iconHover: '#0e3aad'
+    iconHover: '#0e3aad',
+    iconUrl: 'url(/icons/ic_close_all_dark_hover.svg) no-repeat;'
 }
 export const DarkTheme = {
     clusterBg: '#06102A',
@@ -66,5 +67,6 @@ export const DarkTheme = {
     closeAllBtnHover: 'url(/icons/ic_close_all_dark_hover.svg) no-repeat;',
 
     iconColor: 'white',
-    iconHover: '#9c9c9c'
+    iconHover: '#9c9c9c',
+    iconUrl: 'url(./icons/ic_close_all_dark_hover.svg) no-repeat;'
 }

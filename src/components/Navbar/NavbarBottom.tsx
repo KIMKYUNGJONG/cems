@@ -17,7 +17,7 @@ function NavbarBottom({
                     onChange={changeTheme}
                 />
             </SwitchBlock>
-            <LogoImg src={logo} />
+            <LogoImg />
         </>
     )
 }
@@ -34,10 +34,12 @@ const SwitchBlock = styled.div`
     flex-direction: column;
     margin-right:10px;
 `
-const LogoImg = styled.img`
+const LogoImg = styled.div`
     width: 30px;
     height: 30px;
     cursor: pointer;
+    background: ${(props)=>props.theme.iconUrl};
+    background-size: cover;
 `
 
 export default NavbarBottom

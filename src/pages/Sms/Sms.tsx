@@ -1,16 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import LoginForm from './LoginForm';
-
-function Login(props: any) {
+function Sms() {
   return (
-    <LoginWrapper>
-      <LoginForm {...props} />
-    </LoginWrapper>
+    <SmsWrapper>
+      <h1>SMS 페이지</h1>
+    </SmsWrapper>
   );
 }
-const LoginWrapper = styled.div`
+const SmsWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
@@ -18,4 +16,4 @@ const LoginWrapper = styled.div`
   align-items: center;
   justify-content: center;
 `;
-export default Login;
+export default Sms;

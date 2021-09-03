@@ -4,14 +4,15 @@ import NavbarBottom from './NavbarBottom';
 import NavbarLogo from './NavbarLogo';
 import NavbarMenu from './NavbarMenu';
 
-function Navbar(props:any) {
+function Navbar(props: any) {
+
   return (
     <NavbarBlock>
       <NavbarSection>
         <NavbarLogo />
       </NavbarSection>
       <NavbarSection>
-        <NavbarMenu htValue={props.htValue} handleScene={props.handleScene} {...props} />
+        {(props.isLogin === 'true') ? <NavbarMenu htValue={props.htValue} handleScene={props.handleScene} {...props} /> : null}
       </NavbarSection>
       <NavbarSection>
         <NavbarBottom changeTheme={props.changeTheme} />
@@ -28,7 +29,7 @@ const NavbarBlock = styled.div`
     width: 100%;
     
     height: 60px;
-    background-color: ${(props)=> props.theme.headerBg};
+    background-color: ${(props) => props.theme.headerBg};
     color: ${(props) => props.theme.fontColor};
     border-bottom: 1px solid #eaeaea;
     box-sizing: border-box;

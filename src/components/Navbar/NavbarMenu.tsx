@@ -1,26 +1,30 @@
 import React, { useEffect, useRef } from 'react';
 import { ROUTES } from '../../constant/routes';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import Icon from '../Common/Icon';
+import { matchPath, NavLink } from 'react-router-dom';
 
-function NavbarMenu(props:any) {
+function NavbarMenu(props: any) {
   const onClick = () => {
-    //console.log(typeof props.htValue, props.htValue);
-    props.handleScene('scenes/ioe/securebiz/server_room 42_10.11.json')
+    console.log(props.match);
   };
   const routes = ROUTES.map((route) => {
     return (
-      <CustomButton key={route.name} onClick={onClick}>
-        <Icon name={route.icon} hover={'#f4f6f7'} />
-        <span>{route.name}</span>
+      <CustomButton key={route.name}>
+        <NavLink
+          activeClassName="activated"
+          to={`/${route.name}`}
+          onClick={onClick} >
+          <Icon name={route.icon} hover={'#f4f6f7'} />
+          <span>{route.name}</span>
+        </NavLink>
       </CustomButton>
-
     );
   });
   return (
-  <RouteWrapper>
-    {routes}
-  </RouteWrapper>);
+    <RouteWrapper>
+      {routes}
+    </RouteWrapper>);
 }
 const RouteWrapper = styled.div`
   display: flex;
@@ -32,6 +36,19 @@ const CustomButton = styled.div`
   align-items: center;
   cursor: pointer;
   font-family: Arial, Helvetica, sans-serif;
+
+  & a {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  & a.activated {
+    color: #ffbb28;
+
+    & svg path {
+      stroke: #ffbb28;
+    }
+  }
 
   &::after {
     margin-left: 10px;

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import { useAsync } from 'react-async';
 import { apiGet } from '../lib/api';
-import Login from '../pages/Login/Login';
+import Sms from '../pages/Sms/Sms';
 import { Data } from '../constant/Dashboard';
 
 const fetchClusterData = async () => {
@@ -13,7 +13,7 @@ const fetchClusterData = async () => {
 };
 const URL = 'ws://localhost:5000';
 
-function LoginContainer(props: any) {
+function SmsContainer(props: any) {
   const clusterData = useAsync({
     deferFn: fetchClusterData,
     initialValue: [],
@@ -23,11 +23,9 @@ function LoginContainer(props: any) {
 
   // Initialize Websocket
   //const wsClient = new WebSocket(URL, ['Token', "token_body_here"])
-  const handleLogin = (value: object): void => {
-    console.log(value);
-  };
 
   const [ws, setWs] = useState<WebSocket>();
+
   const __bootstrap_async__ = () => {
     setWs(new WebSocket(URL, ['Token', 'token_body_here']));
   };
@@ -65,7 +63,7 @@ function LoginContainer(props: any) {
   useEffect(() => {
     clusterData.run();
   }, []);
-  return <Login handleLogin={handleLogin} />;
+  return <Sms />;
 }
 
-export default LoginContainer;
+export default SmsContainer;

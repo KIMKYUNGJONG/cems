@@ -2,15 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { Form, Input, Button, Checkbox } from 'antd';
 
-const LoginForm = ({ handleLogin }: any) => {
-  //const { handleLogin } = props;
+const ProjectForm = (props: any) => {
   const onFinish = (values: any) => {
     console.log('Success:', values);
-    handleLogin(values);
+    props.handleValue(values);
   };
-
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
+    props.handleValue(errorInfo);
   };
 
   return (
@@ -25,19 +24,18 @@ const LoginForm = ({ handleLogin }: any) => {
         autoComplete="off"
       >
         <Form.Item
-          label="ID"
-          name="id"
-          rules={[{ required: true, message: 'Please input your ID!' }]}
+          label="Project Name"
+          name="name"
+          rules={[{ required: true, message: 'Please input your ProjectName!' }]}
         >
           <Input />
         </Form.Item>
-
         <Form.Item
-          label="Password"
-          name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          label="Project Path"
+          name="path"
+          rules={[{ required: true, message: 'Please input your ProjectPath!' }]}
         >
-          <Input.Password />
+          <Input />
         </Form.Item>
 
         <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
@@ -47,7 +45,7 @@ const LoginForm = ({ handleLogin }: any) => {
         <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
           <CustomButton>
             <Button type="primary" htmlType="submit">
-              Login
+              Add
             </Button>
           </CustomButton>
         </Form.Item>
@@ -73,4 +71,4 @@ const CustomButton = styled.div`
   }
 `;
 
-export default LoginForm;
+export default ProjectForm;

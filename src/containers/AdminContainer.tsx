@@ -2,9 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import { useAsync } from 'react-async';
 import { apiGet } from '../lib/api';
-import Login from '../pages/Login/Login';
+import Admin from '../pages/Admin/Admin';
 import { Data } from '../constant/Dashboard';
-import { useHistory } from "react-router-dom";
+import { dataSource } from '../constant/Admin';
 
 const fetchClusterData = async () => {
   const res = await apiGet({
@@ -14,26 +14,19 @@ const fetchClusterData = async () => {
 };
 const URL = 'ws://localhost:5000';
 
-function LoginContainer({ path, isLogin, component }: any) {
+function AdminContainer(props: any) {
   const clusterData = useAsync({
     deferFn: fetchClusterData,
     initialValue: [],
   });
 
-  const history = useHistory();
   const [ui_data, setUi_data] = useState<Data[]>([]);
-  const [isAuth, setAuth] = useState<string>('false');
+
   // Initialize Websocket
   //const wsClient = new WebSocket(URL, ['Token', "token_body_here"])
-  const handleLogin = (value: object): void => {
-    isLogin = isAuth;
-    setAuth('true');
-    sessionStorage.setItem('isAuthorized', isAuth);
-    history.push('/dashboard');
-  };
-  console.log(isAuth);
 
   const [ws, setWs] = useState<WebSocket>();
+
   const __bootstrap_async__ = () => {
     setWs(new WebSocket(URL, ['Token', 'token_body_here']));
   };
@@ -71,7 +64,7 @@ function LoginContainer({ path, isLogin, component }: any) {
   useEffect(() => {
     clusterData.run();
   }, []);
-  return <Login handleLogin={handleLogin} />;
+  return <Admin dataSource={dataSource} />;
 }
 
-export default LoginContainer;
+export default AdminContainer;

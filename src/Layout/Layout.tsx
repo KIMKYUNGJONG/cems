@@ -9,8 +9,11 @@ import DashboardContainer from '../containers/DashboardContainer';
 import LoginContainer from '../containers/LoginContainer';
 import SmsContainer from '../containers/SmsContainer';
 import ReportContainer from '../containers/ReportContainer';
+import AdminContainer from '../containers/AdminContainer';
 
 import AuthenticcateRoute from '../Routes/AuthenticateRoute';
+
+import { Form, Input, Button, Checkbox } from 'antd';
 
 const Layout = ({ match }: any) => {
   const [theme, setTheme] = useState<Theme>('light');
@@ -25,6 +28,7 @@ const Layout = ({ match }: any) => {
     if (!checked) setTheme('light');
   };
   const isLogin = sessionStorage.getItem('isAuthorized');
+  const isAdmin = sessionStorage.getItem('isAdmin');
   const [scene, setScene] = useState<string | unknown>('scenes/ioe/securebiz/mdf_room 40_10.11.json');
   const [graphValue, setHtValue] = useState<object | unknown>({});
   const handleGraphView: (param: object) => void = function (param) {
@@ -36,7 +40,7 @@ const Layout = ({ match }: any) => {
   return (
     <ThemeProvider theme={themes[theme]}>
       <GlobalStyle />
-      <Navbar isLogin={isLogin} htValue={graphValue} changeTheme={changeTheme} handleScene={handleScene} />
+      <Navbar isLogin={isLogin} isAdmin={isAdmin} htValue={graphValue} changeTheme={changeTheme} handleScene={handleScene} />
       <Switch>
         <Route exact path="/">
           {isLogin ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
@@ -58,6 +62,11 @@ const Layout = ({ match }: any) => {
           isLogin={isLogin}
           render={() => <ReportContainer />}
         />
+        <AuthenticcateRoute
+          path={'/admin'}
+          isLogin={isLogin}
+          render={() => <AdminContainer />}
+        />
       </Switch>
     </ThemeProvider>
   );
@@ -70,17 +79,20 @@ const GlobalStyle = createGlobalStyle`
       height: 100%;
       position: relative;
       overflow: hidden;
-      font-family: 'NanumSquare', 'Roboto', sans-serif;
+      font-family: 'NanumSquare', 'Roboto', 'sans-serif', 'arial';
       background-color: #dbd7d7;
-
     }
-
+      input[type='password'] {
+        font-family: 'sans-serif';
+        -webkit-text-security: disc !important;
+      }
       button {
-        appearance: none;
+      appearance: none;
       outline: none;
       border: none;
       background: none;
       cursor: pointer;
     }
       `;
+
 export default Layout;

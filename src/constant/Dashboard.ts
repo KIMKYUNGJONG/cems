@@ -60,10 +60,10 @@ export interface Site {
 }
 
 export const clusterCard = {
-    energy: {
-        title: '현재사용량',
-    },
-}
+  energy: {
+    title: '현재사용량',
+  },
+};
 
 export enum InfoCode {
     CURRENT = 'current',
@@ -73,14 +73,14 @@ export enum InfoCode {
 }
 
 export const DrStateCode: { [index: string]: string } = {
-    idle: '평시',
-    reliability: '신뢰성',
-    voluntary: '자발성',
-    both: '둘다',
-}
+  idle: '평시',
+  reliability: '신뢰성',
+  voluntary: '자발성',
+  both: '둘다',
+};
 
 export const EssStateCode: { [index: string]: string } = {
-    idle: '평시',
-    charged: '충전중',
-    discharged: '방전중',
-}
+  idle: '평시',
+  charged: '충전중',
+  discharged: '방전중',
+};

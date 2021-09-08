@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Form, Input, Button, Checkbox } from 'antd';
 
-const LoginForm = ({ handleLogin }: any) => {
+const UserForm = (props: any) => {
   //const { handleLogin } = props;
   const onFinish = (values: any) => {
     console.log('Success:', values);
-    handleLogin(values);
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -25,29 +24,25 @@ const LoginForm = ({ handleLogin }: any) => {
         autoComplete="off"
       >
         <Form.Item
-          label="ID"
-          name="id"
-          rules={[{ required: true, message: 'Please input your ID!' }]}
+          label={`${props.label} Name`}
+          name="name"
+          rules={[{ required: true, message: 'Please input User Name!' }]}
         >
           <Input />
         </Form.Item>
 
         <Form.Item
-          label="Password"
-          name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          label={`${props.label} Info`}
+          name="info"
+          rules={[{ required: true, message: 'Please input User Info!' }]}
         >
-          <Input.Password />
-        </Form.Item>
-
-        <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
-          <Checkbox>Remember me</Checkbox>
+          <Input />
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
           <CustomButton>
             <Button type="primary" htmlType="submit">
-              Login
+              Add
             </Button>
           </CustomButton>
         </Form.Item>
@@ -73,4 +68,4 @@ const CustomButton = styled.div`
   }
 `;
 
-export default LoginForm;
+export default UserForm;

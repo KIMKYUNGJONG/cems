@@ -24,6 +24,18 @@ function NavbarMenu(props: any) {
   return (
     <RouteWrapper>
       {routes}
+      {props.isAdmin ?
+        <CustomButton key={'admin'}>
+          <NavLink
+            activeClassName="activated"
+            to={'/admin'}
+            onClick={onClick} >
+            <Icon name={'ic_nav4'} hover={'#f4f6f7'} />
+            <span>admin</span>
+          </NavLink>
+        </CustomButton>
+        : null
+      }
     </RouteWrapper>);
 }
 const RouteWrapper = styled.div`
@@ -40,6 +52,7 @@ const CustomButton = styled.div`
   & a {
     display: inline-flex;
     align-items: center;
+    color: ${(props) => props.theme.fontColor};
   }
 
   & a.activated {
@@ -53,6 +66,17 @@ const CustomButton = styled.div`
   &::after {
     margin-left: 10px;
     content: '|';
+  }
+
+  &:last-child {
+    & svg path {
+      stroke-width: 1.5px;
+    }
+  }
+
+  &:last-child::after {
+    margin-left: 10px;
+    content: '';
   }
 `;
 export default NavbarMenu;

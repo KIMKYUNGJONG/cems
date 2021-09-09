@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const LayoutContainer = () => {
   sessionStorage.setItem('isAuthorized', 'true');
-  sessionStorage.setItem('isAdmin', 'true');
+  sessionStorage.setItem('isAdmin', 'false');
   return <BrowserRouter><Layout /></BrowserRouter>;
 };
 

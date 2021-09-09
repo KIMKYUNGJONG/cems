@@ -8,10 +8,6 @@ export const ROUTES: Routes[] = [
     icon: 'ic_nav1',
   },
   {
-    name: 'sms',
-    icon: 'ic_nav2',
-  },
-  {
     name: 'report',
     icon: 'ic_nav3',
   },

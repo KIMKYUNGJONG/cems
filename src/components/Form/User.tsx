@@ -11,30 +11,73 @@ const UserForm = (props: any) => {
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
-
+  const [form] = Form.useForm();
   return (
-    <StyledLoginForm>
+    <StyledForm>
       <Form
         name="basic"
-        labelCol={{ span: 8 }}
+        labelCol={{ span: 10 }}
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
+        form={form}
       >
         <Form.Item
-          label={`${props.label} Name`}
-          name="name"
-          rules={[{ required: true, message: 'Please input User Name!' }]}
+          label={`${props.label} ID`}
+          name="id"
+          rules={[{ required: true, message: 'Please input User ID!' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label={`${props.label} PW`}
+          name="password"
+          rules={[{ required: true, message: 'Please input User PW!' }]}
         >
           <Input />
         </Form.Item>
 
         <Form.Item
-          label={`${props.label} Info`}
-          name="info"
-          rules={[{ required: true, message: 'Please input User Info!' }]}
+          label={'Company Name'}
+          name="company"
+          rules={[{ required: true, message: 'Please input Company Name!' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label={'Manager Name'}
+          name="manager"
+          rules={[{ required: true, message: 'Please input Manager Name!' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label={'Contact'}
+          name="contact"
+          rules={[{ required: false, message: 'Please input Contact Number!' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label={'E-mail'}
+          name="email"
+          rules={[{ required: false, message: 'Please input Email!' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label={'Project List'}
+          name="projectList"
+          rules={[{ required: false }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label={'Memo'}
+          name="memo"
+          rules={[{ required: false }]}
         >
           <Input />
         </Form.Item>
@@ -47,13 +90,13 @@ const UserForm = (props: any) => {
           </CustomButton>
         </Form.Item>
       </Form>
-    </StyledLoginForm>
+    </StyledForm>
   );
 };
 
-const StyledLoginForm = styled.div`
+const StyledForm = styled.div`
   padding: 20px;
-  width: 330px;
+  width: 100%;
   background-color: ${(props) => props.theme.clusterBg};
   border-radius: 15px;
   & label {

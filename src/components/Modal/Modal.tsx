@@ -8,8 +8,8 @@ const AntModal = (props: any) => {
   return (
     <>
       {(label === 'user') ?
-        <Modal title={`Add ${label}`} visible={props.isModalVisible} onOk={props.handleOk} onCancel={props.handleCancel}>
-          <UserForm label={label} handleValue={props.handleFormValue} />
+        <Modal title={`Add ${label}`} visible={props.isModalVisible} onCancel={props.handleCancel} footer={null}>
+          <UserForm form={props.form} label={label} handleValue={props.handleFormValue} />
         </Modal> :
         <Modal title={`Add ${label}`} visible={props.isModalVisible} onOk={props.handleOk} onCancel={props.handleCancel}>
           <ProjectForm label={label} handleValue={props.handleFormValue} />

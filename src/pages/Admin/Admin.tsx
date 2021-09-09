@@ -22,7 +22,7 @@ function Admin({ dataSource }: any) {
     label: ''
   });
 
-  const handleOk = () => {
+  const handleOk = (form: any) => {
     setIsModalVisible(false);
   };
 

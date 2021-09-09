@@ -1,54 +1,102 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 
+const { TextArea } = Input;
 const ProjectForm = (props: any) => {
+  const [form] = Form.useForm();
+
   const onFinish = (values: any) => {
     console.log('Success:', values);
-    props.handleValue(values);
+    const formValue = {
+      key: '1',
+      projectName: values.projectName,
+      scene: values.scene,
+      aplicationId: values.aplicationId,
+      sms: [values.sms1, values.sms2],
+      regDate: '2021-09-09 16:48',
+      url: `/ht-static/scenes/${values.projectName}/${values.scene}.json`,
+      userId: 'User_01',
+      projectId: '37',
+    };
+    props.handleFormValue(formValue);
+    form.resetFields();
+    props.handleOk();
   };
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
-    props.handleValue(errorInfo);
+    props.handleFormValue(errorInfo);
   };
 
   return (
     <StyledLoginForm>
       <Form
-        name="basic"
+        name="project"
         labelCol={{ span: 8 }}
+        initialValues={props.value ? props.value : null}
         wrapperCol={{ span: 16 }}
-        initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
+        form={form}
       >
         <Form.Item
-          label="Project Name"
-          name="name"
-          rules={[{ required: true, message: 'Please input your ProjectName!' }]}
+          label="프로젝트 명"
+          name="projectName"
+          rules={[{ required: true, message: '프로젝트 이름이 필요합니다' }]}
         >
-          <Input />
+          <Input placeholder="프로젝트 명" />
         </Form.Item>
         <Form.Item
-          label="Project Path"
-          name="path"
-          rules={[{ required: true, message: 'Please input your ProjectPath!' }]}
+          label="씬 이름"
+          name="scene"
+          rules={[{ required: true, message: '씬 이름이 필요합니다' }]}
         >
-          <Input />
+          <Input placeholder="씬 이름" />
+        </Form.Item>
+        <Form.Item
+          label="어플리케이션 ID"
+          name="aplicationId"
+          rules={[{ required: true, message: '어플리케이션 ID 가 필요합니다' }]}
+        >
+          <Input type="number" placeholder="어플리케이션 ID" />
+        </Form.Item>
+        <Form.Item label="SMS" style={{ marginBottom: 0 }}>
+          <Form.Item
+            name="sms1"
+            style={{ display: 'inline-block', width: 'calc(50% - 8px)' }}
+          >
+            <Input type="tel" placeholder="SMS 번호 '-' 제외" />
+          </Form.Item>
+          <Form.Item
+            name="sms2"
+            style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}
+          >
+            <Input type="tel" placeholder="SMS 번호 '-' 제외" />
+          </Form.Item>
+        </Form.Item>
+        <Form.Item
+          label="노트"
+          name="note"
+        >
+          <TextArea rows={4} />
         </Form.Item>
 
-        <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
+        <CustomButtonGroup>
           <CustomButton>
             <Button type="primary" htmlType="submit">
-              Add
+              추가
             </Button>
           </CustomButton>
-        </Form.Item>
+          <CustomButton>
+            <Button onClick={() => {
+              form.resetFields();
+              props.handleCancel();
+            }}>
+              취소
+            </Button>
+          </CustomButton>
+        </CustomButtonGroup>
       </Form>
     </StyledLoginForm>
   );
@@ -56,16 +104,21 @@ const ProjectForm = (props: any) => {
 
 const StyledLoginForm = styled.div`
   padding: 20px;
-  width: 330px;
+  width: 100%;
   background-color: ${(props) => props.theme.clusterBg};
-  border-radius: 15px;
   & label {
     color: ${(props) => props.theme.fontColor};
   }
 `;
+const CustomButtonGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+  margin: 0 auto;
+`;
 
 const CustomButton = styled.div`
-  text-align: center;
+  width: 70px;
   & button {
     width:100%;
   }

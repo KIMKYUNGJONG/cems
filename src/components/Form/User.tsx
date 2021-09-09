@@ -1,21 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 
+const { TextArea } = Input;
 const UserForm = (props: any) => {
-  //const { handleLogin } = props;
+  const [form] = Form.useForm();
   const onFinish = (values: any) => {
     console.log('Success:', values);
+    props.handleFormValue(values);
   };
-
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
+    props.handleFormValue(errorInfo);
   };
-  const [form] = Form.useForm();
+
   return (
     <StyledForm>
       <Form
-        name="basic"
+        name="user"
         labelCol={{ span: 10 }}
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
@@ -25,70 +27,72 @@ const UserForm = (props: any) => {
         form={form}
       >
         <Form.Item
-          label={`${props.label} ID`}
+          label={'사용자 ID'}
           name="id"
-          rules={[{ required: true, message: 'Please input User ID!' }]}
+          rules={[{ required: true, message: '사용자 ID가 필요합니다' }]}
         >
-          <Input />
+          <Input placeholder="사용자 ID" />
         </Form.Item>
         <Form.Item
-          label={`${props.label} PW`}
+          label={'사용자 PW'}
           name="password"
-          rules={[{ required: true, message: 'Please input User PW!' }]}
+          rules={[{ required: true, message: '사용자 PW가 필요합니다' }]}
         >
-          <Input />
+          <Input placeholder="사용자 PW" />
         </Form.Item>
 
         <Form.Item
-          label={'Company Name'}
+          label={'회사명'}
           name="company"
-          rules={[{ required: true, message: 'Please input Company Name!' }]}
+          rules={[{ required: true, message: '회사명이 필요합니다' }]}
         >
-          <Input />
+          <Input placeholder="회사명" />
         </Form.Item>
         <Form.Item
-          label={'Manager Name'}
+          label={'관리자'}
           name="manager"
-          rules={[{ required: true, message: 'Please input Manager Name!' }]}
+          rules={[{ required: true, message: '관리자를 등록해 주십시오' }]}
         >
-          <Input />
+          <Input placeholder="관리자" />
         </Form.Item>
         <Form.Item
-          label={'Contact'}
+          label={'연락처'}
           name="contact"
-          rules={[{ required: false, message: 'Please input Contact Number!' }]}
         >
-          <Input />
+          <Input type="tel" placeholder="연락처" />
         </Form.Item>
         <Form.Item
           label={'E-mail'}
           name="email"
-          rules={[{ required: false, message: 'Please input Email!' }]}
+          rules={[{ type: 'email', message: '이메일 형식에 맞지 않습니다' }]}
         >
-          <Input />
+          <Input placeholder="example@email.com" />
         </Form.Item>
         <Form.Item
-          label={'Project List'}
+          label={'프로젝트 리스트'}
           name="projectList"
-          rules={[{ required: false }]}
         >
           <Input />
         </Form.Item>
         <Form.Item
-          label={'Memo'}
-          name="memo"
-          rules={[{ required: false }]}
+          label={'노트'}
+          name="note"
         >
-          <Input />
+          <TextArea rows={4} />
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
+        <CustomButtonGroup>
           <CustomButton>
             <Button type="primary" htmlType="submit">
-              Add
+              추가
             </Button>
           </CustomButton>
-        </Form.Item>
+          <CustomButton>
+            <Button onClick={props.handleCancel}>
+              취소
+            </Button>
+          </CustomButton>
+        </CustomButtonGroup>
       </Form>
     </StyledForm>
   );
@@ -103,9 +107,15 @@ const StyledForm = styled.div`
     color: ${(props) => props.theme.fontColor};
   }
 `;
+const CustomButtonGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+  margin: 0 auto;
+`;
 
 const CustomButton = styled.div`
-  text-align: center;
+  width: 70px;
   & button {
     width:100%;
   }

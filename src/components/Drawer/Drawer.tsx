@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Drawer, Tabs } from 'antd';
-import { IDrawer, IUser } from '../../constant/Admin';
 
 const { TabPane } = Tabs;
 function callback(key: string) {
   console.log(key);
 }
-const AntDrawer = (props: IDrawer) => {
+const AntDrawer = (props: any) => {
   const { data, onClose, visible } = props;
   return (
     <>

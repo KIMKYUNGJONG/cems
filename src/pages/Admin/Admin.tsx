@@ -1,44 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Layout, Breadcrumb, Table, Tag, Space, Button } from 'antd';
-import { UserAddOutlined } from '@ant-design/icons';
+import { Layout, Breadcrumb, Table, Tag, Space, Button, Tabs } from 'antd';
 import AddButton from '../../components/Common/AddButton';
-import AntDrawer from '../../components/Drawer/Drawer';
 import AntModal from '../../components/Modal/Modal';
+import ProjectTable from './ProjectTable';
+import UserTable from './UserTable';
 
-import { IDrawer, IUser } from '../../constant/Admin';
+import { IUser } from './Interface';
 
-function Admin({ dataSource }: any) {
-  const { Header, Footer, Sider, Content } = Layout;
-  const [value, setValue] = useState<IUser>({
-    key: 0,
-    name: '',
-    age: 0,
-    address: '',
-  });
-  const [visible, setVisible] = useState<boolean>(false);
+const { TabPane } = Tabs;
+function callback(key: string) {
+  console.log(key);
+}
+
+function Admin({ data, sampleData }: any) {
+  console.log('api 서버통신 데이터', sampleData.data);
+  const { Content } = Layout;
+  const [value, setValue] = useState<IUser | undefined>();
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [formType, setFormType] = useState({
     label: ''
   });
 
-  const handleOk = (form: any) => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleFormValue = (value: any) => {
+  useEffect(() => {
+    console.log('value 값이 설정됨');
     console.log(value);
-  };
-  const handleTagClick = (record: IUser) => {
-    setValue(record);
-    setVisible(true);
-    console.log(record);
-  };
+    return () => {
+      console.log('value 가 바뀌기 전..');
+      console.log(value);
+    };
+  }, [value]);
 
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+  const handleCancel = (form: any) => {
+    setIsModalVisible(false);
+  };
+  const handleFormValue = (item: any) => {
+    console.log('폼에서 가지고 온 데이터 확인 : ', item);
+  };
+  const handleInfomation = (record: IUser) => {
+    setValue(record);
+    console.log('테이블 로우 클릭시 가지고 오는 데이터 확인 : ', record);
+    setIsModalVisible(true);
+  };
   const handleForm = (type: string) => {
     setFormType({
       label: type
@@ -47,91 +53,60 @@ function Admin({ dataSource }: any) {
     console.log('event activate');
   };
 
-  const onClose = () => {
-    setVisible(false);
-  };
-
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text: string) => <a>{text}</a>,
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (tags: string[], record: any) => (
-        <>
-          {tags.map(tag => {
-            const color = tag.length > 5 ? 'geekblue' : 'green';
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
-    },
-    {
-      title: 'Action',
-      key: 'action',
-      render: (text: string, record: any) => (
-        <Space size="middle">
-          <button onClick={(event) => {
-            console.log('clickModify');
-            handleTagClick(record);
-          }}>Modify</button>
-          <button onClick={(event) => {
-            console.log('clickDelete');
-            alert('delete function');
-          }}>Delete</button>
-        </Space>
-      ),
-    },
-  ];
-
   return (
     <AdminWrapper>
       <Layout>
-        <Content className="site-layout" style={{ padding: '0 50px', marginTop: 40 }}>
-          <TitleWrapper>
-            <Breadcrumb className="page-title" style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Admin Page</Breadcrumb.Item>
-            </Breadcrumb>
-            <AntModal formType={formType} isModalVisible={isModalVisible} handleOk={handleOk} handleCancel={handleCancel} handleFormValue={handleFormValue} />
-            <AntDrawer visible={visible} onClose={onClose} data={value} />
-            <div>
-              <AddButton name={'Add User'} icon={'user'} handleForm={handleForm} />
-              <AddButton name={'Add Project'} icon={'project'} handleForm={handleForm} />
-            </div>
-          </TitleWrapper>
-          <Contents>
-            <Table
-              onRow={(record, rowIndex) => {
-                return {
-                  onClick: event => { console.log(event, record); }, // click row
-                };
-              }}
-              dataSource={dataSource} columns={columns} />;
-          </Contents>
+        <Content className="site-layout" style={{ padding: '50px' }}>
+          <Tabs onChange={callback} type="card" className="custom-tabs" >
+            <TabPane tab="프로젝트" key="1">
+              <TitleWrapper>
+                <Breadcrumb className="page-title" style={{ margin: '16px 0' }}>
+                  <Breadcrumb.Item>프로젝트 관리</Breadcrumb.Item>
+                </Breadcrumb>
+                <AntModal
+                  value={value}
+                  formType={formType}
+                  isModalVisible={isModalVisible}
+                  handleOk={handleOk}
+                  handleCancel={handleCancel}
+                  handleFormValue={handleFormValue}
+                />
+                <div>
+                  <AddButton name={'프로젝트 추가'} icon={'project'} handleForm={handleForm} />
+                </div>
+              </TitleWrapper>
+              <Contents>
+                <ProjectTable dataSource={data[1]} handleInfomation={handleInfomation} />
+              </Contents>
+            </TabPane>
+            <TabPane tab="사용자" key="2">
+              <TitleWrapper>
+                <Breadcrumb className="page-title" style={{ margin: '16px 0' }}>
+                  <Breadcrumb.Item>사용자 관리</Breadcrumb.Item>
+                </Breadcrumb>
+                <AntModal
+                  value={value}
+                  formType={formType}
+                  isModalVisible={isModalVisible}
+                  handleOk={handleOk}
+                  handleCancel={handleCancel}
+                  handleFormValue={handleFormValue}
+                />
+                <div>
+                  <AddButton name={'사용자 추가'} icon={'user'} handleForm={handleForm} />
+                </div>
+              </TitleWrapper>
+              <Contents>
+                <UserTable dataSource={data[0]} handleInfomation={handleInfomation} />
+              </Contents>
+            </TabPane>
+          </Tabs>
         </Content>
       </Layout>
     </AdminWrapper>
   );
 }
+
 
 const AdminWrapper = styled.div`
   position: relative;
@@ -144,6 +119,12 @@ const AdminWrapper = styled.div`
   & section {
     height: calc(100vh - 60px);
     margin-top: 60px;
+
+    & .custom-tabs {
+      background-color: ${(props) => props.theme.clusterBg};
+      padding: 10px;
+      border-radius: 10px;
+    }
 
     & .page-title {
       font-size: 1.5em;
@@ -162,5 +143,11 @@ const Contents = styled.div`
 const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  padding: 0 1em;
+`;
+
+const NoteText = styled.span`
+  display: flex;
+  width: 120px;
 `;
 export default Admin;

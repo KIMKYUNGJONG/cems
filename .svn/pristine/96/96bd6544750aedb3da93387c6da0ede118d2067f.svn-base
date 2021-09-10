@@ -1,0 +1,6884 @@
+{
+  "v": "7.0.9-dev2",
+  "p": {
+    "background": "rgb(0,0,0)",
+    "envmap": "assets/htdesign/scene/environment/stars_02.jpg",
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true
+  },
+  "a": {
+    "sceneBloomStrength": 0.4,
+    "sceneBloomThreshold": 0.15,
+    "sceneBloomRadius": 0,
+    "sceneBloomOverrideAlpha": true,
+    "sceneDofAperture": 0.013,
+    "sceneDofMaxblur": 1,
+    "sceneDofImage": "displays/htdesign/city/1.png",
+    "sceneNear": 100,
+    "sceneFar": 400000,
+    "sceneHighlightMode": "style",
+    "sceneHighlightColor": "rgba(190, 210, 250, 1)",
+    "sceneHighlightWidth": 0.8,
+    "sceneDashEnable": false,
+    "sceneHeadlightEnable": true,
+    "sceneHeadlightRange": 0,
+    "sceneHeadlightColor": "rgb(255,255,255)",
+    "sceneHeadlightIntensity": 1,
+    "sceneHeadlightAmbientIntensity": 0.7,
+    "sceneFogEnable": false,
+    "sceneFogColor": "white",
+    "sceneFogNear": 1,
+    "sceneFogFar": 2000,
+    "sceneBloom": true,
+    "sceneDof": false,
+    "custom.initFunc": "__ht__function() {\n\n}",
+    "onPostDeserialize": "__ht__function(json, dm, gv, datas) {gv.setInteractors([new ht.graph3d.MapInteractor(gv)]);\r\nvar org_eye = json.scene.eye, org_center = json.scene.center;\r\n\r\nvar _blade = [];\r\nvar bladeTimer;\r\ndm.each(function(t) {\r\n                    t.s(\"shape3d.image.cache\", !0), \r\n                    \"models/htdesign/equipment/power/wind_power_body_01.json\" == t.s(\"shape3d\") && t.s(\"batch\", \"pole\"), \"symbols/htdesign/ui/demo/04/tip_dynamic_01.json\" == t.s(\"shape3d.image\") && t.s(\"batch\", \"plain\"), \"models/htdesign/equipment/power/wind_power_blade_01.json\" == t.s(\"shape3d\") && (_blade.push(t), t.setRotationZ(0), t.setAnchorX(.6569), t.setAnchorElevation(.5069), t.a(\"speed\", .02 * Math.random() + .02), t.s(\"3d.selectable\", !0))\r\n                });\r\n            var _angle = 0;\r\n            (bladeTimer = setInterval(function() {\r\n                var e = void 0;\r\n                _blade.forEach(function(t) {\r\n                    e = t.getRotationZ(), e -= t.a(\"speed\"), t.setRotationZ(e)\r\n                })\r\n            }, 16.7));\r\n\r\n       function flyToView(g3d, eye, center, cb, time, nointerp) {\r\n\t        var e = ht.Default.clone(g3d.getEye()),\r\n\t        c = ht.Default.clone(g3d.getCenter());\r\n\t\t    var edx = eye[0] - e[0],\r\n\t\t        edz = eye[1] - e[1],\r\n\t\t        edy = eye[2] - e[2],\r\n\t\t        cdx = center[0] - c[0],\r\n\t\t        cdz = center[1] - c[1],\r\n\t\t        cdy = center[2] - c[2];\r\n\t\t    var rtn = ht.Default.startAnim({\r\n\t\t        duration: time ? time : 3000,\r\n\t\t        easing: function easing(t) {\r\n\t\t        \t\treturn t;\r\n\t\t        },\r\n\t\t        finishFunc: function finishFunc() {\r\n\t\t            if (typeof cb === 'function') {\r\n\t\t                cb();\r\n\t\t            }\r\n\t\t        },\r\n\t\t        action: function action(v) {\r\n\t\t            g3d.setEye([e[0] + edx * v, e[1] + edz * v, e[2] + edy * v]);\r\n\t\t\t\t\tif(nointerp){\r\n\t\t\t\t\t\tg3d.setCenter(center);\r\n\t\t\t\t\t}else{\r\n\t\t\t\t\t\tg3d.setCenter([c[0] + cdx * v, c[1] + cdz * v, c[2] + cdy * v]);\r\n\t\t\t\t\t}\r\n\t\t            \r\n\t\t        }\r\n\t\t    });\r\n\t\t\treturn rtn;\t\r\n\t\t}\r\n      gv.mi(function(t) {\r\n                        var e = t.data,\r\n                            r = t.kind;\r\n                        if(\"doubleClickBackground\" === r){\r\n                        \tflyToView(gv, \r\n                            org_eye, org_center );\r\n                        }else if(\"doubleClickData\" === r){\r\n                            console.log(1)\r\n                            gv.flyTo(e, {animation:true,direction:[0,2,5], distance:1000});\r\n                        } \r\n                    });\r\n\r\n            let greenlight = dm.getDataByTag(\"light2\");\r\n            let light2 = new ht.Light();\r\n            light2.setDisplayName('AlarmLight');\r\n            light2.s({\r\n                'light.disabled': false,\r\n                '3d.visible': false,\r\n                'light.type': 'point',\r\n                'light.color': 'rgba(255, 255, 255, 0.8)',\r\n                'light.range': 1000,\r\n                'light.center': [greenlight.p3()[0], greenlight.p3()[1], greenlight.p3()[2]],\r\n                'light.angle': Math.PI / 180 * 135,\r\n                'light.exponent': 0,\r\n                'light.intensity': 2\r\n            });\r\n     \r\n            light2.p3([greenlight.p3()[0], greenlight.p3()[1], greenlight.p3()[2]]);\r\n\t\t\r\n            dm.add(light2);   \r\n            light2.s('light.color', 'green');  \r\n\r\n                                var alarmIntervalTimer = {\r\n                                    interval: 1000,\r\n                                    action: (data) => {\r\n                                        if (data.getDisplayName() === 'AlarmLight') {\r\n                                            data.s('light.disabled', false);\r\n                                            setTimeout(() => {\r\n                                                data.s('light.disabled', true);\r\n                                            }, 100);\r\n                                        }\r\n                                    }\r\n                                };\r\n                                dm.addScheduleTask(alarmIntervalTimer);}",
+    "rulerEnabled": false,
+    "gridAngle": 1.5708,
+    "sceneGridEnabled": false,
+    "gridBlockCount": 50
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 62711,
+      "p": {
+        "displayName": "基础",
+        "position": {
+          "x": -104.29607,
+          "y": -310.36111
+        },
+        "width": 5584.21547,
+        "height": 3093.76929,
+        "tall": 476.70432,
+        "elevation": 238.35216
+      },
+      "s": {
+        "shape3d": "box",
+        "shape3d.transparent": true,
+        "shape3d.color": "rgba(0, 0, 0, 0)",
+        "shape3d.reverse.cull": true,
+        "__group__": true,
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62712,
+      "p": {
+        "displayName": "球体",
+        "parent": {
+          "__i": 62711
+        },
+        "tag": "skyBox",
+        "host": {
+          "__i": 62711
+        },
+        "width": 10000,
+        "height": 10000,
+        "tall": 10000
+      },
+      "s": {
+        "shape3d": "sphere",
+        "shape3d.color": "#DDDDDD",
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.image": "assets/htdesign/scene/skybox/vague_01.jpg",
+        "shape3d.reverse.flip": true,
+        "shape3d.blend": "rgb(37,61,179)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62713,
+      "p": {
+        "displayName": "地板",
+        "parent": {
+          "__i": 62711
+        },
+        "host": {
+          "__i": 62711
+        },
+        "rotation": 0.68674,
+        "position": {
+          "x": -540.76409,
+          "y": 62.64982
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.3,
+          "y": 0.3
+        },
+        "width": 17763,
+        "height": 17762.58141,
+        "tall": 10,
+        "elevation": 193,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -9422.26409,
+              "y": -8818.64089
+            },
+            {
+              "x": 8340.73592,
+              "y": -8818.64089
+            },
+            {
+              "x": 8340.73592,
+              "y": 8943.94053
+            },
+            {
+              "x": -9422.26409,
+              "y": 8943.94053
+            },
+            {
+              "x": -9422.26409,
+              "y": -8814.20257
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#60ACFC",
+        "shape3d.top.color": "rgba(0,32,87,0.72)",
+        "shape3d.bottom.color": "rgb(25,39,89)",
+        "shape.background": "#EEEEEE",
+        "shape3d.reverse.cull": true,
+        "shape3d.bottom.visible": false,
+        "shape3d.top.uv.scale": [
+          1,
+          1
+        ],
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.3,
+        "front.image": "symbols/htdesign/fill/gradual_01.json",
+        "back.image": "symbols/htdesign/fill/gradual_01.json",
+        "left.image": "symbols/htdesign/fill/gradual_01.json",
+        "right.image": "symbols/htdesign/fill/gradual_01.json",
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.top.image": "assets/robin/새만금1.jpg",
+        "wf.color": "rgb(48,242,120)",
+        "select.brightness": 1,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62714,
+      "p": {
+        "parent": {
+          "__i": 62713
+        },
+        "host": {
+          "__i": 62713
+        },
+        "rotation": 1.44826,
+        "position": {
+          "x": -1125.82081,
+          "y": -768.83925
+        },
+        "anchorElevation": 0,
+        "elevation": 196.99485
+      },
+      "s": {
+        "shape3d": "models/htdesign/outdoor/wire_buliding/bridge_01.json",
+        "wf.geometry": true,
+        "wf.color": "rgb(73,76,87)",
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "envmap": 1,
+        "wf.combineTriangle": 2,
+        "shape3d.color": "rgb(0,0,0)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62715,
+      "p": {
+        "parent": {
+          "__i": 62713
+        },
+        "host": {
+          "__i": 62713
+        },
+        "rotation": 1.44826,
+        "position": {
+          "x": -1226.10829,
+          "y": -1582.6992
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": -1,
+          "y": 1
+        },
+        "elevation": 196.99485
+      },
+      "s": {
+        "shape3d": "models/htdesign/outdoor/wire_buliding/bridge_01.json",
+        "wf.geometry": true,
+        "wf.color": "rgb(73,76,87)",
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "wf.combineTriangle": 2,
+        "shape3d.color": "rgb(0,0,0)",
+        "envmap": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62716,
+      "p": {
+        "displayName": "logo",
+        "parent": {
+          "__i": 62713
+        },
+        "host": {
+          "__i": 62713
+        },
+        "rotation": -2.73411,
+        "rotationZ": 1.5708,
+        "position": {
+          "x": -490.04066,
+          "y": 82.11185
+        },
+        "anchorElevation": 0,
+        "scaleTall": 0.99922,
+        "width": 8.54099,
+        "height": 8.54099,
+        "tall": 3,
+        "elevation": 596.54088,
+        "segments": {
+          "__a": [
+            1,
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -490.04066,
+              "y": 86.38235
+            },
+            {
+              "x": -491.40421,
+              "y": 86.38235
+            },
+            {
+              "x": -494.31115,
+              "y": 86.38235
+            },
+            {
+              "x": -494.31115,
+              "y": 86.38235
+            },
+            {
+              "x": -494.31115,
+              "y": 86.38235
+            },
+            {
+              "x": -494.31115,
+              "y": 83.29239
+            },
+            {
+              "x": -494.31115,
+              "y": 82.11185
+            },
+            {
+              "x": -494.31115,
+              "y": 79.49177
+            },
+            {
+              "x": -492.60274,
+              "y": 77.84136
+            },
+            {
+              "x": -490.04066,
+              "y": 77.84136
+            },
+            {
+              "x": -487.47858,
+              "y": 77.84136
+            },
+            {
+              "x": -485.77016,
+              "y": 79.75454
+            },
+            {
+              "x": -485.77016,
+              "y": 82.11185
+            },
+            {
+              "x": -485.77016,
+              "y": 84.32808
+            },
+            {
+              "x": -487.67567,
+              "y": 86.38235
+            },
+            {
+              "x": -490.04066,
+              "y": 86.38235
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "rgba(0,212,255,0.53)",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "shape3d.from.visible": false,
+        "shape3d.to.visible": false,
+        "shape3d.transparent": true,
+        "shape3d.side": 2,
+        "envmap": 0.38,
+        "shape3d.reverse.flip": true,
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62717,
+      "p": {
+        "displayName": "logo",
+        "parent": {
+          "__i": 62716
+        },
+        "host": {
+          "__i": 62716
+        },
+        "rotation": -1.16331,
+        "rotationX": 1.5708,
+        "position": {
+          "x": -484.66146,
+          "y": 74.14
+        },
+        "anchorElevation": 0,
+        "width": 12.66947,
+        "height": 10.63599,
+        "tall": 1,
+        "elevation": 587.48701,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -490.27564,
+              "y": 68.822
+            },
+            {
+              "x": -478.32672,
+              "y": 68.822
+            },
+            {
+              "x": -478.85133,
+              "y": 71.53956
+            },
+            {
+              "x": -482.59187,
+              "y": 71.53956
+            },
+            {
+              "x": -483.38632,
+              "y": 79.45799
+            },
+            {
+              "x": -486.80008,
+              "y": 79.45799
+            },
+            {
+              "x": -486.20584,
+              "y": 71.53956
+            },
+            {
+              "x": -490.99619,
+              "y": 71.53956
+            },
+            {
+              "x": -490.27564,
+              "y": 68.822
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "rgb(114,141,173)",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "shape3d.from.visible": false,
+        "shape3d.to.visible": false,
+        "shape3d.side": 2,
+        "shape3d.reverse.flip": true,
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62718,
+      "p": {
+        "displayName": "logo",
+        "parent": {
+          "__i": 62716
+        },
+        "host": {
+          "__i": 62716
+        },
+        "rotation": -1.16331,
+        "rotationX": 1.5708,
+        "position": {
+          "x": -487.39125,
+          "y": 72.93155
+        },
+        "anchorElevation": 0,
+        "width": 17.16849,
+        "height": 17.16849,
+        "tall": 3,
+        "elevation": 588.09937,
+        "segments": {
+          "__a": [
+            1,
+            4,
+            4,
+            4,
+            4,
+            4
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -487.39125,
+              "y": 81.51579
+            },
+            {
+              "x": -490.13218,
+              "y": 81.51579
+            },
+            {
+              "x": -495.9755,
+              "y": 81.51579
+            },
+            {
+              "x": -495.9755,
+              "y": 81.51579
+            },
+            {
+              "x": -495.9755,
+              "y": 81.51579
+            },
+            {
+              "x": -495.9755,
+              "y": 75.30458
+            },
+            {
+              "x": -495.9755,
+              "y": 72.93155
+            },
+            {
+              "x": -495.9755,
+              "y": 67.66484
+            },
+            {
+              "x": -493.37768,
+              "y": 64.3473
+            },
+            {
+              "x": -487.39125,
+              "y": 64.3473
+            },
+            {
+              "x": -481.40483,
+              "y": 64.3473
+            },
+            {
+              "x": -478.80701,
+              "y": 68.19306
+            },
+            {
+              "x": -478.80701,
+              "y": 72.93155
+            },
+            {
+              "x": -478.80701,
+              "y": 77.38645
+            },
+            {
+              "x": -482.63733,
+              "y": 81.51579
+            },
+            {
+              "x": -487.39125,
+              "y": 81.51579
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "rgb(39,126,219)",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "shape3d.from.visible": false,
+        "shape3d.to.visible": false,
+        "shape3d.side": 2,
+        "envmap": 0.38,
+        "shape3d.reverse.flip": true,
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62719,
+      "p": {
+        "displayName": "扩散黄",
+        "parent": {
+          "__i": 62716
+        },
+        "host": {
+          "__i": 62716
+        },
+        "rotation": 0.68674,
+        "position": {
+          "x": -1919.38974,
+          "y": 284.73136
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.16963,
+          "y": 1.16963
+        },
+        "scaleTall": 1.16963,
+        "width": 455,
+        "height": 455,
+        "tall": 43,
+        "elevation": 211.77898
+      },
+      "s": {
+        "shape3d": "cylinder",
+        "shape3d.color": "#DDDDDD",
+        "shape3d.top.visible": false,
+        "shape3d.from.visible": false,
+        "shape3d.to.visible": false,
+        "shape3d.reverse.flip": true,
+        "shape3d.image": "symbols/htdesign/fill/gradual_orange_01.json",
+        "shape3d.transparent": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.bottom.image": "symbols/htdesign/fill/gradual_orange_02.json",
+        "shape3d.side": 30,
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true
+      },
+      "a": {
+        "ripple.opacity": 1
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62720,
+      "p": {
+        "displayName": "地板不透",
+        "parent": {
+          "__i": 62713
+        },
+        "host": {
+          "__i": 62713
+        },
+        "rotation": -2.03597,
+        "position": {
+          "x": -517.27879,
+          "y": 84.13754
+        },
+        "anchorElevation": 0,
+        "width": 343.0909,
+        "height": 335.72765,
+        "tall": 1,
+        "elevation": 192.00304,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -684.64354,
+              "y": -83.72629
+            },
+            {
+              "x": -345.73334,
+              "y": -45.66898
+            },
+            {
+              "x": -356.77864,
+              "y": 252.00136
+            },
+            {
+              "x": -634.57439,
+              "y": 217.18982
+            },
+            {
+              "x": -688.82424,
+              "y": -41.46379
+            },
+            {
+              "x": -684.64354,
+              "y": -83.72629
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "rgb(0,0,0)",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "shape3d.reverse.cull": true,
+        "shape3d.bottom.visible": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.top.uv.scale": [
+          38,
+          38
+        ],
+        "shape3d.opacity": 1,
+        "front.image": "symbols/htdesign/fill/gradual_01.json",
+        "back.image": "symbols/htdesign/fill/gradual_01.json",
+        "left.image": "symbols/htdesign/fill/gradual_01.json",
+        "right.image": "symbols/htdesign/fill/gradual_01.json",
+        "shape3d.visible": false,
+        "shape3d.from.visible": false,
+        "shape3d.to.visible": false,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62721,
+      "p": {
+        "displayName": "流星",
+        "parent": {
+          "__i": 62713
+        },
+        "host": {
+          "__i": 62713
+        },
+        "rotation": 1.73393,
+        "rotationZ": -0.33161,
+        "position": {
+          "x": -3544.45308,
+          "y": -835.70754
+        },
+        "anchorElevation": 0,
+        "width": 823,
+        "height": -1,
+        "tall": -1,
+        "elevation": 664.89015
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.image": "assets/htdesign/map/planet/meteor_02.png",
+        "shape3d.transparent": true,
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true,
+        "shape3d.opacity": 0.5,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62722,
+      "p": {
+        "displayName": "流星",
+        "parent": {
+          "__i": 62713
+        },
+        "host": {
+          "__i": 62713
+        },
+        "rotation": 1.73393,
+        "rotationZ": -0.33161,
+        "position": {
+          "x": -3544.45308,
+          "y": -835.70754
+        },
+        "anchorElevation": 0,
+        "width": 823,
+        "height": -1,
+        "tall": -1,
+        "elevation": 1227.10922
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.image": "assets/htdesign/map/planet/meteor_01.png",
+        "shape3d.transparent": true,
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true,
+        "shape3d.opacity": 0.5,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62723,
+      "p": {
+        "displayName": "流星",
+        "parent": {
+          "__i": 62713
+        },
+        "host": {
+          "__i": 62713
+        },
+        "rotation": 1.73393,
+        "rotationZ": -0.33161,
+        "position": {
+          "x": -2126.18249,
+          "y": -1265.48443
+        },
+        "anchorElevation": 0,
+        "width": 823,
+        "height": -1,
+        "tall": -1,
+        "elevation": 1020.15599
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.image": "assets/htdesign/map/planet/meteor_01.png",
+        "shape3d.transparent": true,
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true,
+        "shape3d.opacity": 0.5,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62724,
+      "p": {
+        "displayName": "流星",
+        "parent": {
+          "__i": 62713
+        },
+        "host": {
+          "__i": 62713
+        },
+        "rotation": 1.73393,
+        "rotationZ": -0.33161,
+        "position": {
+          "x": -3083.19282,
+          "y": -2050.09619
+        },
+        "anchorElevation": 0,
+        "width": 823,
+        "height": -1,
+        "tall": -1,
+        "elevation": 1714.53079
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.image": "assets/htdesign/map/planet/meteor_01.png",
+        "shape3d.transparent": true,
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true,
+        "shape3d.opacity": 0.5,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62725,
+      "p": {
+        "displayName": "流星",
+        "parent": {
+          "__i": 62713
+        },
+        "host": {
+          "__i": 62713
+        },
+        "rotation": 1.73393,
+        "rotationZ": -0.33161,
+        "position": {
+          "x": -5278.86088,
+          "y": -2330.58755
+        },
+        "anchorElevation": 0,
+        "width": 823,
+        "height": -1,
+        "tall": -1,
+        "elevation": 1857.4642
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.image": "assets/htdesign/map/planet/meteor_02.png",
+        "shape3d.transparent": true,
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true,
+        "shape3d.opacity": 0.5,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62726,
+      "p": {
+        "displayName": "流星",
+        "parent": {
+          "__i": 62713
+        },
+        "host": {
+          "__i": 62713
+        },
+        "rotation": 1.73393,
+        "rotationZ": -0.33161,
+        "position": {
+          "x": -5485.49153,
+          "y": -2499.99517
+        },
+        "anchorElevation": 0,
+        "width": 823,
+        "height": -1,
+        "tall": -1,
+        "elevation": 1227.10922
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "billboard",
+        "shape3d.image": "assets/htdesign/map/planet/meteor_01.png",
+        "shape3d.transparent": true,
+        "shape3d.image.cache": true,
+        "shape3d.reverse.flip": true,
+        "shape3d.opacity": 0.5,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.visible": false,
+        "3d.visible": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62727,
+      "p": {
+        "parent": {
+          "__i": 62711
+        },
+        "tag": "block_8",
+        "host": {
+          "__i": 62711
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": -104.29607,
+          "y": -310.36111
+        },
+        "anchorElevation": 0,
+        "width": 3093.74884,
+        "height": 5584.2041
+      },
+      "s": {
+        "shape3d": "models/htdesign/outdoor/city/ny/ny8.json",
+        "envmap": 0.24,
+        "wf.combineTriangle": false,
+        "shape3d.opacity": 1,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62728,
+      "p": {
+        "parent": {
+          "__i": 62711
+        },
+        "tag": "block_1",
+        "host": {
+          "__i": 62711
+        },
+        "rotation": 6.06971,
+        "position": {
+          "x": -749.25786,
+          "y": 475.23302
+        },
+        "anchorElevation": 0,
+        "width": 3093.74884,
+        "height": 5584.2041
+      },
+      "s": {
+        "shape3d": "models/htdesign/outdoor/city/ny/ny1.json",
+        "envmap": 0.24,
+        "wf.combineTriangle": false,
+        "shape3d.opacity": 1,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62729,
+      "p": {
+        "parent": {
+          "__i": 62711
+        },
+        "tag": "block_2",
+        "host": {
+          "__i": 62711
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": -104.29607,
+          "y": -310.36111
+        },
+        "anchorElevation": 0,
+        "width": 3093.74884,
+        "height": 5584.2041
+      },
+      "s": {
+        "shape3d": "models/htdesign/outdoor/city/ny/ny2.json",
+        "envmap": 0.24,
+        "wf.combineTriangle": false,
+        "shape3d.opacity": 1,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62730,
+      "p": {
+        "parent": {
+          "__i": 62711
+        },
+        "tag": "block_3",
+        "host": {
+          "__i": 62711
+        },
+        "rotation": 1.0243,
+        "position": {
+          "x": -1867.34956,
+          "y": 1165.03647
+        },
+        "anchorElevation": 0,
+        "width": 1891.27919,
+        "height": 3106.61464,
+        "elevation": 3.12309
+      },
+      "s": {
+        "shape3d": "models/htdesign/outdoor/city/ny/ny3.json",
+        "envmap": 0.24,
+        "wf.combineTriangle": false,
+        "shape3d.opacity": 1,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62731,
+      "p": {
+        "displayName": "ny4",
+        "parent": {
+          "__i": 62711
+        },
+        "tag": "block_4",
+        "host": {
+          "__i": 62711
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": -83.00253,
+          "y": -352.15984
+        },
+        "anchorElevation": 0,
+        "width": 3093.74884,
+        "height": 5584.2041
+      },
+      "s": {
+        "shape3d": "models/htdesign/outdoor/city/ny/ny4.json",
+        "envmap": 0.24,
+        "wf.combineTriangle": false,
+        "shape3d.opacity": 1,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62732,
+      "p": {
+        "parent": {
+          "__i": 62711
+        },
+        "tag": "block_5",
+        "host": {
+          "__i": 62711
+        },
+        "rotation": 1.8085,
+        "position": {
+          "x": -1171.50129,
+          "y": -121.95506
+        },
+        "anchorElevation": 0,
+        "width": 3093.74884,
+        "height": 5584.2041
+      },
+      "s": {
+        "shape3d": "models/htdesign/outdoor/city/ny/ny5.json",
+        "envmap": 0.24,
+        "wf.combineTriangle": false,
+        "shape3d.opacity": 1,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62733,
+      "p": {
+        "parent": {
+          "__i": 62711
+        },
+        "tag": "block_6",
+        "host": {
+          "__i": 62711
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": -104.29607,
+          "y": -310.36111
+        },
+        "anchorElevation": 0,
+        "width": 3093.74884,
+        "height": 5584.2041
+      },
+      "s": {
+        "shape3d": "models/htdesign/outdoor/city/ny/ny6.json",
+        "envmap": 0.24,
+        "wf.combineTriangle": false,
+        "shape3d.opacity": 1,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62734,
+      "p": {
+        "parent": {
+          "__i": 62711
+        },
+        "tag": "block_7",
+        "host": {
+          "__i": 62711
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": -104.29607,
+          "y": -310.36111
+        },
+        "anchorElevation": 0,
+        "width": 3093.74884,
+        "height": 5584.2041
+      },
+      "s": {
+        "shape3d": "models/htdesign/outdoor/city/ny/ny7.json",
+        "envmap": 0.24,
+        "wf.combineTriangle": false,
+        "shape3d.opacity": 1,
+        "2d.visible": false,
+        "3d.visible": false,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62877,
+      "p": {
+        "tag": "block_1",
+        "rotation": 5.40188,
+        "position": {
+          "x": 939.53961,
+          "y": -603.58046
+        },
+        "anchorElevation": 0,
+        "width": 3093.74884,
+        "height": 5584.2041,
+        "elevation": 19.41076
+      },
+      "s": {
+        "shape3d": "models/htdesign/outdoor/city/ny/ny1.json",
+        "envmap": 0.24,
+        "wf.combineTriangle": false,
+        "shape3d.opacity": 1,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62878,
+      "p": {
+        "position": {
+          "x": 1777.36204,
+          "y": 500.23309
+        },
+        "width": 956.59233,
+        "height": 5817.4473,
+        "tall": 924.3822,
+        "elevation": 447.82788
+      },
+      "s": {
+        "shape3d": "box",
+        "shape3d.transparent": true,
+        "shape3d.color": "rgba(0, 0, 0, 0)",
+        "shape3d.reverse.cull": true,
+        "__group__": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62879,
+      "p": {
+        "displayName": "风机",
+        "position": {
+          "x": -1268.27232,
+          "y": 637.32615
+        },
+        "width": 135.35592,
+        "height": 135.35592,
+        "tall": 132.78741,
+        "elevation": 260
+      },
+      "s": {
+        "shape3d": "box",
+        "shape3d.transparent": true,
+        "shape3d.color": "rgba(0, 0, 0, 0)",
+        "shape3d.reverse.cull": true,
+        "__group__": true,
+        "shadow.cast": false,
+        "shadow.receive": false,
+        "texture.cache": true,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62880,
+      "p": {
+        "displayName": "风机标签",
+        "parent": {
+          "__i": 62879
+        },
+        "image": "symbols/htdesign/3d/text/0_7_001.json",
+        "host": {
+          "__i": 62879
+        },
+        "position": {
+          "x": -1268.24762,
+          "y": 642.11535
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.56169,
+          "y": 0.56169
+        },
+        "scaleTall": 0.56169,
+        "width": 177,
+        "height": 32.54181,
+        "elevation": 287.64954
+      },
+      "s": {
+        "shape3d": "billboard",
+        "shape3d.image": "symbols/htdesign/3d/text/02_01.json",
+        "shape3d.autorotate": "y",
+        "wf.visible": "selected",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shadow.receive": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.reverse.cull": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "texture.cache": true,
+        "shape3d.image.cache": true,
+        "shape3d.texture.scale": 3
+      },
+      "a": {
+        "name": "IOE",
+        "namec": "rgb(247,247,247)",
+        "name2": "IOE-1234#"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62881,
+      "p": {
+        "displayName": "wind_power_blade_01",
+        "parent": {
+          "__i": 62879
+        },
+        "tag": "fan8",
+        "host": {
+          "__i": 62879
+        },
+        "rotationZ": -120.70467,
+        "position": {
+          "x": -1267.27232,
+          "y": 646.83036
+        },
+        "anchor": {
+          "x": 0.6569,
+          "y": 1
+        },
+        "anchorElevation": 0.5069,
+        "elevation": 284.00904
+      },
+      "s": {
+        "shape3d": "models/htdesign/equipment/power/wind_power_blade_01.json",
+        "2d.selectable": false,
+        "shape3d.blend": null,
+        "envmap": 0.2,
+        "shadow.receive": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.reverse.cull": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "texture.cache": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true
+      },
+      "a": {
+        "speed": 0.03605
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62882,
+      "p": {
+        "parent": {
+          "__i": 62879
+        },
+        "host": {
+          "__i": 62879
+        },
+        "position": {
+          "x": -1268.24762,
+          "y": 632.35942
+        },
+        "anchorElevation": 0,
+        "elevation": 194.24089
+      },
+      "s": {
+        "shape3d": "models/htdesign/equipment/power/wind_power_body_01.json",
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.blend": null,
+        "envmap": 0.2,
+        "shadow.receive": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.reverse.cull": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "texture.cache": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "batch": "pole"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62883,
+      "p": {
+        "displayName": "Display",
+        "parent": {
+          "__i": 62879
+        },
+        "tag": "dataPanel1",
+        "host": {
+          "__i": 62879
+        },
+        "rotationX": 1.17414,
+        "position": {
+          "x": -705.53742,
+          "y": 1170.26416
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 2,
+          "y": 2
+        },
+        "scaleTall": 2,
+        "width": 198,
+        "height": 111.71576,
+        "tall": 50,
+        "elevation": 194
+      },
+      "s": {
+        "all.color": "#DDDDDD",
+        "shape3d": "plane",
+        "shape3d.image": "symbols/ioe/dsms summary 3.json",
+        "shape3d.transparent": true,
+        "shape3d.reverse.flip": true,
+        "select.brightness": 1,
+        "interactive": true,
+        "texture.cache": true
+      },
+      "a": {
+        "gaugeValue2": "0.02",
+        "gaugeValue1": "0.00",
+        "gaugeValue1_f": 23.2,
+        "gaugeValue2_f": 91.3,
+        "bottomColor1": "rgb(222,217,217)",
+        "lineBackColor1": "rgb(184,184,184)",
+        "bottomColor2": "rgb(222,217,217)",
+        "lineBackColor2": "rgb(184,184,184)",
+        "electricity": 0,
+        "illumination": 0,
+        "time": 0
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62884,
+      "p": {
+        "displayName": "风机",
+        "position": {
+          "x": -757,
+          "y": 636
+        },
+        "scale": {
+          "x": 2,
+          "y": 2
+        },
+        "scaleTall": 2,
+        "width": 135.35592,
+        "height": 135.35592,
+        "tall": 132.78741,
+        "elevation": 260
+      },
+      "s": {
+        "shape3d": "box",
+        "shape3d.transparent": true,
+        "shape3d.color": "rgba(0, 0, 0, 0)",
+        "shape3d.reverse.cull": true,
+        "__group__": true,
+        "shadow.cast": false,
+        "shadow.receive": false,
+        "texture.cache": true,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62885,
+      "p": {
+        "displayName": "风机标签",
+        "parent": {
+          "__i": 62884
+        },
+        "image": "symbols/htdesign/3d/text/0_7_001.json",
+        "host": {
+          "__i": 62884
+        },
+        "position": {
+          "x": -756.9753,
+          "y": 640.7892
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.56169,
+          "y": 0.56169
+        },
+        "scaleTall": 0.56169,
+        "width": 177,
+        "height": 32.54181,
+        "elevation": 407.57081
+      },
+      "s": {
+        "shape3d": "billboard",
+        "shape3d.image": "symbols/htdesign/3d/text/02_01.json",
+        "shape3d.autorotate": "y",
+        "wf.visible": "selected",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shadow.receive": false,
+        "shape3d.reverse.cull": true,
+        "texture.cache": true,
+        "shape3d.image.cache": true,
+        "shape3d.texture.scale": 3
+      },
+      "a": {
+        "name": "IOE",
+        "namec": "rgb(247,247,247)",
+        "name2": "IOE-1234#",
+        "name2c": "rgb(247,247,247)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62886,
+      "p": {
+        "displayName": "wind_power_blade_01",
+        "parent": {
+          "__i": 62884
+        },
+        "tag": "fan8",
+        "host": {
+          "__i": 62884
+        },
+        "rotationZ": -115.35001,
+        "position": {
+          "x": -756,
+          "y": 660.28012
+        },
+        "anchor": {
+          "x": 0.6569,
+          "y": 1
+        },
+        "anchorElevation": 0.5069,
+        "scale": {
+          "x": 2,
+          "y": 2
+        },
+        "scaleTall": 2,
+        "elevation": 373.65622
+      },
+      "s": {
+        "shape3d": "models/htdesign/equipment/power/wind_power_blade_01.json",
+        "shape3d.blend": null,
+        "envmap": 0.2,
+        "shadow.receive": false,
+        "shape3d.reverse.cull": true,
+        "texture.cache": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true
+      },
+      "a": {
+        "speed": 0.03445
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62887,
+      "p": {
+        "parent": {
+          "__i": 62884
+        },
+        "host": {
+          "__i": 62884
+        },
+        "position": {
+          "x": -756.9753,
+          "y": 631.03327
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 2,
+          "y": 2
+        },
+        "scaleTall": 2,
+        "elevation": 194.24089
+      },
+      "s": {
+        "shape3d": "models/htdesign/equipment/power/wind_power_body_01.json",
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "shape3d.blend": null,
+        "envmap": 0.2,
+        "shadow.receive": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.reverse.cull": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "texture.cache": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "batch": "pole"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62888,
+      "p": {
+        "parent": {
+          "__i": 62884
+        },
+        "host": {
+          "__i": 62884
+        },
+        "position": {
+          "x": -717.41176,
+          "y": 843.78507
+        },
+        "width": 623.40023,
+        "height": 547.76778,
+        "tall": 66.46257,
+        "elevation": 260
+      },
+      "s": {
+        "shape3d": "box",
+        "shape3d.transparent": true,
+        "shape3d.color": "rgba(0, 0, 0, 0)",
+        "shape3d.reverse.cull": true,
+        "__group__": true,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62889,
+      "p": {
+        "displayName": "信息",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "position": {
+          "x": -765.20919,
+          "y": 712.72807
+        },
+        "width": 527.80537,
+        "height": 285.65376,
+        "tall": 50.87421,
+        "elevation": 267.79418
+      },
+      "s": {
+        "shape3d": "box",
+        "shape3d.transparent": true,
+        "shape3d.color": "rgba(0, 0, 0, 0)",
+        "shape3d.reverse.cull": true,
+        "__group__": true,
+        "2d.visible": false,
+        "3d.visible": false,
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62890,
+      "p": {
+        "displayName": "星期",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -971.7829,
+          "y": 642.95853
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.93037,
+          "y": 0.93037
+        },
+        "scaleTall": 0.93037,
+        "width": 123.2391,
+        "height": 35.67447,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "최대값"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62891,
+      "p": {
+        "displayName": "星期",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -971.7829,
+          "y": 590.24658
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.93037,
+          "y": 0.93037
+        },
+        "scaleTall": 0.93037,
+        "width": 123.2391,
+        "height": 35.67447,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "평균값"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62892,
+      "p": {
+        "displayName": "星期",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -694.18688,
+          "y": 642.95853
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.93037,
+          "y": 0.93037
+        },
+        "scaleTall": 0.93037,
+        "width": 123.2391,
+        "height": 35.67447,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "최소값",
+        "namec": "rgb(194,203,207)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62893,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -585.00245,
+          "y": 782.83982
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 12.40966,
+        "height": 2.53248,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/zero_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "#32D3EB",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62894,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -865.39393,
+          "y": 782.83982
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 12.02419,
+        "height": 2.53248,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/zero_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(125,195,125)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62895,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -889.52761,
+          "y": 782.83982
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 6.47456,
+        "height": 2.53248,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/one_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(125,195,125)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62896,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -971.7829,
+          "y": 725.56571
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.93037,
+          "y": 0.93037
+        },
+        "scaleTall": 0.93037,
+        "width": 123.2391,
+        "height": 35.67447,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "전류"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62897,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -609.30823,
+          "y": 782.83982
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 12.40966,
+        "height": 2.53248,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/two_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "#32D3EB",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62898,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -634.19493,
+          "y": 782.83982
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 12.02419,
+        "height": 2.53248,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/two_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "#32D3EB",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62899,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -699.09295,
+          "y": 725.56571
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.93037,
+          "y": 0.93037
+        },
+        "scaleTall": 0.93037,
+        "width": 123.2391,
+        "height": 35.67447,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "전압"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62900,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -540.03067,
+          "y": 782.83982
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.62844,
+          "y": 0.62844
+        },
+        "scaleTall": 0.62844,
+        "width": 123.2391,
+        "height": 35.67447,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "v "
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62901,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "position": {
+          "x": -961.67482,
+          "y": 829.146
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.62844,
+          "y": 0.62844
+        },
+        "scaleTall": 0.62844,
+        "width": 84.04606,
+        "height": 84.04606,
+        "tall": 1,
+        "elevation": 242.99737
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/ui/1001/icon/电池.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "噪声分贝"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62902,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.04587,
+        "position": {
+          "x": -866.68236,
+          "y": 833.1481
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.37198,
+          "y": 0.37198
+        },
+        "scaleTall": 0.37198,
+        "width": 259.36047,
+        "height": 75.07803,
+        "tall": 1,
+        "elevation": 242.99737
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "배터리용량"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62903,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -585.00245,
+          "y": 724.89011
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 12.40966,
+        "height": 2.53248,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/zero_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "#32D3EB",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62904,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -609.30823,
+          "y": 724.89011
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 12.40966,
+        "height": 2.53248,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/two_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "#32D3EB",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62905,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -634.19493,
+          "y": 724.89011
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 12.02419,
+        "height": 2.53248,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/two_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "#32D3EB",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62906,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -540.03067,
+          "y": 724.89011
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.62844,
+          "y": 0.62844
+        },
+        "scaleTall": 0.62844,
+        "width": 123.2391,
+        "height": 35.67447,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "v"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62907,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -815.40538,
+          "y": 781.04009
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.62844,
+          "y": 0.62844
+        },
+        "scaleTall": 0.62844,
+        "width": 123.2391,
+        "height": 35.67447,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "v"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62908,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -815.40538,
+          "y": 723.09038
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.62844,
+          "y": 0.62844
+        },
+        "scaleTall": 0.62844,
+        "width": 123.2391,
+        "height": 35.67447,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "v"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62909,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -865.39393,
+          "y": 724.75986
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 12.02419,
+        "height": 2.53248,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/zero_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(125,195,125)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62910,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -889.52761,
+          "y": 724.75986
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 6.47456,
+        "height": 2.53248,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/one_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(125,195,125)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62911,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -815.30127,
+          "y": 643.43099
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.62844,
+          "y": 0.62844
+        },
+        "scaleTall": 0.62844,
+        "width": 123.2391,
+        "height": 35.67447,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "v"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62912,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -815.30127,
+          "y": 585.48128
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.62844,
+          "y": 0.62844
+        },
+        "scaleTall": 0.62844,
+        "width": 123.2391,
+        "height": 35.67447,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "v"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62913,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -860.86703,
+          "y": 588.26036
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.45085,
+          "y": 1.45085
+        },
+        "scaleTall": 1.45085,
+        "width": 9,
+        "height": 2.738,
+        "tall": 15,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/fore_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(51,153,255)",
+        "wf.combineTriangle": 2,
+        "wf.color": "rgb(61,61,61)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62914,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -874.80906,
+          "y": 588.26036
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.45085,
+          "y": 1.45085
+        },
+        "scaleTall": 1.45085,
+        "width": 5,
+        "height": 2.738,
+        "tall": 6,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/comma_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(51,153,255)",
+        "wf.combineTriangle": 2,
+        "wf.color": "rgb(61,61,61)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62915,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -894.73953,
+          "y": 588.26036
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.45085,
+          "y": 1.45085
+        },
+        "scaleTall": 1.45085,
+        "width": 13.33342,
+        "height": 2.738,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/two_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(51,153,255)",
+        "wf.combineTriangle": 2,
+        "wf.color": "rgb(61,61,61)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62916,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -860.86704,
+          "y": 645.10046
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.49825,
+          "y": 1.49825
+        },
+        "scaleTall": 1.49825,
+        "width": 9,
+        "height": 2.738,
+        "tall": 15,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/three_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(51,153,255)",
+        "wf.combineTriangle": 2,
+        "wf.color": "rgb(61,61,61)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62917,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -874.80907,
+          "y": 645.10046
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.45085,
+          "y": 1.45085
+        },
+        "scaleTall": 1.45085,
+        "width": 5,
+        "height": 2.738,
+        "tall": 6,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/comma_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(51,153,255)",
+        "wf.combineTriangle": 2,
+        "wf.color": "rgb(61,61,61)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62918,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -894.73954,
+          "y": 645.10046
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.45085,
+          "y": 1.45085
+        },
+        "scaleTall": 1.45085,
+        "width": 13.33342,
+        "height": 2.738,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/two_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(51,153,255)",
+        "wf.combineTriangle": 2,
+        "wf.color": "rgb(61,61,61)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62919,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -694.18688,
+          "y": 590.24658
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.93037,
+          "y": 0.93037
+        },
+        "scaleTall": 0.93037,
+        "width": 123.2391,
+        "height": 35.67447,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "기본값"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62920,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -540.03067,
+          "y": 643.43099
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.62844,
+          "y": 0.62844
+        },
+        "scaleTall": 0.62844,
+        "width": 123.2391,
+        "height": 35.67447,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "v"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62921,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -540.03067,
+          "y": 585.48128
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.62844,
+          "y": 0.62844
+        },
+        "scaleTall": 0.62844,
+        "width": 123.2391,
+        "height": 35.67447,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "v"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62922,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -585.59644,
+          "y": 588.26036
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.45085,
+          "y": 1.45085
+        },
+        "scaleTall": 1.45085,
+        "width": 9,
+        "height": 2.738,
+        "tall": 15,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/nine_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(51,153,255)",
+        "wf.combineTriangle": 2,
+        "wf.color": "rgb(61,61,61)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62923,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -609.30823,
+          "y": 588.26036
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.45085,
+          "y": 1.45085
+        },
+        "scaleTall": 1.45085,
+        "width": 5,
+        "height": 2.738,
+        "tall": 6,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/comma_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(51,153,255)",
+        "wf.combineTriangle": 2,
+        "wf.color": "rgb(61,61,61)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62924,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -634.19493,
+          "y": 588.26036
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.45085,
+          "y": 1.45085
+        },
+        "scaleTall": 1.45085,
+        "width": 8,
+        "height": 2.738,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/one_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(51,153,255)",
+        "wf.combineTriangle": 2,
+        "wf.color": "rgb(61,61,61)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62925,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -585.59644,
+          "y": 645.10046
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.45085,
+          "y": 1.45085
+        },
+        "scaleTall": 1.45085,
+        "width": 9,
+        "height": 2.738,
+        "tall": 15,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/eight_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(51,153,255)",
+        "wf.combineTriangle": 2,
+        "wf.color": "rgb(61,61,61)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62926,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -609.30823,
+          "y": 645.10046
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.45085,
+          "y": 1.45085
+        },
+        "scaleTall": 1.45085,
+        "width": 5,
+        "height": 2.738,
+        "tall": 6,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/comma_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(51,153,255)",
+        "wf.combineTriangle": 2,
+        "wf.color": "rgb(61,61,61)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62927,
+      "p": {
+        "displayName": "\\",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -634.19493,
+          "y": 645.10046
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.45085,
+          "y": 1.45085
+        },
+        "scaleTall": 1.45085,
+        "width": 8,
+        "height": 2.738,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/one_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "rgb(51,153,255)",
+        "wf.combineTriangle": 2,
+        "wf.color": "rgb(61,61,61)",
+        "shape3d.image.cache": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62928,
+      "p": {
+        "displayName": "声浪图",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "position": {
+          "x": -703.29974,
+          "y": 1019.9215
+        },
+        "width": 574.23011,
+        "height": 195.49494,
+        "tall": 63.74194,
+        "elevation": 258.6397
+      },
+      "s": {
+        "shape3d": "box",
+        "shape3d.transparent": true,
+        "shape3d.color": "rgba(0, 0, 0, 0)",
+        "shape3d.reverse.cull": true,
+        "__group__": true,
+        "2d.visible": false,
+        "3d.visible": false,
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62929,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "tag": "rotation",
+        "host": {
+          "__i": 62888
+        },
+        "position": {
+          "x": -697.8543,
+          "y": 1016.24945
+        },
+        "width": 558.44763,
+        "height": 34.6067,
+        "tall": 55.88101,
+        "elevation": 254.70923
+      },
+      "s": {
+        "shape3d": "box",
+        "shape3d.transparent": true,
+        "shape3d.color": "rgba(0, 0, 0, 0)",
+        "shape3d.reverse.cull": true,
+        "__group__": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62930,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65893,
+        "position": {
+          "x": -974.5781,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 26.72746,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -977.0781,
+              "y": 1001.27875
+            },
+            {
+              "x": -972.07811,
+              "y": 1001.27875
+            },
+            {
+              "x": -972.07811,
+              "y": 1028.00621
+            },
+            {
+              "x": -977.0781,
+              "y": 1028.00621
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62931,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65901,
+        "position": {
+          "x": -421.13053,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 30.61459,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -423.63053,
+              "y": 999.33518
+            },
+            {
+              "x": -418.63053,
+              "y": 999.33518
+            },
+            {
+              "x": -418.63053,
+              "y": 1029.94978
+            },
+            {
+              "x": -423.63053,
+              "y": 1029.94978
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62932,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65902,
+        "position": {
+          "x": -431.60512,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 26.72746,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -434.10512,
+              "y": 1001.27875
+            },
+            {
+              "x": -429.10512,
+              "y": 1001.27875
+            },
+            {
+              "x": -429.10512,
+              "y": 1028.00621
+            },
+            {
+              "x": -434.10512,
+              "y": 1028.00621
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62933,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65903,
+        "position": {
+          "x": -442.07972,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 24.78389,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -444.57972,
+              "y": 1002.25053
+            },
+            {
+              "x": -439.57972,
+              "y": 1002.25053
+            },
+            {
+              "x": -439.57972,
+              "y": 1027.03442
+            },
+            {
+              "x": -444.57972,
+              "y": 1027.03442
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62934,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65904,
+        "position": {
+          "x": -452.55431,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 21.54462,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -455.05431,
+              "y": 1003.87018
+            },
+            {
+              "x": -450.05431,
+              "y": 1003.87018
+            },
+            {
+              "x": -450.05431,
+              "y": 1025.41478
+            },
+            {
+              "x": -455.05431,
+              "y": 1025.41478
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62935,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65908,
+        "position": {
+          "x": -463.02891,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 17.65749,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -465.52891,
+              "y": 1005.81374
+            },
+            {
+              "x": -460.52891,
+              "y": 1005.81374
+            },
+            {
+              "x": -460.52891,
+              "y": 1023.47121
+            },
+            {
+              "x": -465.52891,
+              "y": 1023.47121
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62936,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65911,
+        "position": {
+          "x": -473.5035,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 15.71392,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -476.0035,
+              "y": 1006.78553
+            },
+            {
+              "x": -471.0035,
+              "y": 1006.78553
+            },
+            {
+              "x": -471.0035,
+              "y": 1022.49943
+            },
+            {
+              "x": -476.0035,
+              "y": 1022.49943
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62937,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65915,
+        "position": {
+          "x": -483.9781,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 18.95319,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -486.4781,
+              "y": 1005.16588
+            },
+            {
+              "x": -481.4781,
+              "y": 1005.16588
+            },
+            {
+              "x": -481.4781,
+              "y": 1024.11907
+            },
+            {
+              "x": -486.4781,
+              "y": 1024.11907
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62938,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65917,
+        "position": {
+          "x": -494.45269,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 22.19248,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -496.95269,
+              "y": 1003.54624
+            },
+            {
+              "x": -491.95269,
+              "y": 1003.54624
+            },
+            {
+              "x": -491.95269,
+              "y": 1025.73872
+            },
+            {
+              "x": -496.95269,
+              "y": 1025.73872
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62939,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65921,
+        "position": {
+          "x": -504.92729,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 26.72746,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -507.42729,
+              "y": 1001.27875
+            },
+            {
+              "x": -502.42729,
+              "y": 1001.27875
+            },
+            {
+              "x": -502.42729,
+              "y": 1028.00621
+            },
+            {
+              "x": -507.42729,
+              "y": 1028.00621
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62940,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65925,
+        "position": {
+          "x": -515.40188,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 31.91032,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -517.90188,
+              "y": 998.68732
+            },
+            {
+              "x": -512.90189,
+              "y": 998.68732
+            },
+            {
+              "x": -512.90189,
+              "y": 1030.59764
+            },
+            {
+              "x": -517.90188,
+              "y": 1030.59764
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62941,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65929,
+        "position": {
+          "x": -525.87648,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 39.03673,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -528.37648,
+              "y": 995.12411
+            },
+            {
+              "x": -523.37648,
+              "y": 995.12411
+            },
+            {
+              "x": -523.37648,
+              "y": 1034.16085
+            },
+            {
+              "x": -528.37648,
+              "y": 1034.16085
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62942,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65929,
+        "position": {
+          "x": -536.35107,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 48.75458,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -538.85107,
+              "y": 990.26519
+            },
+            {
+              "x": -533.85108,
+              "y": 990.26519
+            },
+            {
+              "x": -533.85108,
+              "y": 1039.01977
+            },
+            {
+              "x": -538.85107,
+              "y": 1039.01977
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62943,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65931,
+        "position": {
+          "x": -546.82567,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 55.88099,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -549.32567,
+              "y": 986.70198
+            },
+            {
+              "x": -544.32567,
+              "y": 986.70198
+            },
+            {
+              "x": -544.32567,
+              "y": 1042.58296
+            },
+            {
+              "x": -549.32567,
+              "y": 1042.58296
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62944,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.6593,
+        "position": {
+          "x": -557.30026,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 46.16315,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -559.80026,
+              "y": 991.56091
+            },
+            {
+              "x": -554.80027,
+              "y": 991.56091
+            },
+            {
+              "x": -554.80027,
+              "y": 1037.72404
+            },
+            {
+              "x": -559.80026,
+              "y": 1037.72404
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62945,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65934,
+        "position": {
+          "x": -567.77486,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 42.27602,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -570.27486,
+              "y": 993.50448
+            },
+            {
+              "x": -565.27486,
+              "y": 993.50448
+            },
+            {
+              "x": -565.27486,
+              "y": 1035.78048
+            },
+            {
+              "x": -570.27486,
+              "y": 1035.78048
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62946,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65938,
+        "position": {
+          "x": -578.24945,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 35.14959,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -580.74945,
+              "y": 997.06767
+            },
+            {
+              "x": -575.74946,
+              "y": 997.06767
+            },
+            {
+              "x": -575.74946,
+              "y": 1032.21728
+            },
+            {
+              "x": -580.74945,
+              "y": 1032.21728
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62947,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65939,
+        "position": {
+          "x": -588.72405,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 31.91032,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -591.22405,
+              "y": 998.68732
+            },
+            {
+              "x": -586.22405,
+              "y": 998.68732
+            },
+            {
+              "x": -586.22405,
+              "y": 1030.59764
+            },
+            {
+              "x": -591.22405,
+              "y": 1030.59764
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62948,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65939,
+        "position": {
+          "x": -599.19864,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 28.67103,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -601.69864,
+              "y": 1000.30696
+            },
+            {
+              "x": -596.69865,
+              "y": 1000.30696
+            },
+            {
+              "x": -596.69865,
+              "y": 1028.97799
+            },
+            {
+              "x": -601.69864,
+              "y": 1028.97799
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62949,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65939,
+        "position": {
+          "x": -609.67324,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 26.72746,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -612.17324,
+              "y": 1001.27875
+            },
+            {
+              "x": -607.17324,
+              "y": 1001.27875
+            },
+            {
+              "x": -607.17324,
+              "y": 1028.00621
+            },
+            {
+              "x": -612.17324,
+              "y": 1028.00621
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62950,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65939,
+        "position": {
+          "x": -620.14783,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 31.26246,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -622.64783,
+              "y": 999.01124
+            },
+            {
+              "x": -617.64784,
+              "y": 999.01124
+            },
+            {
+              "x": -617.64784,
+              "y": 1030.27372
+            },
+            {
+              "x": -622.64783,
+              "y": 1030.27372
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62951,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65939,
+        "position": {
+          "x": -630.62243,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 33.85389,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -633.12243,
+              "y": 997.71554
+            },
+            {
+              "x": -628.12243,
+              "y": 997.71554
+            },
+            {
+              "x": -628.12243,
+              "y": 1031.56942
+            },
+            {
+              "x": -633.12243,
+              "y": 1031.56942
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62952,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65939,
+        "position": {
+          "x": -641.09702,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 42.92386,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -643.59702,
+              "y": 993.18054
+            },
+            {
+              "x": -638.59703,
+              "y": 993.18054
+            },
+            {
+              "x": -638.59703,
+              "y": 1036.10442
+            },
+            {
+              "x": -643.59702,
+              "y": 1036.10442
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62953,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.6594,
+        "position": {
+          "x": -651.57162,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 40.98029,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -654.07162,
+              "y": 994.15232
+            },
+            {
+              "x": -649.07162,
+              "y": 994.15232
+            },
+            {
+              "x": -649.07162,
+              "y": 1035.13263
+            },
+            {
+              "x": -654.07162,
+              "y": 1035.13263
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62954,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.6594,
+        "position": {
+          "x": -662.04621,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 26.72746,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -664.54621,
+              "y": 1001.27875
+            },
+            {
+              "x": -659.54622,
+              "y": 1001.27875
+            },
+            {
+              "x": -659.54622,
+              "y": 1028.00621
+            },
+            {
+              "x": -664.54621,
+              "y": 1028.00621
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#FEB64D",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62955,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.6594,
+        "position": {
+          "x": -733.66242,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 30.61459,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -736.16242,
+              "y": 999.33516
+            },
+            {
+              "x": -731.16242,
+              "y": 999.33516
+            },
+            {
+              "x": -731.16242,
+              "y": 1029.94978
+            },
+            {
+              "x": -736.16242,
+              "y": 1029.94978
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62956,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.6594,
+        "position": {
+          "x": -744.13701,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 26.72746,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -746.63701,
+              "y": 1001.27873
+            },
+            {
+              "x": -741.63701,
+              "y": 1001.27873
+            },
+            {
+              "x": -741.63701,
+              "y": 1028.00621
+            },
+            {
+              "x": -746.63701,
+              "y": 1028.00621
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62957,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65941,
+        "position": {
+          "x": -754.61161,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 24.78389,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -757.11161,
+              "y": 1002.25051
+            },
+            {
+              "x": -752.11161,
+              "y": 1002.25051
+            },
+            {
+              "x": -752.11161,
+              "y": 1027.03442
+            },
+            {
+              "x": -757.11161,
+              "y": 1027.03442
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62958,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65941,
+        "position": {
+          "x": -765.0862,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 21.54462,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -767.5862,
+              "y": 1003.87016
+            },
+            {
+              "x": -762.5862,
+              "y": 1003.87016
+            },
+            {
+              "x": -762.5862,
+              "y": 1025.41478
+            },
+            {
+              "x": -767.5862,
+              "y": 1025.41478
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62959,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.6594,
+        "position": {
+          "x": -775.5608,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 17.65749,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -778.0608,
+              "y": 1005.81373
+            },
+            {
+              "x": -773.0608,
+              "y": 1005.81373
+            },
+            {
+              "x": -773.0608,
+              "y": 1023.47121
+            },
+            {
+              "x": -778.0608,
+              "y": 1023.47121
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62960,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65941,
+        "position": {
+          "x": -786.03539,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 15.71392,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -788.53539,
+              "y": 1006.78551
+            },
+            {
+              "x": -783.53539,
+              "y": 1006.78551
+            },
+            {
+              "x": -783.53539,
+              "y": 1022.49943
+            },
+            {
+              "x": -788.53539,
+              "y": 1022.49943
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62961,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65941,
+        "position": {
+          "x": -796.50999,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 18.95319,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -799.00999,
+              "y": 1005.16588
+            },
+            {
+              "x": -794.00999,
+              "y": 1005.16588
+            },
+            {
+              "x": -794.00999,
+              "y": 1024.11907
+            },
+            {
+              "x": -799.00999,
+              "y": 1024.11907
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62962,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65941,
+        "position": {
+          "x": -806.98458,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 22.19248,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -809.48458,
+              "y": 1003.54624
+            },
+            {
+              "x": -804.48458,
+              "y": 1003.54624
+            },
+            {
+              "x": -804.48458,
+              "y": 1025.7387
+            },
+            {
+              "x": -809.48458,
+              "y": 1025.7387
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62963,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65942,
+        "position": {
+          "x": -817.45918,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 26.72746,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -819.95918,
+              "y": 1001.27873
+            },
+            {
+              "x": -814.95918,
+              "y": 1001.27873
+            },
+            {
+              "x": -814.95918,
+              "y": 1028.00621
+            },
+            {
+              "x": -819.95918,
+              "y": 1028.00621
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62964,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65941,
+        "position": {
+          "x": -827.93377,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 31.91032,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -830.43377,
+              "y": 998.68732
+            },
+            {
+              "x": -825.43378,
+              "y": 998.68732
+            },
+            {
+              "x": -825.43378,
+              "y": 1030.59764
+            },
+            {
+              "x": -830.43377,
+              "y": 1030.59764
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62965,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65941,
+        "position": {
+          "x": -838.40837,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 39.03673,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -840.90837,
+              "y": 995.12411
+            },
+            {
+              "x": -835.90837,
+              "y": 995.12411
+            },
+            {
+              "x": -835.90837,
+              "y": 1034.16083
+            },
+            {
+              "x": -840.90837,
+              "y": 1034.16083
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62966,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65941,
+        "position": {
+          "x": -848.88296,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 48.75458,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -851.38296,
+              "y": 990.26519
+            },
+            {
+              "x": -846.38297,
+              "y": 990.26519
+            },
+            {
+              "x": -846.38297,
+              "y": 1039.01975
+            },
+            {
+              "x": -851.38296,
+              "y": 1039.01975
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62967,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65942,
+        "position": {
+          "x": -859.35756,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 55.88099,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -861.85756,
+              "y": 986.70198
+            },
+            {
+              "x": -856.85756,
+              "y": 986.70198
+            },
+            {
+              "x": -856.85756,
+              "y": 1042.58296
+            },
+            {
+              "x": -861.85756,
+              "y": 1042.58296
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62968,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65941,
+        "position": {
+          "x": -869.83215,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 46.16315,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -872.33215,
+              "y": 991.56089
+            },
+            {
+              "x": -867.33216,
+              "y": 991.56089
+            },
+            {
+              "x": -867.33216,
+              "y": 1037.72404
+            },
+            {
+              "x": -872.33215,
+              "y": 1037.72404
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62969,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65941,
+        "position": {
+          "x": -880.30675,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 42.27602,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -882.80675,
+              "y": 993.50446
+            },
+            {
+              "x": -877.80675,
+              "y": 993.50446
+            },
+            {
+              "x": -877.80675,
+              "y": 1035.78048
+            },
+            {
+              "x": -882.80675,
+              "y": 1035.78048
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62970,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65941,
+        "position": {
+          "x": -890.78134,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 35.14959,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -893.28134,
+              "y": 997.06767
+            },
+            {
+              "x": -888.28135,
+              "y": 997.06767
+            },
+            {
+              "x": -888.28135,
+              "y": 1032.21726
+            },
+            {
+              "x": -893.28134,
+              "y": 1032.21726
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62971,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65941,
+        "position": {
+          "x": -901.25594,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 31.91032,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -903.75594,
+              "y": 998.68732
+            },
+            {
+              "x": -898.75594,
+              "y": 998.68732
+            },
+            {
+              "x": -898.75594,
+              "y": 1030.59764
+            },
+            {
+              "x": -903.75594,
+              "y": 1030.59764
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62972,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65941,
+        "position": {
+          "x": -911.73053,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 28.67103,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -914.23053,
+              "y": 1000.30695
+            },
+            {
+              "x": -909.23054,
+              "y": 1000.30695
+            },
+            {
+              "x": -909.23054,
+              "y": 1028.97799
+            },
+            {
+              "x": -914.23053,
+              "y": 1028.97799
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62973,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65943,
+        "position": {
+          "x": -922.20513,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 26.72746,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -924.70513,
+              "y": 1001.27873
+            },
+            {
+              "x": -919.70513,
+              "y": 1001.27873
+            },
+            {
+              "x": -919.70513,
+              "y": 1028.00621
+            },
+            {
+              "x": -924.70513,
+              "y": 1028.00621
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62974,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65942,
+        "position": {
+          "x": -932.67972,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 31.26246,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -935.17972,
+              "y": 999.01124
+            },
+            {
+              "x": -930.17973,
+              "y": 999.01124
+            },
+            {
+              "x": -930.17973,
+              "y": 1030.2737
+            },
+            {
+              "x": -935.17972,
+              "y": 1030.2737
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62975,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65942,
+        "position": {
+          "x": -943.15432,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 33.85389,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -945.65432,
+              "y": 997.71554
+            },
+            {
+              "x": -940.65432,
+              "y": 997.71554
+            },
+            {
+              "x": -940.65432,
+              "y": 1031.56942
+            },
+            {
+              "x": -945.65432,
+              "y": 1031.56942
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62976,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65942,
+        "position": {
+          "x": -953.62891,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 42.92386,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -956.12891,
+              "y": 993.18054
+            },
+            {
+              "x": -951.12892,
+              "y": 993.18054
+            },
+            {
+              "x": -951.12892,
+              "y": 1036.1044
+            },
+            {
+              "x": -956.12891,
+              "y": 1036.1044
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62977,
+      "p": {
+        "displayName": "x轴依次旋转",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotation": -4.65942,
+        "position": {
+          "x": -964.10351,
+          "y": 1014.64248
+        },
+        "anchorElevation": 0,
+        "width": 5,
+        "height": 40.98029,
+        "tall": 5,
+        "elevation": 254.70924,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -966.60351,
+              "y": 994.15232
+            },
+            {
+              "x": -961.60351,
+              "y": 994.15232
+            },
+            {
+              "x": -961.60351,
+              "y": 1035.13261
+            },
+            {
+              "x": -966.60351,
+              "y": 1035.13261
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#32D3EB",
+        "shape3d.top.color": null,
+        "shape3d.bottom.color": null,
+        "shape.background": "#EEEEEE",
+        "envmap": 0.39,
+        "shape3d.transparent": true,
+        "shape3d.opacity": 0.41,
+        "shape3d.reverse.flip": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62978,
+      "p": {
+        "displayName": "8",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -543.74459,
+          "y": 938.85782
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 13.41676,
+        "height": 2.738,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/zero_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "#FEB64D",
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62979,
+      "p": {
+        "displayName": "星期",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -458.0515,
+          "y": 938.85782
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.62844,
+          "y": 0.62844
+        },
+        "scaleTall": 0.62844,
+        "width": 133.24048,
+        "height": 38.56961,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.image.cache": true
+      },
+      "a": {
+        "name": "dB"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62980,
+      "p": {
+        "displayName": "星期",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -776.57708,
+          "y": 940.66277
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.62844,
+          "y": 0.62844
+        },
+        "scaleTall": 0.62844,
+        "width": 133.24048,
+        "height": 38.56961,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "v/m"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62981,
+      "p": {
+        "displayName": "星期",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -948.54794,
+          "y": 940.66277
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.62844,
+          "y": 0.62844
+        },
+        "scaleTall": 0.62844,
+        "width": 133.24048,
+        "height": 38.56961,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "LP수집율"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62982,
+      "p": {
+        "displayName": "3",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -878.38317,
+          "y": 940.66277
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 8,
+        "height": 2.738,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/one_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "#32D3EB",
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62983,
+      "p": {
+        "displayName": "8",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -851.47681,
+          "y": 940.66277
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 13.41676,
+        "height": 2.738,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/zero_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "#32D3EB",
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62984,
+      "p": {
+        "displayName": "星期",
+        "parent": {
+          "__i": 62888
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": 1.0472,
+        "position": {
+          "x": -616.19025,
+          "y": 938.85782
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.62844,
+          "y": 0.62844
+        },
+        "scaleTall": 0.62844,
+        "width": 133.24048,
+        "height": 38.56961,
+        "elevation": 272.62758
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "적시율",
+        "namec": "rgb(194,203,207)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62985,
+      "p": {
+        "displayName": "3",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -517.37762,
+          "y": 938.85782
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 13.33342,
+        "height": 2.738,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/five_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "#FEB64D",
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62986,
+      "p": {
+        "displayName": "1",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -491.28538,
+          "y": 938.85782
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 13,
+        "height": 2.738,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/eight_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "#FEB64D",
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62987,
+      "p": {
+        "displayName": "8",
+        "parent": {
+          "__i": 62888
+        },
+        "host": {
+          "__i": 62888
+        },
+        "rotationX": -0.5236,
+        "position": {
+          "x": -825.19851,
+          "y": 940.66277
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.31845,
+          "y": 1.31845
+        },
+        "scaleTall": 1.31845,
+        "width": 13.41676,
+        "height": 2.738,
+        "tall": 22.93696,
+        "elevation": 263.41853
+      },
+      "s": {
+        "shape3d": "models/htdesign/lettersandnumbers/numbers/zero_3006_01.json",
+        "wf.visible": "selected",
+        "shape3d.color": "#32D3EB",
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 62988,
+      "p": {
+        "displayName": "greenlight",
+        "tag": "light2",
+        "position": {
+          "x": -757,
+          "y": 636
+        },
+        "anchorElevation": 0,
+        "width": 54.89774,
+        "height": 54.89774,
+        "tall": 50,
+        "elevation": 791.49291
+      },
+      "s": {
+        "shape3d": "sphere",
+        "shape3d.color": "#DDDDDD",
+        "2d.visible": false,
+        "3d.visible": false
+      }
+    }
+  ],
+  "scene": {
+    "eye": [
+      -731.81332,
+      551.31288,
+      1864.54641
+    ],
+    "center": [
+      -705.53742,
+      194,
+      982.88624
+    ],
+    "editHelperDisabled": false
+  }
+}

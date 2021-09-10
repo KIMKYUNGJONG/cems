@@ -1,0 +1,8 @@
+0000000000000000000000000000000000000000 c658b3c194e39c9fe1505e61da62e53304bfd8b2 leeminhye <mine@synergyenc.com> 1610000443 +0900	branch: Created from HEAD
+c658b3c194e39c9fe1505e61da62e53304bfd8b2 02f698b42f147c081e47382a8d8cb50624ef1c9b leeminhye <mine@synergyenc.com> 1610000601 +0900	merge test: Fast-forward
+02f698b42f147c081e47382a8d8cb50624ef1c9b 77fd84a3dbd4ca3970d7fb6f6fea4c4812f22239 leeminhye <mine@synergyenc.com> 1610000787 +0900	commit: ioe 제출용 파일
+77fd84a3dbd4ca3970d7fb6f6fea4c4812f22239 6960f6bae6f51199987d35f214ae3a031eadc44c Kimkungjong <rudwhd4474@gmail.com> 1611540743 +0900	commit: 2021-01-25 ioe initial commit
+6960f6bae6f51199987d35f214ae3a031eadc44c 7aff37bada41c516a2340705661150fd93da6d3d Erick.Kim <rudwhd4474@gmail.com> 1629969146 +0900	commit: 2021-08-26 cems
+7aff37bada41c516a2340705661150fd93da6d3d fd01dc725bef07919a006fbdafe265e62df50803 Erick.Kim <rudwhd4474@gmail.com> 1629970065 +0900	commit: test
+fd01dc725bef07919a006fbdafe265e62df50803 6e9f8f4a68deab48e28a0b747511eecefbdd3348 Erick.Kim <rudwhd4474@gmail.com> 1630561523 +0900	commit: 2021-09-02 build default Frame
+6e9f8f4a68deab48e28a0b747511eecefbdd3348 087b7a10a7b745aee0ab0de702707d0e8e1dd219 Erick.Kim <rudwhd4474@gmail.com> 1630562635 +0900	merge master: Merge made by the 'ours' strategy.

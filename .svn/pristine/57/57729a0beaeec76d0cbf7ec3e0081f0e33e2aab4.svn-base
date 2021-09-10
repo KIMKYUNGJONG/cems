@@ -1,0 +1,21 @@
+{
+  "modelType": "obj",
+  "obj": "assets/htdesign/objs/Identification/point/triangle_01.obj",
+  "mtl": "assets/htdesign/objs/Identification/point/triangle_01.mtl",
+  "image": "",
+  "prefix": "assets/htdesign/objs/Identification/point/",
+  "center": true,
+  "reverseFlipMtls": "*",
+  "ignoreImage": true,
+  "ignoreColor": true,
+  "s3": [
+    0.3,
+    0.3,
+    0.3
+  ],
+  "r3": [
+    0,
+    0.7854,
+    0
+  ]
+}

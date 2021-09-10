@@ -1,0 +1,36 @@
+{
+  "modified": "Fri Oct 23 2020 15:57:56 GMT+0900 (대한민국 표준시)",
+  "dataBindings": [
+    {
+      "attr": "name",
+      "valueType": "String"
+    },
+    {
+      "attr": "namec",
+      "valueType": "Color"
+    }
+  ],
+  "width": 266,
+  "height": 77,
+  "comps": [
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@name",
+        "value": "AR-MBUS6"
+      },
+      "align": "center",
+      "color": {
+        "func": "attr@namec",
+        "value": "rgb(89,96,99)"
+      },
+      "font": "bold 35px sans-serif, Arial",
+      "rect": [
+        0,
+        2.66963,
+        266,
+        71.66075
+      ]
+    }
+  ]
+}

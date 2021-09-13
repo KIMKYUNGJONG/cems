@@ -7,13 +7,10 @@ import Navbar from '../components/Navbar/Navbar';
 import { DarkTheme, LightTheme } from '../constant/theme';
 import DashboardContainer from '../containers/DashboardContainer';
 import LoginContainer from '../containers/LoginContainer';
-import SmsContainer from '../containers/SmsContainer';
 import ReportContainer from '../containers/ReportContainer';
 import AdminContainer from '../containers/AdminContainer';
 
 import AuthenticcateRoute from '../Routes/AuthenticateRoute';
-
-import { Form, Input, Button, Checkbox } from 'antd';
 
 const Layout = ({ match }: any) => {
   const [theme, setTheme] = useState<Theme>('light');
@@ -52,11 +49,6 @@ const Layout = ({ match }: any) => {
           isLogin={isLogin}
           path={'/dashboard'}
           render={() => <DashboardContainer htValue={graphValue} handleGraphView={handleGraphView} scene={scene} />}
-        />
-        <AuthenticcateRoute
-          path={'/sms'}
-          isLogin={isLogin}
-          render={() => <SmsContainer />}
         />
         <AuthenticcateRoute
           path={'/report'}

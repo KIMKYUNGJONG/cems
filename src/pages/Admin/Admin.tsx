@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Layout, Breadcrumb, Table, Tag, Space, Button, Tabs, Form } from 'antd';
+import { Layout, Breadcrumb, Tabs } from 'antd';
 import AddButton from '../../components/Common/AddButton';
 import AntModal from '../../components/Modal/Modal';
+import ModModal from '../../components/Modal/ModModal';
 import ProjectTable from './ProjectTable';
 import UserTable from './UserTable';
 
@@ -16,6 +17,7 @@ function callback(key: string) {
 function Admin({ data, sampleData }: any) {
   console.log('api 샘플 데이터', sampleData.data);
   const { Content } = Layout;
+  const [userData, setUserData] = useState(data[0])
   const [projectData, setProjectData] = useState(data[1]);
   const [user, setUser] = useState<IUser | undefined>();
   const [project, setProject] = useState<IProject | undefined>();
@@ -25,17 +27,16 @@ function Admin({ data, sampleData }: any) {
     label: ''
   });
 
-  useEffect(() => {
-    console.log('데이터 변경 관찰');
-    console.log(data);
-    return () => {
-      console.log('데이터 변경 관찰');
-      console.log(data);
-    };
-  }, [data]);
+  const handleForm = (type: string) => {
+    setFormType({
+      label: type
+    });
+    setIsModalVisible(true);
+  };
 
   const handleVisible = () => {
     setIsModalVisible(false);
+    setModModalOpen(false);
   };
 
   const handleProject = (item: any) => {
@@ -45,27 +46,39 @@ function Admin({ data, sampleData }: any) {
   };
 
   const handleUser = (item: any) => {
-    data[0].concat([item]);
+    const newUserData = data[0].concat([item]);
+    setUserData(newUserData);
     console.log('유저 폼 데이터 확인 : ', data[0]);
   };
 
-  const handleInfomation = (type: string, record: any) => {
-    (type === 'project') ? setProject(record) : setUser(record);
-    console.log(type, record);
+  const handleModify = (type: string, record: any) => {
+    if (type === 'project') {
+      setProject(record);
+      setFormType({ label: 'project' });
+    }
+    else {
+      setUser(record);
+      setFormType({ label: 'user' });
+    };
+    console.log('정보변경 시 테이블 정보 읽어서 api call하기', type, record);
     setModModalOpen(true);
   };
-  const handleForm = (type: string) => {
-    setFormType({
-      label: type
-    });
-    setIsModalVisible(true);
-    console.log('event activate');
+  const handleDelete = (type: string, record: any) => {
+    (type === 'project') ? alert('프로젝트 삭제 (프로젝트ID) : ' + record.projectId) : alert('사용자 삭제 (사용자ID) : ' + record.id);
   };
 
   return (
     <AdminWrapper>
       <Layout>
-        <Content className="site-layout" style={{ padding: '50px' }}>
+        <Content className="site-layout" style={{ padding: '50px', overflow: 'auto' }}>
+          <ModModal
+            formType={formType}
+            modVisible={modVisible}
+            handleVisible={handleVisible}
+            handleModify={handleModify}
+            user={user}
+            project={project}
+          />
           <Tabs onChange={callback} type="card" className="custom-tabs" >
             <TabPane tab="프로젝트" key="1">
               <TitleWrapper>
@@ -83,7 +96,7 @@ function Admin({ data, sampleData }: any) {
                 </div>
               </TitleWrapper>
               <Contents>
-                <ProjectTable modVisible={modVisible} dataSource={projectData} handleInfomation={handleInfomation} />
+                <ProjectTable dataSource={projectData} handleModify={handleModify} handleDelete={handleDelete} />
               </Contents>
             </TabPane>
             <TabPane tab="사용자" key="2">
@@ -102,7 +115,7 @@ function Admin({ data, sampleData }: any) {
                 </div>
               </TitleWrapper>
               <Contents>
-                <UserTable modVisible={modVisible} dataSource={data[0]} handleInfomation={handleInfomation} />
+                <UserTable dataSource={userData} handleModify={handleModify} handleDelete={handleDelete} />
               </Contents>
             </TabPane>
           </Tabs>
@@ -151,8 +164,4 @@ const TitleWrapper = styled.div`
   padding: 0 1em;
 `;
 
-const NoteText = styled.span`
-  display: flex;
-  width: 120px;
-`;
 export default Admin;

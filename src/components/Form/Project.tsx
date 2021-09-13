@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Form, Input, Button } from 'antd';
-import { FormInstance } from 'antd/es/form';
 
 const { TextArea } = Input;
 const ProjectForm = (props: any) => {
-  const formRef = React.createRef<FormInstance>();
+  const [form] = Form.useForm();
+  const { formRef, project, modVisible } = props;
   const onFinish = (values: any) => {
     console.log('Success:', values);
     const data = {
@@ -19,20 +19,25 @@ const ProjectForm = (props: any) => {
       userId: 'User_01',
       projectId: '37',
     };
-    console.log('백단 통신 필요');
+    console.log('백단 통신 필요: update api');
+    console.log(props);
     formRef.current!.resetFields();
-    props.handleProject(data);
+    (modVisible === true) ? props.handleModify(data) : props.handleProject(data);
     props.handleVisible();
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
+  useEffect(() => {
+    form.setFieldsValue(project);
+  }, [form, project]);
 
   return (
     <StyledLoginForm>
       <Form
         ref={formRef}
+        form={form}
         name="project"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
@@ -85,7 +90,7 @@ const ProjectForm = (props: any) => {
         <CustomButtonGroup>
           <CustomButton>
             <Button type="primary" htmlType="submit">
-              추가
+              {(props.modVisible) ? '변경' : '추가'}
             </Button>
           </CustomButton>
           <CustomButton>

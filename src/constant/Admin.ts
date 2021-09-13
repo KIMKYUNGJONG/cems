@@ -26,7 +26,7 @@ export const dataSource = [
       contact: '010-0000-0000',
       email: 'google@google.com',
       project: ['PJ_01', 'PJ_02'],
-    },
+    }
   ],
   [
     {

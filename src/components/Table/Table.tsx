@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import { Table as AtTable, Radio } from 'antd';
-
+import { Table as AtTable } from 'antd';
+import styled from 'styled-components';
 // 샘플 테이블 데이터
 import { columns, data } from '../../components/Table/SampleTable';
 
@@ -19,16 +19,26 @@ const Table = ({ handleClick }: IProps) => {
 
   console.log(value);
   return (
-    <>
+    <StWrapper>
       <AtTable
+        size="small"
         onRow={(record, rowIndex) => {
           return {
             onClick: event => { handleRowClick(record); }, // click row
           };
         }}
-        columns={columns} dataSource={data} pagination={{ pageSize: 10 }} scroll={{ y: 140 }} />
-    </>
+        columns={columns} dataSource={data} pagination={{ pageSize: 10 }} scroll={{ y: 200 }} />
+    </StWrapper>
   );
 };
+
+const StWrapper = styled.div`
+  min-height: 300px;
+  overflow: auto;
+
+  & .ant-table-wrapper {
+    max-height: 100%;
+  }
+`;
 
 export default Table;

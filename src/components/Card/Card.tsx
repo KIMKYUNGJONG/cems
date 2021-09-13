@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { Skeleton, Switch, Card as CardFrame } from 'antd';
 import styled from 'styled-components';
@@ -12,22 +12,19 @@ interface IProps {
   },
   loading?: boolean
 }
-const Card = ({data, loading}:IProps)=> {
-  return(
+const Card = ({ data, loading }: IProps) => {
+  return (
     <CardBlock>
-    <CardFrame  loading={loading} style={{borderRadius:'10px'}}>
+      <CardFrame loading={loading} style={{ borderRadius: '10px' }}>
         <p><label>project code</label>{data.code}</p>
         <p><label>project name</label> {data.name}</p>
         <p><label>Longitude, Latitude</label> {data.coords}</p>
         <p><label>Register Date</label> {data.regDate}</p>
-      <Skeleton loading={loading} active>
-        
-      </Skeleton>
-    </CardFrame>
-    <MonitorBtn onClick={()=>alert('clicked')}>Go Data Monitoring</MonitorBtn>
-    </CardBlock>
-  )
-}
+        <Skeleton loading={loading} active />
+      </CardFrame>
+    </CardBlock >
+  );
+};
 const CardBlock = styled.div`
     color: ${(props) => props.theme.fontColor};
 
@@ -58,21 +55,6 @@ const CardBlock = styled.div`
       }
     }
 
-`
-const MonitorBtn = styled.div`
-  cursor: pointer;
-  color: ${(props) => props.theme.fontColor};
-  width: 100%;
-  padding: 10px;
-  margin-top: 12px;
-  border-radius: 10px;
-  text-align: center;
-  background-color: ${(props) => props.theme.searchbarBg};
-  transition: background-color .2s ease-in-out;
-
-  &:hover {
-    background-color: ${(props) => props.theme.siteListBg};
-  }
 `;
 
 export default Card;

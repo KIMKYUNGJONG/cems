@@ -38,6 +38,7 @@ const SwitchBlock = styled.div`
     display: flex;
     flex-direction: column;
     margin-right:10px;
+    display:none;
 `;
 const AvatarImg = styled.div`
     width: 30px;

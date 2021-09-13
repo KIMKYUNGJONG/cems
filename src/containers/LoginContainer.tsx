@@ -4,7 +4,7 @@ import { useAsync } from 'react-async';
 import { apiGet } from '../lib/api';
 import Login from '../pages/Login/Login';
 import { Data } from '../constant/Dashboard';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 const fetchClusterData = async () => {
   const res = await apiGet({
@@ -26,8 +26,7 @@ function LoginContainer({ path, isLogin, component }: any) {
   // Initialize Websocket
   //const wsClient = new WebSocket(URL, ['Token', "token_body_here"])
   const handleLogin = (value: object): void => {
-    isLogin = isAuth;
-    setAuth('true');
+    (isLogin === isAuth) ? setAuth('true') : setAuth('false');
     sessionStorage.setItem('isAuthorized', isAuth);
     history.push('/dashboard');
   };

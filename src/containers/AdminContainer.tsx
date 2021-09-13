@@ -1,9 +1,8 @@
 import axios from 'axios';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useAsync } from 'react-async';
 import { apiGet } from '../lib/api';
 import Admin from '../pages/Admin/Admin';
-import { Data } from '../constant/Dashboard';
 import { dataSource } from '../constant/Admin';
 
 const fetchClusterData = async () => {
@@ -12,6 +11,7 @@ const fetchClusterData = async () => {
   });
   return res.data;
 };
+
 function AdminContainer(props: any) {
   const clusterData = useAsync({
     deferFn: fetchClusterData,

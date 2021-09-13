@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Table, Tag, Space, Button } from 'antd';
 
-function ProjectTable({ dataSource, handleInfomation, modVisible }: any) {
+function ProjectTable({ dataSource, handleModify, handleDelete }: any) {
   const columns = [
     {
       title: '프로젝트 명',
@@ -69,11 +69,11 @@ function ProjectTable({ dataSource, handleInfomation, modVisible }: any) {
       render: (text: string, record: any) => (
         <Space size="middle">
           <Button type="primary" onClick={(event) => {
-            console.log('clickModify');
-            handleInfomation('project', record);
+            handleModify('project', record);
           }}>정보변경</Button>
           <Button type="primary" danger onClick={(event) => {
             console.log('clickDelete');
+            handleDelete('project', record);
           }}>삭제</Button>
         </Space>
       ),
@@ -82,7 +82,7 @@ function ProjectTable({ dataSource, handleInfomation, modVisible }: any) {
 
   return (
     <>
-      <Table dataSource={dataSource} columns={columns} />
+      <Table size="small" dataSource={dataSource} columns={columns} />
     </>
   );
 }

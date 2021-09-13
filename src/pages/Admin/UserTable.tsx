@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Table, Tag, Space, Button } from 'antd';
-import { IUser } from './Interface';
 
-function UserTable({ dataSource, handleInfomation }: any) {
+function UserTable({ dataSource, handleModify, handleDelete }: any) {
   const columns = [
     {
       title: '사용자 아이디',
@@ -62,10 +61,10 @@ function UserTable({ dataSource, handleInfomation }: any) {
         <Space size="middle">
           <Button type="primary" onClick={(event) => {
             console.log('clickModify');
-            handleInfomation(record);
+            handleModify('user', record);
           }}>정보변경</Button>
           <Button type="primary" danger onClick={(event) => {
-            console.log('clickDelete');
+            handleDelete('user', record);
           }}>삭제</Button>
         </Space>
       ),
@@ -73,7 +72,7 @@ function UserTable({ dataSource, handleInfomation }: any) {
   ];
 
   return (
-    <Table dataSource={dataSource} columns={columns} />
+    <Table size="small" dataSource={dataSource} columns={columns} />
   );
 }
 

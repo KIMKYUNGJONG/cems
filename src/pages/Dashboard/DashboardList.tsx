@@ -41,7 +41,7 @@ function DashboardList({ data, htValue, scene }: dashboardList) {
   const onSearch = (searchText: string | never) => {
     // 서치텍스트를 api로 호출해서 해당 결과에 대한 결과 배열을 가지고 와야함.
     setOptions(
-      searchText ? [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)] : [],
+      searchText ? [mockVal(searchText)] : [],
     );
   };
   const onSelect = (result: string) => {
@@ -54,7 +54,7 @@ function DashboardList({ data, htValue, scene }: dashboardList) {
   };
   if (data) {
     return (<ClusterBlock>
-      <Title>project list</Title>
+      <Title>프로젝트 리스트</Title>
       <AutoComplete
         value={value}
         options={options}
@@ -64,7 +64,7 @@ function DashboardList({ data, htValue, scene }: dashboardList) {
         onSelect={onSelect}
         onSearch={onSearch}
         onChange={onChange}
-        placeholder="Type project Name or console"
+        placeholder="프로젝트 명 또는 ID 검색"
       />
       <Divider />
       <Table handleClick={eventHandler} />
@@ -92,17 +92,13 @@ const ClusterBlock = styled.div`
     transition: all 0.3s ease-in-out;
     overflow-y: auto;
     box-sizing: border-box;
-
-    &:hover {
-      transform: perspective(1000px) rotateY(4deg);
-    }
 `;
 const Title = styled.div`
   font-size: 1.5em;
   font-family: 'NanumSquare';
   text-transform: capitalize;
   color: ${(props) => props.theme.fontColor};
-  padding-bottom: 1em;
+  padding: 1em 0;
 `;
 
 export default DashboardList;

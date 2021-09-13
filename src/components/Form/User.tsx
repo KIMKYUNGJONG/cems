@@ -1,37 +1,63 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Select } from 'antd';
 
 const { TextArea } = Input;
+const { Option } = Select;
+const dummySelect: any[] = [];
+for (let i = 10; i < 36; i++) {
+  dummySelect.push(<Option key={i.toString(36) + i} value={`PJ_${i}`} >{i.toString(36) + i}</Option>);
+}
+
 const UserForm = (props: any) => {
   const [form] = Form.useForm();
+  const { formRef, user, modVisible } = props;
   const onFinish = (values: any) => {
     console.log('Success:', values);
-    props.handleFormValue(values);
+    const data = {
+      id: values.id,
+      password: values.password,
+      company: values.company,
+      manager: values.manager,
+      contact: values.contact,
+      email: values.email,
+      project: values.project,
+      note: values.note
+    };
+    console.log('백단 통신 필요: update api');
+    console.log(props);
+    formRef.current!.resetFields();
+    (modVisible === true) ? props.handleModify(data) : props.handleUser(data);
+    props.handleVisible();
   };
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
-    props.handleFormValue(errorInfo);
+  };
+  const handleSelectChange = (value: any) => {
+    console.log(`Selected: ${value}`);
   };
 
+  useEffect(() => {
+    form.setFieldsValue(user);
+  }, [form, user]);
   return (
     <StyledForm>
       <Form
+        ref={formRef}
+        form={form}
         name="user"
         labelCol={{ span: 10 }}
         wrapperCol={{ span: 16 }}
-        initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
-        form={form}
       >
         <Form.Item
           label={'사용자 ID'}
           name="id"
           rules={[{ required: true, message: '사용자 ID가 필요합니다' }]}
         >
-          <Input placeholder="사용자 ID" />
+          <Input disabled={modVisible ? true : false} placeholder="사용자 ID" />
         </Form.Item>
         <Form.Item
           label={'사용자 PW'}
@@ -46,7 +72,7 @@ const UserForm = (props: any) => {
           name="company"
           rules={[{ required: true, message: '회사명이 필요합니다' }]}
         >
-          <Input placeholder="회사명" />
+          <Input disabled={modVisible ? true : false} placeholder="회사명" />
         </Form.Item>
         <Form.Item
           label={'관리자'}
@@ -70,9 +96,17 @@ const UserForm = (props: any) => {
         </Form.Item>
         <Form.Item
           label={'프로젝트 리스트'}
-          name="projectList"
+          name="project"
         >
-          <Input />
+          <Select
+            mode="multiple"
+            size={'middle'}
+            placeholder="Please select"
+            onChange={handleSelectChange}
+            style={{ width: '100%' }}
+          >
+            {dummySelect}
+          </Select>
         </Form.Item>
         <Form.Item
           label={'노트'}
@@ -84,11 +118,14 @@ const UserForm = (props: any) => {
         <CustomButtonGroup>
           <CustomButton>
             <Button type="primary" htmlType="submit">
-              추가
+              {(props.modVisible) ? '변경' : '추가'}
             </Button>
           </CustomButton>
           <CustomButton>
-            <Button onClick={props.handleCancel}>
+            <Button onClick={() => {
+              formRef.current!.resetFields();
+              props.handleVisible();
+            }}>
               취소
             </Button>
           </CustomButton>

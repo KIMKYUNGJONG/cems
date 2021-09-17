@@ -1,8 +1,11 @@
 interface Data {
-  code: string;
-  name: string;
+  project: string;
+  aplicationId: string;
   coords: string[];
   regDate: string;
+  userId: string;
+  sms: string[];
+  note: string;
 }
 export type defaultType = { 
   htValue: any;

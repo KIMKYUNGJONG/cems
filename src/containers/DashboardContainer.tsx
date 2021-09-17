@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import { useAsync } from 'react-async';
-import { apiGet } from '../lib/api';
+import { apiGet, ipGet } from '../lib/api';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import HtView from '../components/HtView';
 import { Data } from '../constant/Dashboard';
+import { setPriority } from 'os';
+
 
 const fetchClusterData = async () => {
   const res = await apiGet({
@@ -15,12 +17,15 @@ const fetchClusterData = async () => {
 const URL = 'ws://localhost:5000';
 
 // 더미데이터
-const data =
+const data: Data =
 {
-  code: '1073042884',
-  name: 'dummy Project',
+  project: 'PJ_0917',
+  aplicationId: '11',
   coords: ['10.15151', '10.15151'],
-  regDate: '2021-08-30'
+  regDate: '2021-08-30',
+  userId: 'sma_01',
+  sms: ['010-666-6666', '010-555-5555'],
+  note: 'sample demo'
 };
 
 function DashboardContainer(props: any) {
@@ -31,15 +36,20 @@ function DashboardContainer(props: any) {
   });
 
   const [ui_data, setUi_data] = useState<Data[]>([]);
-
-  // Initialize Websocket
-  //const wsClient = new WebSocket(URL, ['Token', "token_body_here"])
-
   const [ws, setWs] = useState<WebSocket>();
-
   const __bootstrap_async__ = () => {
     setWs(new WebSocket(URL, ['Token', 'token_body_here']));
   };
+  const [ip, setIp] = useState('');
+  function callback(data: any) {
+    setIp(data);
+  }
+  useEffect(
+    () => {
+      // 클라이언트의 IP주소를 알아내는 백엔드의 함수를 호출합니다.
+      ipGet('/ip', callback);
+    }, [ip]
+  );
 
   useEffect(() => {
     setTimeout(() => {
@@ -74,7 +84,15 @@ function DashboardContainer(props: any) {
   useEffect(() => {
     clusterData.run();
   }, []);
-  return <Dashboard data={data} pushdata={[{ 'tag': 'dataPanel1', 'data': ui_data }]} htValue={props.htValue} handleGraphView={props.handleGraphView} scene={props.scene} />;
+  return (
+    <Dashboard
+      data={data}
+      pushdata={[{ 'tag': 'dataPanel1', 'data': ui_data }]}
+      htValue={props.htValue}
+      handleGraphView={props.handleGraphView}
+      scene={props.scene}
+    />
+  );
 }
 
 export default DashboardContainer;

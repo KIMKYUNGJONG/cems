@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Card from '../../components/Card/Card';
 import { AutoComplete, Divider } from 'antd';
 import Table from '../../components/Table/Table';
-import { dashboardList } from './Interface';
+import { reportList } from './Interface';
 
 type optionType = {
   value: string;
@@ -34,7 +34,8 @@ const mockVal = (str: string | never, repeat: number = 1): optionType => ({
   label: str
 });
 
-function DashboardList({ data, htValue, scene }: dashboardList) {
+function ReportList(props: reportList) {
+  const { data } = props;
   const [value, setValue] = useState('');
   const [loading, setLoading] = useState<boolean>(true);
   const [options, setOptions] = useState([{ value: '' }]);
@@ -101,4 +102,4 @@ const Title = styled.div`
   padding: 1em 0;
 `;
 
-export default DashboardList;
+export default ReportList;

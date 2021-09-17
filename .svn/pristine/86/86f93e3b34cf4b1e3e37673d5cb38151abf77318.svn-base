@@ -2,32 +2,41 @@ import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import { useAsync } from 'react-async';
 import { apiGet, ipGet } from '../lib/api';
-import Report from '../pages/Report/Report';
+import Dashboard from '../pages/Dashboard/Dashboard';
+import HtView from '../components/HtView';
 import { Data } from '../constant/Dashboard';
+import { setPriority } from 'os';
 
-/**
- * 외부 api 호출
- */
+
 const fetchClusterData = async () => {
   const res = await apiGet({
     url: 'https://gorest.co.in/public-api/comments',
   });
   return res.data;
 };
+const URL = 'ws://localhost:5000';
 
-function ReportContainer(props: any) {
-  /**
-   * 외부api useAsync
-   */
+// 더미데이터
+const data =
+{
+  code: '1073042884',
+  name: 'dummy Project',
+  coords: ['10.15151', '10.15151'],
+  regDate: '2021-08-30'
+};
+
+function DashboardContainer(props: any) {
+  const htView = useRef<any>();
   const clusterData = useAsync({
     deferFn: fetchClusterData,
     initialValue: [],
   });
 
-  /**
-   * 백단 테스트용 api 입니다
-   * api 정의 파일은 lib/api.ts에 있습니다.
-   */
+  const [ui_data, setUi_data] = useState<Data[]>([]);
+  const [ws, setWs] = useState<WebSocket>();
+  const __bootstrap_async__ = () => {
+    setWs(new WebSocket(URL, ['Token', 'token_body_here']));
+  };
   const [ip, setIp] = useState('');
   function callback(data: any) {
     setIp(data);
@@ -38,17 +47,7 @@ function ReportContainer(props: any) {
       ipGet('/ip', callback);
     }, [ip]
   );
-  // demo api 끝단
 
-  /**
-   * 웹소켓 통신 api 입니다
-   */
-  const URL = 'ws://localhost:5000';
-  const [uiData, setUiData] = useState<Data[]>([]);
-  const [ws, setWs] = useState<WebSocket>();
-  const __bootstrap_async__ = () => {
-    setWs(new WebSocket(URL, ['Token', 'token_body_here']));
-  };
   useEffect(() => {
     setTimeout(() => {
       if (!ws) {
@@ -58,7 +57,8 @@ function ReportContainer(props: any) {
           console.log('opened');
         };
         ws.onmessage = (event) => {
-          setUiData((old) => [event.data, ...old].splice(0, 9));
+          //setUi_data((old) => [...old, event.data])
+          setUi_data((old) => [event.data, ...old].splice(0, 9));
           //htView component api 사용
           //data pushed 시 call updateDM()
           //문제 있음
@@ -78,22 +78,18 @@ function ReportContainer(props: any) {
     }, 0);
   }, [ws]);
 
-  const data: Data =
-  {
-    project: 'PJ_0917',
-    aplicationId: '11',
-    coords: ['10.15151', '10.15151'],
-    regDate: '2021-08-30',
-    userId: 'sma_01',
-    sms: ['010-666-6666', '010-555-5555'],
-    note: 'sample demo'
-  };
-
   useEffect(() => {
     clusterData.run();
   }, []);
-
-  return <Report ip={ip} dummy={data} data={clusterData.data.data} />;
+  return (
+    <Dashboard
+      data={data}
+      pushdata={[{ 'tag': 'dataPanel1', 'data': ui_data }]}
+      htValue={props.htValue}
+      handleGraphView={props.handleGraphView}
+      scene={props.scene}
+    />
+  );
 }
 
-export default ReportContainer;
+export default DashboardContainer;

@@ -1,11 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Data } from '../../constant/Dashboard';
+import ReportList from './ReportList';
+import ReportDash from './ReportDash';
 
-function Report() {
-  console.log('report');
+function Report(props: { ip: string, data: Data, dummy: Data }) {
+  const { data } = props;
+  console.log('데이터 호출 :', data);
+  const { dummy } = props;
+
   return (
     <ReportWrapper>
-      <h1>레포트 페이지</h1>
+      <ReportList data={dummy} />
+      <ReportDash />
     </ReportWrapper>
   );
 }

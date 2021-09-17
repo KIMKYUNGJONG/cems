@@ -27,13 +27,13 @@ const Table = ({ handleClick }: IProps) => {
             onClick: event => { handleRowClick(record); }, // click row
           };
         }}
-        columns={columns} dataSource={data} pagination={{ pageSize: 10 }} scroll={{ y: 180 }} />
+        columns={columns} dataSource={data} pagination={{ pageSize: 10 }} scroll={{ y: 200 }} />
     </StWrapper>
   );
 };
 
 const StWrapper = styled.div`
-  min-height: 280px;
+  min-height: 300px;
   overflow: auto;
 
   & .ant-table-wrapper {

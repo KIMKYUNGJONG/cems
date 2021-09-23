@@ -11,33 +11,45 @@ for (let i = 10; i < 36; i++) {
   dummySelect.push(<Option key={i.toString(36) + i} value={`PJ_${i}`} >{i.toString(36) + i}</Option>);
 }
 
-function PickerWithType({ type, onChange }: any) {
-  if (type === 'date') return <DatePicker picker="date" onChange={onChange} />;
-  if (type === 'month') return <DatePicker picker="month" onChange={onChange} />;
-  if (type === 'year') return <DatePicker picker="year" onChange={onChange} />;
-  return <DatePicker picker={type} onChange={onChange} />;
-}
-
 const ReportForm = (props: any) => {
   const [form] = Form.useForm();
-  const [type, setType] = useState('date');
+  const [decade, setDecade] = useState();
+  const [format, setFormat] = useState('YYYY/MM/DD');
   const [disable, setCustomDecade] = useState(true);
   const { formRef, user, modVisible } = props;
   const onFinish = (values: any) => {
+    console.log('Success:', values);
     const data = {
       section: values.section,
       sensorType: values.sensorType,
       sensorName: values.sensorName,
       decade: values.decade,
-      selectDecade: disable ? values.select_decade._d : [values.select_range[0]._d, values.select_range[1]._d]
+      select_decade: disable ? values.select_decade._d : [values.select_range[0]._d, values.select_range[1]._d]
     };
-    props.handleFormValue(data);
+    console.log('백단 통신 필요: update api', data);
+    formRef.current!.resetFields();
   };
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
   const handleSelectChange = (value: any) => {
     console.log(`Selected: ${value}`);
+  };
+  const handleFormat = (value: any) => {
+    setDecade(value);
+    switch (value) {
+      case 'day' || 'week':
+        setFormat('YYYY/MM/DD');
+        break;
+      case 'month':
+        setFormat('YYYY/MM');
+        break;
+      case 'year':
+        setFormat('YYYY');
+        break;
+      default:
+        break;
+    }
   };
   const toggleDecade = () => {
     setCustomDecade(!disable);
@@ -106,8 +118,8 @@ const ReportForm = (props: any) => {
             label={'조회조건'}
             name="decade"
           >
-            <Radio.Group value={type} onChange={(e) => setType(e.target.value)}>
-              <Radio value="date">일별</Radio>
+            <Radio.Group defaultValue={'day'} onChange={(event) => { handleFormat(event.target.value); }}>
+              <Radio value="day">일별</Radio>
               <Radio value="week">주별</Radio>
               <Radio value="month">월별</Radio>
               <Radio value="year">년별</Radio>
@@ -118,7 +130,7 @@ const ReportForm = (props: any) => {
             name="select_decade"
             style={{ width: 400 }}
           >
-            <PickerWithType type={type} onChange={(value: any) => console.log(value)} />
+            <DatePicker style={{ width: 300 }} picker={decade} format={format} />
           </Form.Item>
 
           <Button type="primary" onClick={toggleDecade}>직접 선택</Button>
@@ -137,7 +149,7 @@ const ReportForm = (props: any) => {
           </CustomButtonGroup>
         </FlexRow>
       </Form>
-    </StyledForm >
+    </StyledForm>
   );
 };
 

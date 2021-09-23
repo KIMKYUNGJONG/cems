@@ -25,22 +25,6 @@ function ReportContainer(props: any) {
   });
 
   /**
- * 차트 api 호출
- */
-  const [lineData, setData] = useState([]);
-  useEffect(() => {
-    asyncFetch();
-  }, []);
-  const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/bmw-prod/55424a73-7cb8-4f79-b60d-3ab627ac5698.json') // 더미데이터
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => {
-        console.log('fetch data failed', error);
-      });
-  };
-
-  /**
    * 백단 테스트용 api 입니다
    * api 정의 파일은 lib/api.ts에 있습니다.
    */
@@ -109,7 +93,7 @@ function ReportContainer(props: any) {
     clusterData.run();
   }, []);
 
-  return <Report ip={ip} dummy={data} data={clusterData.data.data} lineData={lineData} />;
+  return <Report ip={ip} dummy={data} data={clusterData.data.data} />;
 }
 
 export default ReportContainer;

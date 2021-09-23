@@ -8,13 +8,6 @@ interface Data {
   note: string;
 }
 
-export interface FormData {
-  section: string;
-  sensorType: string;
-  sensorName: string;
-  decade: string;
-  selectDecade: object | object[];
-}
 export type reportList = { 
   data: Data
 }

@@ -116,7 +116,6 @@ const ReportForm = (props: any) => {
           <Form.Item
             label={'기간'}
             name="select_decade"
-            style={{ width: 400 }}
           >
             <PickerWithType type={type} onChange={(value: any) => console.log(value)} />
           </Form.Item>

@@ -170,7 +170,7 @@ function ReportDash(props: any) {
       <TableWrapper>
         <ReportTable dataSource={dataSource} columns={columns} />
         <Button className="download" type="primary" shape="round" onClick={() => console.log('click')} icon={<DownloadOutlined />} size={'middle'}>
-          Download
+          Export
         </Button>
       </TableWrapper>
     </ClusterBlock>);

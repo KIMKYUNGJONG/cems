@@ -1,4 +1,4 @@
-export interface IProject {
+interface IProject {
   projectName: string;
   scene: string;
   aplicationId: number | string;
@@ -6,7 +6,7 @@ export interface IProject {
   note?: string;
 }
 
-export interface IUser {
+interface IUser {
   id: string;
   pw: string;
   company: string;
@@ -16,3 +16,9 @@ export interface IUser {
   projectList: string[];
   note?: string;
 }
+
+interface EditableRowProps {
+  index: number;
+}
+
+export type { EditableRowProps, IUser, IProject };

@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import { Table } from 'antd';
+import { Table, Button } from 'antd';
 import styled from 'styled-components';
-// 샘플 테이블 데이터
-import { columns, data } from './SampleTable';
+import { handleSave } from '../Modal/SensorModal';
 
+// 샘플 테이블 데이터
 interface IProps {
   data?: object[];
   columns?: object[];
   handleClick?: Function;
 }
 
-const CustomTable = ({ handleClick }: IProps) => {
+const CustomTable = ({ columns, data }: any) => {
   const [value, setValue] = useState({});
   const handleRowClick = (record: object) => {
     setValue(record);
@@ -28,6 +28,8 @@ const CustomTable = ({ handleClick }: IProps) => {
           };
         }}
         columns={columns} dataSource={data} pagination={{ pageSize: 10 }} scroll={{ y: 180 }} />
+      <Button onClick={() => handleSave(value)}>저장</Button>
+
     </StWrapper>
   );
 };

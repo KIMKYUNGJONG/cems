@@ -69,6 +69,10 @@ function Admin({ data, sampleData }: any) {
     console.log('센서장비 폼 데이터 확인 : ', data[2]);
   };
 
+  const handleSensorData = (data: object) => {
+    setSensorData(data);
+  };
+
   const handleModify = (type: string, record: any) => {
     if (type === 'project') {
       setProject(record);
@@ -149,13 +153,13 @@ function Admin({ data, sampleData }: any) {
                 />
               </TitleWrapper>
               <Contents>
-                <SensorTable dataSource={sensorData} handleModify={handleModify} handleDelete={handleDelete} />
+                <SensorTable dataSource={sensorData} handleSensorData={handleSensorData} />
                 <ButtonWrapper>
                   <ButtonGroup>
                     <AddButton name={'공사구간 관리'} type={'section'} handleForm={handleSensorModal} />
                     <AddButton name={'임계치 관리'} type={'limiter'} handleForm={handleSensorModal} />
                   </ButtonGroup>
-                  <Button name={'저장'} style={{ borderRadius: '15' }} type={'primary'} onClick={() => { console.log('data'); }}>
+                  <Button name={'저장'} style={{ borderRadius: '15' }} type={'primary'} onClick={() => { console.log('변경된 데이타 읽기', sensorData); }}>
                     <SaveOutlined /> 저장
                   </Button>
                 </ButtonWrapper>

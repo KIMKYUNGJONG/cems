@@ -65,51 +65,48 @@ export const dataSource = [
       projectId: '39',
       note: 'blabla'
     },
-  ],
-  [
-    {
-      projectName: '새만금 프로젝트',
-      data: {
-        nodeId: 'ST_1451',
-        fac: [
-          {
-            name: 'adc1',
-            sensorType: 'fac1',
-            sensorName: 'W-1'
-          },
-          {
-            name: 'adc2',
-            sensorType: 'fac2',
-            sensorName: 'W-2'
-          },
-          {
-            name: 'adc3',
-            sensorType: 'fac3',
-            sensorName: 'W-3'
-          },
-          {
-            name: 'adc4',
-            sensorType: 'fac4',
-            sensorName: 'W-4'
-          },
-          {
-            name: 'adc5',
-            sensorType: 'fac5',
-            sensorName: 'N/A'
-          },
-          {
-            name: 'adc6',
-            sensorType: 'fac6',
-            sensorName: 'W-6'
-          },
-          {
-            name: 'adc7',
-            sensorType: 'fac7',
-            sensorName: 'N/A'
-          }
-        ]
-      }
-    }
   ]
 ];
 
+export const sensorData = [
+  {
+    projectName: '새만금 프로젝트',
+    asset: [
+      {
+        node_id: 'ST_1451',
+        adc1_type: '지진계',
+        adc1_name: 'W-1',
+        adc2_type: '구조물경사계',
+        adc2_name: 'W-2',
+        adc3_type: 'N/A',
+        adc3_name: '',
+        adc4_type: 'N/A',
+        adc4_name: '',
+        adcDiff12_type: 'N/A',
+        adcDiff12_name: '',
+        adcDiff34_type: 'N/A',
+        adcDiff34_name: '',
+      }
+    ]
+  },
+  {
+    projectName: '새만금 프로젝트2',
+    asset: [
+      {
+        node_id: 'ST_1452',
+        adc1_type: '지진계',
+        adc1_name: 'W-1',
+        adc2_type: '구조물경사계',
+        adc2_name: 'W-2',
+        adc3_type: 'N/A',
+        adc3_name: '',
+        adc4_type: 'N/A',
+        adc4_name: '',
+        adcDiff12_type: 'N/A',
+        adcDiff12_name: '',
+        adcDiff34_type: 'N/A',
+        adcDiff34_name: '',
+      }
+    ]
+  }
+]

@@ -20,7 +20,7 @@ function callback(key: string) {
 function Admin({ data, sampleData }: any) {
   console.log('api 샘플 데이터', sampleData.data);
   const { Content } = Layout;
-  const [userData, setUserData] = useState(data[0])
+  const [userData, setUserData] = useState(data[0]);
   const [projectData, setProjectData] = useState(data[1]);
   const [sensorData, setSensorData] = useState(data[2]);
   const [user, setUser] = useState<IUser | undefined>();

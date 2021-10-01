@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { Table, Button } from 'antd';
 import styled from 'styled-components';
-import { handleSave } from '../Modal/SensorModal';
 
 // 샘플 테이블 데이터
 interface IProps {
@@ -28,7 +27,7 @@ const CustomTable = ({ columns, data }: any) => {
           };
         }}
         columns={columns} dataSource={data} pagination={{ pageSize: 10 }} scroll={{ y: 180 }} />
-      <Button onClick={() => handleSave(value)}>저장</Button>
+      <Button onClick={() => { }}>저장</Button>
 
     </StWrapper>
   );

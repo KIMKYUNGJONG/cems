@@ -110,18 +110,13 @@ const ReportForm = (props: any) => {
               <Radio value="year">년별</Radio>
             </Radio.Group>
           </Form.Item>
-          ${
-            switch (decade) {
-              case 'day':
-
-          return
           <Form.Item
             label={'직접입력'}
             name="select_decade"
           >
             <RangePicker
               dateRender={current => {
-                const style = { border: '', borderRadius: '' };
+                const style = { border: '', borderRadius: '', };
                 if (current.date() === 1) {
                   style.border = '1px solid #1890ff';
                   style.borderRadius = '50%';
@@ -134,11 +129,6 @@ const ReportForm = (props: any) => {
               }}
             />
           </Form.Item>;
-
-          default:
-          break;
-            }
-          }
 
           <CustomButtonGroup>
             <CustomButton>

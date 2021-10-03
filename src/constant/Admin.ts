@@ -65,6 +65,48 @@ export const dataSource = [
       projectId: '39',
       note: 'blabla'
     },
-  ],
+  ]
 ];
 
+export const sensorData = [
+  {
+    projectName: '새만금 프로젝트',
+    asset: [
+      {
+        node_id: 'ST_1451',
+        adc1_type: '지진계',
+        adc1_name: 'W-1',
+        adc2_type: '구조물경사계',
+        adc2_name: 'W-2',
+        adc3_type: 'N/A',
+        adc3_name: '',
+        adc4_type: 'N/A',
+        adc4_name: '',
+        adcDiff12_type: 'N/A',
+        adcDiff12_name: '',
+        adcDiff34_type: 'N/A',
+        adcDiff34_name: '',
+      }
+    ]
+  },
+  {
+    projectName: '새만금 프로젝트2',
+    asset: [
+      {
+        node_id: 'ST_1452',
+        adc1_type: '지진계',
+        adc1_name: 'W-1',
+        adc2_type: '구조물경사계',
+        adc2_name: 'W-2',
+        adc3_type: 'N/A',
+        adc3_name: '',
+        adc4_type: 'N/A',
+        adc4_name: '',
+        adcDiff12_type: 'N/A',
+        adcDiff12_name: '',
+        adcDiff34_type: 'N/A',
+        adcDiff34_name: '',
+      }
+    ]
+  }
+]

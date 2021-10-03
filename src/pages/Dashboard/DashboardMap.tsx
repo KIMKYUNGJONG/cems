@@ -1,8 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import HtView from '../../components/HtView';
-import axios from 'axios';
-import { useAsync } from 'react-async';
-import { apiGet } from '../../lib/api';
 
 function DashboardMap(props: any) {
   const htView = useRef<any>();

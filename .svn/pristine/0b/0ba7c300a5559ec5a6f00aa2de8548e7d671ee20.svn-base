@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import { Skeleton, Card as CardFrame } from 'antd';
+import { Skeleton, Switch, Card as CardFrame } from 'antd';
 import styled from 'styled-components';
 import { Data } from '../../constant/Dashboard';
 

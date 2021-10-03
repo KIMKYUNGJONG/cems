@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import Table from '../../components/Table/Table';
 import ReportForm from '../../components/Form/Report';
 import LineChart from '../../components/Chart/LineChart';
 import { FormData } from './Interface';
@@ -7,6 +8,10 @@ import ReportTable from './ReportTable';
 import { Button } from 'antd';
 import { DownloadOutlined } from '@ant-design/icons';
 
+type optionType = {
+  value: string;
+  label: string;
+}
 const dataSource = [
   {
     date: '2021-09-23',
@@ -114,6 +119,17 @@ const hexToRgb = (hexType: string) => {
   }
 };
 
+const eventHandler = (event: any) => {
+  if (event.kind === 'clickData') {
+    console.log(event);
+  }
+};
+
+const mockVal = (str: string | never, repeat: number = 1): optionType => ({
+  value: str.repeat(repeat), // 실제 데이터 들어가야함.
+  label: str
+});
+
 interface DummyEl {
   name: string,
   val: number
@@ -154,7 +170,7 @@ function ReportDash(props: any) {
       <TableWrapper>
         <ReportTable dataSource={dataSource} columns={columns} />
         <Button className="download" type="primary" shape="round" onClick={() => console.log('click')} icon={<DownloadOutlined />} size={'middle'}>
-          Export
+          Download
         </Button>
       </TableWrapper>
     </ClusterBlock>);

@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'antd/dist/antd.css';
-import { Tag, Space } from 'antd';
+import { Space } from 'antd';
 
 export const columns = [
   {
     title: 'Project',
     dataIndex: 'project',
     key: 'project',
-    render: (text: string) => (<a>{text}</a>),
+    render: (text: string) => (<button>{text}</button>),
   },
   {
     title: 'Code',
     key: 'code',
     render: (text: string, record: any, index: number) => (
       <Space size="middle">
-        <a>{record.code}</a>
+        <button>{record.code}</button>
       </Space>
     ),
   },

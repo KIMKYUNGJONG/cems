@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { ROUTES } from '../../constant/routes';
 import styled from 'styled-components';
 import Icon from '../Common/Icon';
-import { matchPath, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function NavbarMenu(props: any) {
   const onClick = () => {

@@ -4,15 +4,15 @@ import { Data } from '../../constant/Dashboard';
 import ReportList from './ReportList';
 import ReportDash from './ReportDash';
 
-function Report(props: { ip: string, data: Data, dummy: Data, lineData: any }) {
-  const { data, lineData } = props;
+function Report(props: { ip: string, data: Data, dummy: Data }) {
+  const { data } = props;
   console.log('데이터 호출 :', data);
   const { dummy } = props;
 
   return (
     <ReportWrapper>
       <ReportList data={dummy} />
-      <ReportDash lineData={lineData} />
+      <ReportDash />
     </ReportWrapper>
   );
 }

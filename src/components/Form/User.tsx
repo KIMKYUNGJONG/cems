@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Form, Input, Button, Select } from 'antd';
 
+//리덕스
+import { useAppSelector, useAppDispatch } from '../../redux/hooks';
+import { addUser, updateUser } from '../../redux/userSlice';
+
 const { TextArea } = Input;
 const { Option } = Select;
 const dummySelect: any[] = [];
@@ -10,25 +14,18 @@ for (let i = 10; i < 36; i++) {
 }
 
 const UserForm = (props: any) => {
+  const dispatch = useAppDispatch();
   const [form] = Form.useForm();
   const { formRef, user, modVisible } = props;
   const onFinish = (values: any) => {
-    console.log('Success:', values);
-    const data = {
-      id: values.id,
-      password: values.password,
-      company: values.company,
-      manager: values.manager,
-      contact: values.contact,
-      email: values.email,
-      project: values.project,
-      note: values.note
-    };
-    console.log('백단 통신 필요: update api');
-    console.log(props);
-    formRef.current!.resetFields();
-    (modVisible === true) ? props.handleModify(data) : props.handleUser(data);
-    props.handleVisible();
+    if (modVisible === true) {
+      dispatch(updateUser(values));
+      props.handleVisible();
+    } else {
+      dispatch(addUser(values));
+      formRef.current!.resetFields();
+      props.handleVisible();
+    }
   };
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);

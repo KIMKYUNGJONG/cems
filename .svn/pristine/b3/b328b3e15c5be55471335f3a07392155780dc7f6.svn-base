@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Form, Button, Select, Radio, DatePicker } from 'antd';
+import { Row, Form, Button, Select, Radio, DatePicker } from 'antd';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -22,7 +22,7 @@ const ReportForm = (props: any) => {
   const [form] = Form.useForm();
   const [type, setType] = useState('date');
   const [disable, setCustomDecade] = useState(true);
-  const { formRef, user } = props;
+  const { formRef, user, modVisible } = props;
   const onFinish = (values: any) => {
     const data = {
       section: values.section,
@@ -116,6 +116,7 @@ const ReportForm = (props: any) => {
           <Form.Item
             label={'기간'}
             name="select_decade"
+            style={{ width: 400 }}
           >
             <PickerWithType type={type} onChange={(value: any) => console.log(value)} />
           </Form.Item>

@@ -1,10 +1,12 @@
-/* eslint-disable camelcase */
+import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import { useAsync } from 'react-async';
 import { apiGet, ipGet } from '../lib/api';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import HtView from '../components/HtView';
 import { Data } from '../constant/Dashboard';
+import { setPriority } from 'os';
+
 
 const fetchClusterData = async () => {
   const res = await apiGet({
@@ -27,6 +29,7 @@ const data: Data =
 };
 
 function DashboardContainer(props: any) {
+  const htView = useRef<any>();
   const clusterData = useAsync({
     deferFn: fetchClusterData,
     initialValue: [],

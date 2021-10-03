@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import { Skeleton, Card as CardFrame } from 'antd';
+import { Skeleton, Switch, Card as CardFrame } from 'antd';
 import styled from 'styled-components';
 import { Data } from '../../constant/Dashboard';
 
@@ -16,7 +16,7 @@ const Card = ({ data, loading }: { data: Data, loading: boolean }) => {
         <p><span><label>생성일</label>{data.regDate}</span></p>
         <FlexBlock>
           <p><label>위치</label><p>위도:{data.coords[0]}</p><p>경도:{data.coords[1]}</p></p>
-          <p><label>SMS 번호</label>{data.sms ? data.sms.map((num) => <p key={num}>{num}</p>) : null}</p>
+          <p><label>SMS 번호</label>{data.sms ? data.sms.map((num) => <p>{num}</p>) : null}</p>
         </FlexBlock>
 
         <p><label>note</label><span>{data.note}</span></p>

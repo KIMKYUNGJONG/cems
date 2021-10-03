@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { reset } from 'styled-reset';
-import { Route, Switch, Redirect, RouteComponentProps } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
 import { DarkTheme, LightTheme } from '../constant/theme';
 import DashboardContainer from '../containers/DashboardContainer';

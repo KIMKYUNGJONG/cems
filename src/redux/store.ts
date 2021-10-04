@@ -4,12 +4,15 @@ import { configureStore } from '@reduxjs/toolkit';
 import historyReducer from './historyStore';
 import counterReducer from './counterSlice';
 import userReducer from './userSlice';
-
+import projectReducer from './projectSlice';
+import sectionReducer from './sectionSlice';
 // RootReducer를 만든다.
 const reducer = {
   history: historyReducer,
   counter: counterReducer,
-  user: userReducer
+  user: userReducer,
+  project: projectReducer,
+  section: sectionReducer
 };
 
 // 스토어 객체를 만든다.

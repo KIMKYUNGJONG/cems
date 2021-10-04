@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Table, Input, Select, } from 'antd';
 import { sensorData } from '../../constant/Admin';
-
+import { updateSection } from '../../redux/sectionSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 const { Option } = Select;
 
 function SensorTable({ dataSource, handleSensorData }: any) {
+  const dispatch = useAppDispatch();
   const { asset } = sensorData[0];
   console.log(dataSource);
   //컨테이너에서 dataSource로 받아왔다고 가정하고,
@@ -16,14 +18,18 @@ function SensorTable({ dataSource, handleSensorData }: any) {
     const newData: any = sensorData[0].asset[key];
     const index = newData.hasOwnProperty(keyName) ?
       newData[keyName] = value : null;
-    handleSensorData(newData);
+    //handleSensorData(newData); 
+    console.log(newData, 'test');
+    dispatch(updateSection(newData));
   }
   // 셀렉트값 변경시
   function handleInput(e: any, key: number, keyName: any) {
     const newData: any = sensorData[0].asset[key];
     const index = newData.hasOwnProperty(keyName) ?
       newData[keyName] = e.target.value : null;
-    handleSensorData(newData);
+    //handleSensorData(newData);
+    console.log(newData);
+    dispatch(updateSection(newData));
   }
   // 인풋 값 변경시
 

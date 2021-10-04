@@ -4,7 +4,7 @@ import { Form, Input, Button, Select } from 'antd';
 
 //리덕스
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
-import { addUser, updateUser } from '../../redux/userSlice';
+import { addUser, updateUser, openUser, deleteUser } from '../../redux/userSlice';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -14,17 +14,20 @@ for (let i = 10; i < 36; i++) {
 }
 
 const UserForm = (props: any) => {
+  const userForm = useAppSelector(state => state.user.form);
+  const test = useAppSelector(state => state.user);
   const dispatch = useAppDispatch();
   const [form] = Form.useForm();
-  const { formRef, user, modVisible } = props;
+  const { formRef, handleData } = props;
   const onFinish = (values: any) => {
-    if (modVisible === true) {
+    if (userForm.mode === 'modify') {
       dispatch(updateUser(values));
-      props.handleVisible();
+      //dispatch(deleteUser(values));
+      //dispatch(openUser(false));
     } else {
-      dispatch(addUser(values));
       formRef.current!.resetFields();
-      props.handleVisible();
+      dispatch(addUser(values));
+      //dispatch(openUser(false));
     }
   };
   const onFinishFailed = (errorInfo: any) => {
@@ -35,8 +38,8 @@ const UserForm = (props: any) => {
   };
 
   useEffect(() => {
-    form.setFieldsValue(user);
-  }, [form, user]);
+    form.setFieldsValue(handleData);
+  }, [form, handleData]);
   return (
     <StyledForm>
       <Form
@@ -54,7 +57,7 @@ const UserForm = (props: any) => {
           name="id"
           rules={[{ required: true, message: '사용자 ID가 필요합니다' }]}
         >
-          <Input disabled={modVisible ? true : false} placeholder="사용자 ID" />
+          <Input disabled={userForm.mode === 'modify' ? true : false} placeholder="사용자 ID" />
         </Form.Item>
         <Form.Item
           label={'사용자 PW'}
@@ -69,7 +72,7 @@ const UserForm = (props: any) => {
           name="company"
           rules={[{ required: true, message: '회사명이 필요합니다' }]}
         >
-          <Input disabled={modVisible ? true : false} placeholder="회사명" />
+          <Input disabled={userForm.mode === 'modify' ? true : false} placeholder="회사명" />
         </Form.Item>
         <Form.Item
           label={'관리자'}
@@ -115,7 +118,7 @@ const UserForm = (props: any) => {
         <CustomButtonGroup>
           <CustomButton>
             <Button type="primary" htmlType="submit">
-              {(props.modVisible) ? '변경' : '추가'}
+              {(userForm.mode === 'modify') ? '변경' : '추가'}
             </Button>
           </CustomButton>
           <CustomButton>

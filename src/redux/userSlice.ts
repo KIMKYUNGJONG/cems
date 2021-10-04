@@ -17,16 +17,35 @@ interface User {
   manager: string
   contact: string
   email: string
-  project: string[]
+  memo: string
+  project?: string[]
 }
-interface State {
+interface Form {
+  type: string
+  mode: string
   visible: boolean
-  user: User[]
 }
 
+interface State {
+  user: User[]
+  form: Form
+}
+const demoUser = {
+  id: 'User1',
+  company: 'COM1',
+  manager: 'Admin1',
+  contact: '010-0000-0000',
+  email: 'google@google.com',
+  memo: '',
+  project: ['PJ_01', 'PJ_02'],
+};
 const initialState: State = {
-  visible: false,
-  user: []
+  user: [demoUser],
+  form: {
+    type: '',
+    mode: 'add',
+    visible: false
+  }
 };
 
 const userSlice = createSlice({
@@ -38,20 +57,33 @@ const userSlice = createSlice({
       // immer가 내장 되어있어 알아서 불변성을 지켜준다.
     },
     updateUser(state, action: PayloadAction<User>) {
-      state.user.map((item) => {
+      const updateUser = state.user.map((item) => {
         if (item.id === action.payload.id) {
-          return { ...item, ...action.payload };
+          const newValue =  { ...item, ...action.payload };
+          return newValue;
         } else return item;
       });
+      state.user = updateUser;
+    },
+    deleteUser(state, action: PayloadAction<User>) {
+      const newUser = state.user.filter((list) => list.id !== action.payload.id);
+      // "Mutate" the existing state to save the new array
+      state.user = newUser;
+    },
+    openUser(state, action: PayloadAction<boolean>) {
+      state.form.visible = action.payload;
+    },
+    setForm(state, action: PayloadAction<Form>) {
+      state.form = action.payload;
     }
   },
   extraReducers: (builder) => {
     builder.addCase(getList.fulfilled, (state, action) => {
-      state.visible = true;
+      state.form.visible = true;
       state.user = action.payload;
     });
   },
 });
 
 export default userSlice.reducer;
-export const { addUser, updateUser } = userSlice.actions;
+export const { addUser, updateUser, openUser, deleteUser, setForm } = userSlice.actions;

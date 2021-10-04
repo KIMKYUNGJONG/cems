@@ -35,7 +35,7 @@ function UserTable({ dataSource, handleModify, handleDelete }: any) {
       dataIndex: 'project',
       render: (projectList: string[], record: any) => (
         <>
-          {projectList.map(list => {
+          {projectList?.map(list => {
             const color = list.length > 5 ? 'geekblue' : 'green';
             return (
               <Tag color={color} key={list}>
@@ -60,7 +60,6 @@ function UserTable({ dataSource, handleModify, handleDelete }: any) {
       render: (text: string, record: any) => (
         <Space size="middle">
           <Button type="primary" onClick={(event) => {
-            console.log('clickModify');
             handleModify('user', record);
           }}>정보변경</Button>
           <Button type="primary" danger onClick={(event) => {

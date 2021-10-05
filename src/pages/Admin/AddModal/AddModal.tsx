@@ -8,11 +8,6 @@ import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
 import { openProject } from '../../../redux/projectSlice';
 import { openUser } from '../../../redux/userSlice';
 const AddModal = (props:any) => {
-  /**
-   * 리덕스에서 폼 객체를 받아온다
-   * 폼의 타입은 사용자, 프로젝트
-   * 우선 선행되어야할 목표. 폼의 타입
-   */
   const projectForm = useAppSelector(state => state.project.form);
   const userForm = useAppSelector(state => state.user.form);
   const dispatch = useAppDispatch();

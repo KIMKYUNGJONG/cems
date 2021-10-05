@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Alert } from 'antd';
 
-const LoginForm = ({ handleLogin }: any) => {
+const LoginForm = ({ handleLogin, errorMessage }: any) => {
   //const { handleLogin } = props;
   const onFinish = (values: any) => {
     console.log('Success:', values);
@@ -26,7 +26,7 @@ const LoginForm = ({ handleLogin }: any) => {
       >
         <Form.Item
           label="ID"
-          name="id"
+          name="username"
           rules={[{ required: true, message: 'Please input your ID!' }]}
         >
           <Input />
@@ -40,9 +40,16 @@ const LoginForm = ({ handleLogin }: any) => {
           <Input.Password />
         </Form.Item>
 
-        <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
+        {errorMessage !== '' &&
+        <div>
+          <Alert message={errorMessage} type="error" />
+          <br/>
+        </div>
+        }        
+
+        {/* <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
           <Checkbox>Remember me</Checkbox>
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
           <CustomButton>

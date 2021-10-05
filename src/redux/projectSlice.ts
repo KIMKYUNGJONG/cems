@@ -1,21 +1,56 @@
+/* eslint-disable camelcase */
 import axios from 'axios';
 
 // userStore.ts
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { apiGetProjects, apiAddOrUpdateProject, apiDeleteProjectById } from '../lib/apiProject';
+import { setupAxiosInterceptors } from '../lib/apiUser';
 
 // axios를 통한 통신
-export const getList = createAsyncThunk('GET_PROJECTLIST', async () => {
-  const response = await axios.get('http://localhost:8000/list');
-  return response.data;
-});
+export const getProjectList = createAsyncThunk(
+  'GET_PROJECTLIST', 
+  async () => {
+    setupAxiosInterceptors();
+    const result = await apiGetProjects().then(response => {
+      return response.data;
+    });
+    console.log('result ', result);
+    return result;
+  });
+export const handleProjectList = createAsyncThunk(
+  'UPDATE_PROJECTLIST', 
+  async (data:Project) => {
+    setupAxiosInterceptors();
+    const result = await apiAddOrUpdateProject(data).then(response => {
+      // return console.log('apiAddOrUpdateProject ============ ', response.data);
+      return response.data;
+    });
+    console.log('updateResult', result);
+    return result;
+  });
+export const deleteProjectList = createAsyncThunk(
+  'UPDATE_PROJECTLIST', 
+  async (id:string) => {
+    setupAxiosInterceptors();
+    const result = await apiDeleteProjectById(id).then(response => {
+      //return console.log('apiDeleteProject ============ ', response.data);
+      return response.data;
+    });
+    console.log('deleteResult', result);
+    return result;
+  });
+
 
 // state 타입 지정
 interface Project {
-  projectName: string;
-  scene: string;
-  aplicationId: number | string;
-  sms?: string[];
-  note?: string;
+  id: string
+  name: string
+  scene_name: string
+  application_id: string
+  sms_number1: string
+  sms_number2: string
+  note: string,
+  url: string,
 }
 
 interface Form {
@@ -28,20 +63,9 @@ interface State {
   project: Project[]
   form: Form
 }
-const demoData = {
-  key: '1',
-  projectName: 'PJ_01',
-  scene: 'PJ_01',
-  aplicationId: '10',
-  sms: ['010-0000-0000', '010-1111-1111'],
-  regDate: '2021-09-09 16:48',
-  url: '/ht-static/scenes/PJ_01/PJ_01.json',
-  userId: 'User_01',
-  projectId: '35',
-  note: 'blabla'
-};
+
 const initialState: State = {
-  project: [demoData],
+  project: [],
   form: {
     type: '',
     mode: 'add',
@@ -56,17 +80,18 @@ const projectSlice = createSlice({
     addProject(state, action: PayloadAction<Project>) { 
       state.project.push(action.payload);
       // immer가 내장 되어있어 알아서 불변성을 지켜준다.
+      handleProjectList(action.payload);
     },
     updateProject(state, action: PayloadAction<Project>) {
       const updateProject = state.project.map((item) => {
-        if (item.aplicationId === action.payload.aplicationId) {
+        if (item.id === action.payload.id) {
           return { ...item, ...action.payload };
         } else return item;
       });
       state.project = updateProject;
     },
     deleteProject(state, action: PayloadAction<Project>) {
-      const newProject = state.project.filter((list) => list.aplicationId !== action.payload.aplicationId);
+      const newProject = state.project.filter((list) => list.id !== action.payload.id);
       state.project = newProject;
     },
     openProject(state, action: PayloadAction<boolean>) {
@@ -77,10 +102,11 @@ const projectSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(getList.fulfilled, (state, action) => {
-      state.form.visible = true;
-      state.project = action.payload;
-    });
+    builder
+      .addCase(getProjectList.fulfilled, (state, action) => {
+        const projectList = [...action.payload];
+        state.project = projectList;
+      });
   },
 });
 

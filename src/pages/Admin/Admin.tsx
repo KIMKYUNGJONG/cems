@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Layout, Tabs } from 'antd';
 import { UserTab } from './AdminTabs/User';
@@ -10,7 +10,7 @@ function callback(key: string) {
   console.log('탭 할때마다 해당 탭 데이터 가져올 수 있도록', key);
 }
 
-function Admin({ data, sampleData }: any) {
+function Admin({ users, projects }: any) {
   const { Content } = Layout;
 
   return (

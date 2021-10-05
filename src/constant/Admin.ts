@@ -7,7 +7,7 @@ export const dataSource = [
       manager: 'Admin1',
       contact: '010-0000-0000',
       email: 'google@google.com',
-      project: ['PJ_01', 'PJ_02'],
+      projectNameList: ['PJ_01', 'PJ_02'],
     },
     {
       key: '2',
@@ -16,7 +16,7 @@ export const dataSource = [
       manager: 'Admin2',
       contact: '010-0000-0000',
       email: 'google@google.com',
-      project: ['PJ_01', 'PJ_02'],
+      projectNameList: ['PJ_01', 'PJ_02'],
     },
     {
       key: '3',
@@ -25,7 +25,7 @@ export const dataSource = [
       manager: 'Admin3',
       contact: '010-0000-0000',
       email: 'google@google.com',
-      project: ['PJ_01', 'PJ_02'],
+      projectNameList: ['PJ_01', 'PJ_02'],
     }
   ],
   [
@@ -109,4 +109,4 @@ export const sensorData = [
       }
     ]
   }
-]
+];

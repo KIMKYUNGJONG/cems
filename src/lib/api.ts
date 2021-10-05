@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const baseURL = 'http://localhost:8080/api';
+
 export const apiGet = <P>({ url, params }: { url: string; params?: P }) => {
   return axios.get(url, {
     headers: {
@@ -28,4 +30,4 @@ export const ipGet = (url:string, callback:any) => {
   ).then(function (response) {
     callback(response.data);
   });
-}
+};

@@ -8,7 +8,9 @@ interface IRoute {
   isLogin?: string | null;
 }
 function AuthenticatedRoute({ path, render, exact, isLogin }: IRoute) {
-  return (isLogin === 'true') ? (<Route path={path} render={render} />) : (<Redirect to="/login" />);
+  console.log('token ', localStorage.getItem('token'));
+  
+  return (localStorage.getItem('token')) ? (<Route path={path} render={render} />) : (<Redirect to="/login" />);
 }
 
 export default AuthenticatedRoute;

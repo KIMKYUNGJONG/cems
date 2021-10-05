@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Table, Tag, Space, Button, Popconfirm, message } from 'antd';
+import { Table, Space, Button, Popconfirm, message } from 'antd';
 
 function ProjectTable({ dataSource, handleModify, handleDelete }: any) {
   function confirm(e: any, record: any) {
     console.log(record);
     handleDelete('project', record);
+    // delete api 들어가야함.
     message.success('데이터 삭제 완료');
   }
 
@@ -15,43 +16,55 @@ function ProjectTable({ dataSource, handleModify, handleDelete }: any) {
   }
   const columns = [
     {
+      title: '',
+      dataIndex: 'id',
+      key: 'id',
+    },
+    {
       title: '프로젝트 명',
-      dataIndex: 'projectName',
+      dataIndex: 'name',
       key: 'project'
     },
     {
       title: 'Scene 이름',
-      dataIndex: 'scene',
-      key: 'scene'
+      dataIndex: '',
+      key: ''
     },
     {
       title: 'Application Id',
-      dataIndex: 'aplicationId',
-      key: 'aplicationId',
+      dataIndex: 'application_id',
+      key: 'application_id',
     },
     {
       title: 'SMS 번호',
-      dataIndex: 'sms',
-      key: 'sms',
-      render: (sms: string[], record: any) => (
-        <>
-          {
-            sms.length > 0 ?
-              sms.map(list => {
-                return (
-                  <Tag color={'green'} key={list}>
-                    {list}
-                  </Tag>
-                );
-              }) : null
-          }
-        </>
-      ),
+      dataIndex: 'sms_number1',
+      key: 'sms_number1',
     },
     {
+      title: '',
+      dataIndex: 'sms_number1',
+      key: 'sms_number2',
+    },
+    // {
+    //   title: 'SMS 번호',
+    //   dataIndex: 'sms',
+    //   key: 'sms',
+    //   render: (sms: string[], record: any) => (
+    //     <>
+    //       {sms.map(list => {
+    //         return (
+    //           <Tag color={'green'} key={list}>
+    //             {list.toUpperCase()}
+    //           </Tag>
+    //         );
+    //       })}
+    //     </>
+    //   ),
+    // },
+    {
       title: '생성일',
-      dataIndex: 'regDate',
-      key: 'regDate',
+      dataIndex: 'created_at',
+      key: 'created_at',
     },
     {
       title: 'URL',
@@ -60,13 +73,8 @@ function ProjectTable({ dataSource, handleModify, handleDelete }: any) {
     },
     {
       title: '사용자 ID',
-      dataIndex: 'userId',
-      key: 'userId',
-    },
-    {
-      title: 'ProjectId',
-      dataIndex: 'projectId',
-      key: 'projectId',
+      dataIndex: 'user_id',
+      key: 'user_id',
     },
     {
       title: '노트',

@@ -8,31 +8,36 @@ function UserTable({ dataSource, handleModify, handleDelete }: any) {
     handleDelete('user', record);
     message.success('데이터 삭제 완료');
   }
-
+  console.log('UserTable data ', dataSource);
   function cancel(e: any) {
     console.log(e);
     message.error('데이터 삭제 취소');
   }
   const columns = [
     {
-      title: '사용자 아이디',
+      title: '',
       dataIndex: 'id',
       key: 'id'
     },
     {
+      title: '사용자 아이디',
+      dataIndex: 'username',
+      key: 'username'
+    },
+    {
       title: '회사명',
-      dataIndex: 'company',
-      key: 'company'
+      dataIndex: 'company_name',
+      key: 'company_name'
     },
     {
       title: '담당자 명',
-      dataIndex: 'manager',
-      key: 'manager',
+      dataIndex: 'manager_name',
+      key: 'manager_name',
     },
     {
       title: '연락처',
-      dataIndex: 'contact',
-      key: 'contact',
+      dataIndex: 'contact_number',
+      key: 'contact_number',
     },
     {
       title: 'E-mail',
@@ -41,11 +46,11 @@ function UserTable({ dataSource, handleModify, handleDelete }: any) {
     },
     {
       title: '프로젝트 리스트',
-      key: 'project',
-      dataIndex: 'project',
-      render: (projectList: string[], record: any) => (
+      key: 'projectNameList',
+      dataIndex: 'projectNameList',
+      render: (projectNameList: string[], record: any) => (
         <>
-          {projectList?.map(list => {
+          {projectNameList?.map(list => {
             const color = list.length > 5 ? 'geekblue' : 'green';
             return (
               <Tag color={color} key={list}>

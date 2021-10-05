@@ -1,25 +1,55 @@
+/* eslint-disable camelcase */
 import axios from 'axios';
 
 // userStore.ts
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { apiGetUsers, setupAxiosInterceptors, apiAddOrUpdateUser, apiDeleteUserById } from '../lib/apiUser';
 
 // axios를 통한 통신
-export const getList = createAsyncThunk('GET_USERLIST', async () => {
-  const response = await axios.get('http://localhost:8000/list');
-  return response.data;
+export const getUserList = createAsyncThunk('GET_USERLIST', async () => {
+  setupAxiosInterceptors();
+  const result = await apiGetUsers().then(response => {
+    return response.data;
+  });
+  console.log('result ', result);
+  return result;
 });
-
+export const handleUserList = createAsyncThunk(
+  'UPDATE_USERLIST', 
+  async (data:User) => {
+    setupAxiosInterceptors();
+    const result = await apiAddOrUpdateUser(data).then(response => {
+      // return console.log('apiAddOrUpdateProject ============ ', response.data);
+      return response.data;
+    });
+    console.log('updateResult', result);
+    return result;
+  });
+export const deleteUserList = createAsyncThunk(
+  'UPDATE_PROJECTLIST', 
+  async (id:string) => {
+    setupAxiosInterceptors();
+    const result = await apiDeleteUserById(id).then(response => {
+      //return console.log('apiDeleteProject ============ ', response.data);
+      return response.data;
+    });
+    console.log('deleteResult', result);
+    return result;
+  });
 // state 타입 지정
 interface User {
-  key?: string
   id: string
-  company: string
-  manager: string
-  contact: string
+  username: string
+  password: string
+  company_name: string
+  manager_name: string
+  contact_number: string
   email: string
-  memo: string
-  project?: string[]
+  note: string
+  projectNameList: string[]
+  projects: string | string[]
 }
+
 interface Form {
   type: string
   mode: string
@@ -30,17 +60,9 @@ interface State {
   user: User[]
   form: Form
 }
-const demoUser = {
-  id: 'User1',
-  company: 'COM1',
-  manager: 'Admin1',
-  contact: '010-0000-0000',
-  email: 'google@google.com',
-  memo: '',
-  project: ['PJ_01', 'PJ_02'],
-};
+
 const initialState: State = {
-  user: [demoUser],
+  user: [],
   form: {
     type: '',
     mode: 'add',
@@ -78,9 +100,9 @@ const userSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(getList.fulfilled, (state, action) => {
-      state.form.visible = true;
-      state.user = action.payload;
+    builder.addCase(getUserList.fulfilled, (state, action) => {
+      const userList = [...action.payload];
+      state.user = userList;
     });
   },
 });

@@ -6,7 +6,7 @@ import AddModal from '../AddModal/AddModal';
 import UserTable from '../UserTable';
 //리덕스
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
-import { setForm, deleteUser } from '../../../redux/userSlice';
+import { setForm, deleteUser, deleteUserList } from '../../../redux/userSlice';
 
 export const UserTab = () => {
   const fetchUser = useAppSelector(state => state.user);
@@ -28,6 +28,8 @@ export const UserTab = () => {
     console.log(record);
   };
   const handleDelete = (type: string, record: any) => {
+    dispatch(deleteUserList(record.id));
+    // 백앤드 통신
     dispatch(deleteUser(record));
   };
   return (

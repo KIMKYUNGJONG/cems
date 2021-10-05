@@ -1,34 +1,23 @@
-import axios from 'axios';
 import React, { useEffect } from 'react';
-import { useAsync } from 'react-async';
-import { apiGet } from '../lib/api';
 import Admin from '../pages/Admin/Admin';
-import { dataSource } from '../constant/Admin';
 
 import { useAppSelector, useAppDispatch } from '../redux/hooks';
-import { getList } from '../redux/userSlice';
-
-const fetchClusterData = async () => {
-  const res = await apiGet({
-    url: 'https://gorest.co.in/public-api/comments',
-  });
-  return res.data;
-};
+import { getUserList } from '../redux/userSlice';
+import { getProjectList } from '../redux/projectSlice';
+// fetchUserData, fetchProjectData 리덕스 슬라이스로 이동
 
 function AdminContainer(props: any) {
   const dispatch = useAppDispatch();
-  const userList = useAppSelector((state:any) => state.userReducer);
-
-  const clusterData = useAsync({
-    deferFn: fetchClusterData,
-    initialValue: [],
-  });
-
+  const fetchUserList = useAppSelector((state:any) => state.user.user);
+  const fetchProjectList = useAppSelector((state:any)=> state.project.project);
   useEffect(() => {
-    clusterData.run();
-    dispatch(getList());
-  }, []);
-  return <Admin data={dataSource} sampleData={clusterData.data} />;
+    dispatch(getUserList());
+    dispatch(getProjectList());
+    console.log(fetchUserList, '====fetchUserList');
+    console.log(fetchProjectList, '====fetchProjectList');
+  }, [dispatch]);
+
+  return <Admin users={fetchUserList} projects={fetchProjectList} />;
 }
 
 export default AdminContainer;

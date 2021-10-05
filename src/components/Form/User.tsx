@@ -4,7 +4,7 @@ import { Form, Input, Button, Select } from 'antd';
 
 //리덕스
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
-import { addUser, updateUser, openUser, deleteUser } from '../../redux/userSlice';
+import { addUser, updateUser, openUser } from '../../redux/userSlice';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -22,12 +22,11 @@ const UserForm = (props: any) => {
   const onFinish = (values: any) => {
     if (userForm.mode === 'modify') {
       dispatch(updateUser(values));
-      //dispatch(deleteUser(values));
-      //dispatch(openUser(false));
+      dispatch(openUser(false));
     } else {
       formRef.current!.resetFields();
       dispatch(addUser(values));
-      //dispatch(openUser(false));
+      dispatch(openUser(false));
     }
   };
   const onFinishFailed = (errorInfo: any) => {

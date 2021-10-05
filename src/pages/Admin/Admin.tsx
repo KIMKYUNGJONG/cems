@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Layout, Tabs } from 'antd';
-import ModModal from '../../components/Modal/ModModal';
-import { IUser, IProject } from './Interface';
 import { UserTab } from './AdminTabs/User';
 import { ProjectTab } from './AdminTabs/Project';
 import { SectionTab } from './AdminTabs/Section';
-//리덕스
-import { useAppDispatch } from '../../redux/hooks';
 
 const { TabPane } = Tabs;
 function callback(key: string) {
@@ -16,29 +12,6 @@ function callback(key: string) {
 
 function Admin({ data, sampleData }: any) {
   const { Content } = Layout;
-  const [user, setUser] = useState<IUser | undefined>();
-  const [project, setProject] = useState<IProject | undefined>();
-  const [modVisible, setModModalOpen] = useState<boolean>(false);
-  const [formType, setFormType] = useState({
-    label: ''
-  });
-  const handleVisible = () => {
-    setModModalOpen(false);
-  };
-
-  // 정보변경 클릭시
-  const handleModify = (type: string, record: any) => {
-    if (type === 'project') {
-      setProject(record);
-      setFormType({ label: 'project' });
-    }
-    else {
-      setUser(record);
-      setFormType({ label: 'user' });
-    };
-    console.log('정보변경 시 테이블 정보 읽어서 api call하기', type, record);
-    setModModalOpen(true);
-  };
 
   return (
     <AdminWrapper>

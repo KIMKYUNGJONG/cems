@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Form, Input, Button } from 'antd';
+//리덕스
+import { useAppSelector, useAppDispatch } from '../../redux/hooks';
+import { addProject, updateProject, openProject } from '../../redux/projectSlice';
 
 const { TextArea } = Input;
 const ProjectForm = (props: any) => {
+  const projectForm = useAppSelector(state => state.project.form);
+  const test = useAppSelector(state => state.project);
+  const dispatch = useAppDispatch();
+
   const [form] = Form.useForm();
-  const { formRef, project, modVisible } = props;
+  const { formRef, handleData } = props;
   const onFinish = (values: any) => {
-    console.log('Success:', values);
     const data = {
       key: '1',
       projectName: values.projectName,
@@ -18,20 +24,24 @@ const ProjectForm = (props: any) => {
       url: `/ht-static/scenes/${values.projectName}/${values.scene}.json`,
       userId: 'User_01',
       projectId: '37',
+      note: values.note
     };
-    console.log('백단 통신 필요: update api');
-    console.log(props);
-    formRef.current!.resetFields();
-    (modVisible === true) ? props.handleModify(data) : props.handleProject(data);
-    props.handleVisible();
+    if (projectForm.mode === 'modify') {
+      dispatch(updateProject(data));
+      dispatch(openProject(false));
+    } else {
+      formRef.current!.resetFields();
+      dispatch(addProject(data));
+      dispatch(openProject(false));
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
   useEffect(() => {
-    form.setFieldsValue(project);
-  }, [form, project]);
+    form.setFieldsValue(handleData);
+  }, [form, handleData]);
 
   return (
     <StyledLoginForm>
@@ -90,7 +100,7 @@ const ProjectForm = (props: any) => {
         <CustomButtonGroup>
           <CustomButton>
             <Button type="primary" htmlType="submit">
-              {(props.modVisible) ? '변경' : '추가'}
+              {(projectForm.mode === 'modify') ? '변경' : '추가'}
             </Button>
           </CustomButton>
           <CustomButton>

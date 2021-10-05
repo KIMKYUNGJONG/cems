@@ -58,14 +58,16 @@ const projectSlice = createSlice({
       // immer가 내장 되어있어 알아서 불변성을 지켜준다.
     },
     updateProject(state, action: PayloadAction<Project>) {
-      state.project.map((item) => {
+      const updateProject = state.project.map((item) => {
         if (item.aplicationId === action.payload.aplicationId) {
           return { ...item, ...action.payload };
         } else return item;
       });
+      state.project = updateProject;
     },
     deleteProject(state, action: PayloadAction<Project>) {
-      state.project.filter((list) => list.aplicationId !== action.payload.aplicationId);
+      const newProject = state.project.filter((list) => list.aplicationId !== action.payload.aplicationId);
+      state.project = newProject;
     },
     openProject(state, action: PayloadAction<boolean>) {
       state.form.visible = action.payload;

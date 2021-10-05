@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Table, Input, Select, } from 'antd';
 import { sensorData } from '../../constant/Admin';
@@ -7,20 +7,46 @@ import { updateSection } from '../../redux/sectionSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 const { Option } = Select;
 
-function SensorTable({ dataSource, handleSensorData }: any) {
+function SectionTable({ dataSource, handleSensorData }: any) {
+  /**
+   * 셀렉트로 프로젝트를 선택 할 시,
+   * 해당 키워드로 백단과 통신을 한다
+   * 해당 프로젝트에 대한 데이터 배열을 받는다
+   * {projectName:'', data:[]}
+   * data = [{...}]
+   * data 부분만 테이블에 뿌려준다
+   * data 부분만 업데이트를 한다. 업데이트 할 위치를 받기 위해서는
+   * 해당하는 프로젝트의 아이디를 기억하고 해야한다.
+   */
+  const fetchSection = useAppSelector(state => state.section);
   const dispatch = useAppDispatch();
-  const { asset } = sensorData[0];
-  console.log(dataSource);
-  //컨테이너에서 dataSource로 받아왔다고 가정하고,
-  const [data, setData] = useState(asset);
+  console.log(dataSource); // fetchSection.section
+  const [data, setData] = useState(fetchSection.section[0].asset);
+  const [projectName, setPjName] = useState(fetchSection.section[0].projectName);
 
+  //dataSource 는 [ {projectName, asset[] } ] 구조
+  function changeValue(obj: any, keyName: string, value: any) {
+    const newValue: any = {};
+    for (const key in obj) {
+      if (key === keyName) {
+        console.log(obj[key], keyName, '일치함');
+        //obj[key] = value;
+        newValue[keyName] = value;
+      }
+    }
+    return { ...obj, ...newValue };
+  }
   function handleSelect(value: any, key: number, keyName: any) {
-    const newData: any = sensorData[0].asset[key];
-    const index = newData.hasOwnProperty(keyName) ?
-      newData[keyName] = value : null;
-    //handleSensorData(newData); 
-    console.log(newData, 'test');
-    dispatch(updateSection(newData));
+    const newData: any = sensorData[0].asset[0];
+    console.log(keyName, key, value);
+    const newValue = changeValue(data[key], keyName, value);
+    console.log(newValue, '바뀜');
+    const sectionObj = {
+      projectName,
+      asset: newValue
+    };
+    // asset을 넘긴다
+    dispatch(updateSection(sectionObj));
   }
   // 셀렉트값 변경시
   function handleInput(e: any, key: number, keyName: any) {
@@ -238,6 +264,11 @@ function SensorTable({ dataSource, handleSensorData }: any) {
 
   return (
     <TableWrapper>
+      <Select key={'Project_list'} defaultValue={projectName} style={{ width: '100%' }} onChange={(value) => setPjName(value)}>
+        {fetchSection.section.map((item: any) => {
+          return <Option key={`${item.projectName}_1`} value={item.projectName}>{item.projectName}</Option>;
+        })}
+      </Select>
       <Table
         size="small"
         dataSource={data}
@@ -253,4 +284,4 @@ const TableWrapper = styled.div`
     vertical-align: middle;
   }
 `;
-export default SensorTable;
+export default SectionTable;

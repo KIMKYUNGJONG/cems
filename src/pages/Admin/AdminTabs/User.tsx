@@ -6,7 +6,7 @@ import AddModal from '../AddModal/AddModal';
 import UserTable from '../UserTable';
 //리덕스
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
-import { setForm } from '../../../redux/userSlice';
+import { setForm, deleteUser } from '../../../redux/userSlice';
 
 export const UserTab = () => {
   const fetchUser = useAppSelector(state => state.user);
@@ -22,10 +22,13 @@ export const UserTab = () => {
   const handleForm = (type: string) => {
     dispatch(setForm({ type, mode: 'add', visible: true }));
   };
-  const handleModify = (type:string, record:any) => {
-    dispatch(setForm({ type, mode: 'modify', visible: true }));    
+  const handleModify = (type: string, record: any) => {
+    dispatch(setForm({ type, mode: 'modify', visible: true }));
     getData(record);
     console.log(record);
+  };
+  const handleDelete = (type: string, record: any) => {
+    dispatch(deleteUser(record));
   };
   return (
     <>
@@ -39,7 +42,7 @@ export const UserTab = () => {
         </div>
       </TitleWrapper>
       <Contents>
-        <UserTable dataSource={fetchUser.user} handleModify={handleModify}/>
+        <UserTable dataSource={fetchUser.user} handleDelete={handleDelete} handleModify={handleModify} />
       </Contents>
     </>
   );

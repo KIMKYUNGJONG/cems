@@ -12,9 +12,8 @@ export const getList = createAsyncThunk('GET_SECTIONLIST', async () => {
 
 // state 타입 지정
 interface Section {
-  key?: string
   projectName: string
-  asset?: Asset[]
+  asset: Asset[]
 }
 interface Form {
   type: string
@@ -78,11 +77,16 @@ const sectionSlice = createSlice({
       // immer가 내장 되어있어 알아서 불변성을 지켜준다.
     },
     updateSection(state, action: PayloadAction<Section>) {
-      state.section.map((item) => {
+      // 섹션[]을 맵으로 나눈다.
+      const updateSection = state.section.map((item:Section)=> {
+        // 해당 인덱스 섹션의 에셋 배열을 맵으로 나눈다.
         if (item.projectName === action.payload.projectName) {
-          return { ...item.asset, ...action.payload };
+          // 만약 해당 에셋의 노드 아이디와 페이로드의 노드아이디가 같다면,
+          return { ...item, ...action.payload };
+          // 현재 노드에 페이로드 데이터를 합산한다.
         } else return item;
       });
+      state.section = updateSection;
     },
     openSection(state, action: PayloadAction<boolean>) {
       state.form.visible = action.payload;

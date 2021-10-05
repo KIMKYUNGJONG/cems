@@ -7,11 +7,9 @@ import { store } from './redux/store';
 import { Provider } from 'react-redux';
 
 ReactDOM.render(
-  <StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </StrictMode>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
 

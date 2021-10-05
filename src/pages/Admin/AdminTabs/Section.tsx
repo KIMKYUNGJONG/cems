@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Breadcrumb, Button } from 'antd';
 import AddButton from '../../../components/Common/AddButton';
-import SensorModal from '../ModModal/SensorModal';
-import SensorTable from '../SensorTable';
+import SectionModal from '../ModModal/SectionModal';
+import SectionTable from '../SectionTable';
 import ButtonGroup from 'antd/lib/button/button-group';
 import { SaveOutlined } from '@ant-design/icons';
 //리덕스
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks';
-import { setForm, addSection, updateSection } from '../../../redux/sectionSlice';
+import { setForm } from '../../../redux/sectionSlice';
 
 export const SectionTab = () => {
   const fetchSection = useAppSelector(state => state.section);
+  useEffect(() => {
+    console.log(fetchSection, 'changed');
+  }, [fetchSection]);
   const { form } = fetchSection;
+  const [sectionData, getData] = useState();
   // 현재는 리덕스 스테이트에서 가지고오고있음. 
   // 추후 api를 통한 백단에서 가지고 오도록 수정
   const dispatch = useAppDispatch();
@@ -20,16 +24,24 @@ export const SectionTab = () => {
   const handleForm = (type: string) => {
     dispatch(setForm({ type, mode: 'add', visible: true }));
   };
+  const handleModify = (type: string, record: any) => {
+    dispatch(setForm({ type, mode: 'modify', visible: true }));
+    getData(record);
+    console.log(record);
+  };
+  const handleDelete = (type: string, record: any) => {
+    //dispatch(deleteSection(record));
+  };
   return (
     <>
-      <SensorModal formType={form.type} />
+      <SectionModal type={form.type} handleData={sectionData} />
       <TitleWrapper>
         <Breadcrumb className="page-title" style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>공사구간 및 센서 관리</Breadcrumb.Item>
         </Breadcrumb>
       </TitleWrapper>
       <Contents>
-        <SensorTable dataSource={fetchSection.section} />
+        <SectionTable dataSource={fetchSection.section} />
 
         <ButtonWrapper>
           <ButtonGroup>

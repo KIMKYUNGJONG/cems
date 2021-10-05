@@ -12,15 +12,10 @@ const dummyData = [
     node_list: []
   }];
 
-const SensorModal = (props: any) => {
+const SectionModal = (props: any) => {
   const sectionForm = useAppSelector(state => state.section.form);
   const dispatch = useAppDispatch();
   const formRef = React.createRef<FormInstance>();
-
-  const { label } = props.formType;
-  const [dmData, setDmData] = useState<{}>({});
-  const [nodeList, setNodeList] = useState([]);
-  const [name, setName] = useState({});
   const [dummyDataList, setDataList] = useState(dummyData);
 
   const handleSave = () => {
@@ -42,17 +37,15 @@ const SensorModal = (props: any) => {
   };
   const handleInputChange = (value: any) => {
     console.log('section List: 저장 클릭시 리스트 백단통신', value);
-    setName(value);
     console.log(value);
   };
   const handleSelectChange = (value: any, index: number) => {
-    setNodeList(value);
     console.log(value, index);
   };
   return (
     <>
-      {(label === 'section') ?
-        <Modal title={'공사구간 관리'} visible={props.sensorVisible} onCancel={props.handleVisible} footer={null}>
+      {(props.type === 'section') ?
+        <Modal title={'공사구간 관리'} visible={sectionForm.visible} onCancel={() => dispatch(openSection(false))} footer={null}>
           <SectionTable data={dummyDataList}
             handleInputChange={handleInputChange}
             handleSave={handleSave}
@@ -61,7 +54,7 @@ const SensorModal = (props: any) => {
             handleAddRow={handleAddRow}
           />
         </Modal> :
-        <Modal title={'임계치 관리'} visible={props.sensorVisible} onCancel={props.handleVisible} footer={null}>
+        <Modal title={'임계치 관리'} visible={sectionForm.visible} onCancel={() => dispatch(openSection(false))} footer={null}>
           <SectionTable data={dummyDataList} handleSave={handleSave} handleDeleteRow={handleDeleteRow} handleSelectChange={handleSelectChange} />
         </Modal>
       }
@@ -69,4 +62,4 @@ const SensorModal = (props: any) => {
   );
 };
 
-export default SensorModal;
+export default SectionModal;

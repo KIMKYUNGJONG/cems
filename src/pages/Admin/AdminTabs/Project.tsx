@@ -10,12 +10,12 @@ import { setForm, deleteProject, deleteProjectList } from '../../../redux/projec
 
 export const ProjectTab = () => {
   const fetchProject = useAppSelector(state => state.project);
+
   useEffect(() => {
     console.log(fetchProject, 'changed');
   }, [fetchProject]);
   // fetchProject = {project:[], form: {}}
   const { form } = fetchProject;
-  
   const [projectData, getData] = useState();
   // 현재는 리덕스 스테이트에서 가지고오고있음. 
   // 추후 api를 통한 백단에서 가지고 오도록 수정
@@ -27,6 +27,7 @@ export const ProjectTab = () => {
   const handleModify = (type: string, record: any) => {
     dispatch(setForm({ type, mode: 'modify', visible: true }));
     getData(record);
+
     /** 정보 변경 클릭시 해당 데이터 컬럼(record)를 읽어
     * projectData 에 정의한다
     * 정의된 projectData를 handleData에 할당해 props로 넘긴다
@@ -51,7 +52,7 @@ export const ProjectTab = () => {
         </div>
       </TitleWrapper>
       <Contents>
-        <ProjectTable dataSource={fetchProject.project} handleDelete={handleDelete} handleModify={handleModify} />
+        <ProjectTable dataSource={localStorage.getItem('is_admin') == 'true' ? fetchProject.project : fetchProject.project.filter(p => p.user_id == localStorage.getItem('user_id'))} handleDelete={handleDelete} handleModify={handleModify} />
       </Contents>
     </>
   );

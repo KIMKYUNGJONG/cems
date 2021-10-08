@@ -14,15 +14,14 @@ export const getProjectList = createAsyncThunk(
     const result = await apiGetProjects().then(response => {
       return response.data;
     });
-    console.log('result ', result);
+
     return result;
-  });
+  });  
 export const handleProjectList = createAsyncThunk(
   'UPDATE_PROJECTLIST', 
   async (data:Project) => {
     setupAxiosInterceptors();
     const result = await apiAddOrUpdateProject(data).then(response => {
-      // return console.log('apiAddOrUpdateProject ============ ', response.data);
       return response.data;
     });
     console.log('updateResult', result);
@@ -49,8 +48,9 @@ interface Project {
   application_id: string
   sms_number1: string
   sms_number2: string
-  note: string,
-  url: string,
+  note: string
+  url: string
+  user_id: any
 }
 
 interface Form {

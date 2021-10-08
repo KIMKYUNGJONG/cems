@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Form, Input, Button, Select } from 'antd';
-import { setupAxiosInterceptors, apiAddOrUpdateUser } from '../../lib/apiUser';
-import { totalmem } from 'os';
-//리덕스
+import { Form, Input, Button, Select, Alert } from 'antd';
 import { useAppSelector, useAppDispatch } from '../../redux/hooks';
 import { addUser, updateUser, openUser, handleUserList } from '../../redux/userSlice';
 
@@ -15,8 +12,12 @@ const UserForm = (props: any) => {
   const dispatch = useAppDispatch();
   const [form] = Form.useForm();
   const { formRef, user, modVisible, project, totalProjectList, handleData } = props;
+  const [msg, setMsg] = useState('');
 
-  console.log('UserForm user ', user);
+  console.log('UserForm user ', handleData);
+  console.log('totalProjectList ', totalProjectList);
+
+  console.log('msg ', msg);
 
   const totalProjectNameList: any[] = [];
 
@@ -32,33 +33,6 @@ const UserForm = (props: any) => {
       }
     };
   }
-  // const onFinish = (values: any) => {
-  //   const data = {
-  //     id: values.id === undefined ? '' : values.id,
-  //     username: values.username === undefined ? '' : values.username,
-  //     password: values.password === undefined ? '' : values.password,
-  //     company_name: values.company_name === undefined ? '' : values.company_name,
-  //     manager_name: values.manager_name === undefined ? '' : values.manager_name,
-  //     contact_number: values.contact_number === undefined ? '' : values.contact_number,
-  //     email: values.email === undefined ? '' : values.email,
-  //     note: values.note === undefined ? '' : values.note,
-  //     projectNameList: values.projectNameList,
-  //     projects: values.projects,
-  //   };
-  //   console.log('백단 통신 필요: update api');
-  //   console.log(props);
-  //   console.log('data ', data);
-
-  //   setupAxiosInterceptors();
-  //   apiAddOrUpdateUser(data).then(response => {
-  //     console.log('apiAddOrUpdateUser ============ ', response.data);
-  //   });
-
-  //   formRef.current!.resetFields();
-  //   (modVisible === true) ? props.handleModify(data) : props.handleUser(data);
-  //   props.handleVisible();
-  // };
-
   const onFinish = (values: any) => {
     const data = {
       id: values.id === undefined ? '' : values.id,
@@ -72,22 +46,23 @@ const UserForm = (props: any) => {
       projectNameList: values.projectNameList,
       projects: values.projects,
     };
-    /** 
-     * update api 리듀서로 이동 
-     * setupAxiosInterceptors();
-     * apiAddOrUpdateUser(data).then(response => {
-     *   console.log('apiAddOrUpdateUser ============ ', response.data);
-     * });
-     * */  
-    dispatch(handleUserList(data));
-    if (userForm.mode === 'modify') {
-      dispatch(updateUser(data));
-      dispatch(openUser(false));
-    } else {
-      formRef.current!.resetFields();
-      dispatch(addUser(data));
-      dispatch(openUser(false));
-    }
+    
+    dispatch(handleUserList(data)).then(result => {
+      console.log('result ', result);
+
+      if (result.payload === '') { // success
+        if (userForm.mode === 'modify') {
+          dispatch(updateUser(data));
+          dispatch(openUser(false));
+        } else {
+          formRef.current!.resetFields();
+          dispatch(addUser(data));
+          dispatch(openUser(false));
+        }
+      } else { // fail
+        setMsg(result.payload);
+      }
+    });
   };
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
@@ -96,14 +71,9 @@ const UserForm = (props: any) => {
     console.log(`Selected: ${value}`);
   };
   useEffect(() => {
-    console.log('user ', user);
-
-    form.setFieldsValue(user);
-  }, [form, user]);
-
-  useEffect(() => {
     form.setFieldsValue(handleData);
   }, [form, handleData]);
+
   return (
     <StyledForm>
       <Form
@@ -121,18 +91,18 @@ const UserForm = (props: any) => {
         </Form.Item>
         <Form.Item label="projects" style={{ display: 'none' }} name="projects" />
 
-
-        {/* <Form.Item label="id" name="id">
-          <Input type="text" />
-        </Form.Item>
-        <Form.Item label="projects" name="projects">
-          <Input type="text" />
-        </Form.Item> */}
+        {msg !== '' &&
+        <div>
+          <Alert message={msg} type="error" />
+          <br/>
+        </div>
+        }
 
         <Form.Item
           label={'사용자 ID'}
           name="username"
-          rules={[{ required: true, message: '사용자 ID가 필요합니다' }]}
+          rules={[{ required: true, message: '사용자 ID가 필요합니다' }]}   
+          validateStatus={msg == '' ? '' : 'error'}
         >
           <Input disabled={userForm.mode === 'modify' ? true : false} placeholder="사용자 ID" />
         </Form.Item>
@@ -200,12 +170,21 @@ const UserForm = (props: any) => {
             </Button>
           </CustomButton>
           <CustomButton>
-            <Button onClick={() => {
-              formRef.current!.resetFields();
-              props.handleVisible();
-            }}>
-              취소
-            </Button>
+            {(userForm.mode === 'modify') ? 
+              <Button onClick={() => {
+                setMsg('');
+                dispatch(openUser(false));
+              }}>
+                취소
+              </Button> : 
+              <Button onClick={() => {
+                setMsg('');
+                dispatch(openUser(false));
+                formRef.current!.resetFields();
+              }}>
+                취소
+              </Button>
+            }
           </CustomButton>
         </CustomButtonGroup>
       </Form>

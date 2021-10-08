@@ -32,11 +32,12 @@ const SectionTable = ({ handleInputChange, handleSelectChange, handleDeleteRow, 
       key: 'node_list',
       align: 'center' as 'center',
       width: 240,
-      render: () => (
+      render: (node_list: string[]) => (
         <Select
           mode="multiple"
           size={'middle'}
           placeholder="Please select"
+          defaultValue={node_list}
           onChange={(record, index) => handleSelectChange(record, index)}
           style={{ width: '100%' }}
         >
@@ -51,7 +52,6 @@ const SectionTable = ({ handleInputChange, handleSelectChange, handleDeleteRow, 
       render: (text: string, record: any, index: number) => (
         <Space size="middle">
           <Button type="primary" danger onClick={(event) => {
-            console.log(record, index);
             handleDeleteRow(record.section_name, index);
           }}>삭제</Button>
         </Space>

@@ -1,0 +1,21 @@
+{
+  "modelType": "obj",
+  "obj": "assets/htdesign/objs/lettersandnumbers/zero_3006_01.obj",
+  "mtl": "assets/htdesign/objs/lettersandnumbers/zero_3006_01.mtl",
+  "image": "",
+  "prefix": "assets/htdesign/objs/lettersandnumbers/",
+  "center": true,
+  "reverseFlipMtls": "*",
+  "ignoreImage": true,
+  "ignoreColor": true,
+  "s3": [
+    10,
+    10,
+    10
+  ],
+  "r3": [
+    0,
+    0,
+    0
+  ]
+}

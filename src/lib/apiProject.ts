@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const baseURL = 'http://localhost:8080/api';
 
-// @route   POST /api/apiGetProjects
+// @route   GET /api/apiGetProjects
 // @desc    전체 프로젝트를 조회한다.
 // @access  public
 export const apiGetProjects = () => {
@@ -12,9 +12,7 @@ export const apiGetProjects = () => {
 // @route   POST /api/addOrUpdateProject
 // @desc    프로젝트를 추가/수정한다.
 // @access  private
-export const apiAddOrUpdateProject = (project : any) => {
-  console.log('====== api call project ', project);
-  
+export const apiAddOrUpdateProject = (project : any) => {  
   return axios.post(baseURL + '/addOrUpdateProject', {
     id: project.id,
     name: project.name,
@@ -24,6 +22,7 @@ export const apiAddOrUpdateProject = (project : any) => {
     sms_number2: project.sms_number2,
     note: project.note,
     url: project.url,
+    user_id: project.user_id,
   });
 };
   

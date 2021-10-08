@@ -15,9 +15,11 @@ export const apiLogin = (username:string, password:string) => {
 // @route   
 // @desc    로그인 후 필요한 정보들을 세션에 저장한다.
 // @access  
-export const registerSuccessfulLoginForJwt = (token:string, username:string) => {
+export const registerSuccessfulLoginForJwt = (token:string, user_id:string, username:string, is_admin:string) => {  
   localStorage.setItem('token', token);
+  localStorage.setItem('user_id', user_id);
   localStorage.setItem('username', username);
+  localStorage.setItem('is_admin', is_admin);
   localStorage.setItem('isAuthorized', 'true');
 };
 
@@ -75,3 +77,15 @@ export const apiDeleteUserById = (user_id : any) => {
     }
   });
 };
+
+
+  // @route   POST /api/isTokenExpired
+  // @desc    유효한 토큰인지 확인한다.
+  // @access  public
+  export const isTokenExpired = () => {
+    return axios.get(baseURL + '/isTokenExpired', {
+      params: {
+        token: localStorage.getItem('token')
+      }
+    });
+  }

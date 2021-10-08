@@ -35,11 +35,11 @@ function LoginContainer({ path, isLogin, component }: any) {
         if (response.data === 'error') {
           setErrorMessage('로그인 정보를 확인해주세요!');
         } else {
-        // sessionStorage.setItem('token', response.data.token);
-        // sessionStorage.setItem('username', response.data.name);
-        // sessionStorage.setItem('isAuthorized', 'true');
+          // sessionStorage.setItem('token', response.data.token);
+          // sessionStorage.setItem('username', response.data.name);
+          // sessionStorage.setItem('isAuthorized', 'true');
 
-          registerSuccessfulLoginForJwt(response.data.token, response.data.name);
+          registerSuccessfulLoginForJwt(response.data.token, response.data.user_id, response.data.name, response.data.is_admin);
           history.push('/dashboard');
         }
       });

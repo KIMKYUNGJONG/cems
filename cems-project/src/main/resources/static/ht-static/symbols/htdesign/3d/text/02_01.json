@@ -1,0 +1,146 @@
+{
+  "modified": "Wed Sep 02 2020 17:04:31 GMT+0800 (中国标准时间)",
+  "dataBindings": [
+    {
+      "attr": "namec",
+      "valueType": "Color"
+    },
+    {
+      "attr": "name2",
+      "valueType": "String"
+    },
+    {
+      "attr": "name",
+      "valueType": "String"
+    },
+    {
+      "attr": "name2c",
+      "valueType": "Color"
+    }
+  ],
+  "width": 341,
+  "height": 177,
+  "comps": [
+    {
+      "type": "rect",
+      "background": "rgba(0,0,0,0.3)",
+      "borderColor": "#979797",
+      "rect": [
+        98.67472,
+        100.70548,
+        143.65055,
+        20.4702
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#32D3EB",
+      "borderJoin": "bevel",
+      "points": [
+        122.08299,
+        11.96789,
+        122.08299,
+        2.52663,
+        218.32533,
+        2.52663,
+        218.32533,
+        11.96789
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#32D3EB",
+      "borderJoin": "bevel",
+      "rotation": 3.14159,
+      "points": [
+        122.08299,
+        86.59077,
+        122.08299,
+        77.14952,
+        218.32533,
+        77.14952,
+        218.32533,
+        86.59077
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@name2",
+        "value": "需增加配重"
+      },
+      "align": "center",
+      "color": {
+        "func": "attr@name2c",
+        "value": "rgb(247,247,247)"
+      },
+      "font": "bold 24px sans-serif, Arial",
+      "rect": [
+        127.72729,
+        88.17954,
+        84.95374,
+        28.04564
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "attr@name",
+        "value": "T364"
+      },
+      "align": "center",
+      "color": {
+        "func": "attr@namec",
+        "value": "rgb(247,247,247)"
+      },
+      "font": "bold 64px sans-serif, Arial",
+      "rect": [
+        127.72729,
+        2.52663,
+        84.95374,
+        85.65291
+      ]
+    },
+    {
+      "type": "shape",
+      "borderWidth": 1,
+      "borderColor": "#32D3EB",
+      "borderJoin": "bevel",
+      "points": [
+        135.75636,
+        127.76532,
+        204.86337,
+        127.76532,
+        170.29814,
+        127.76532,
+        170.29814,
+        177
+      ],
+      "segments": [
+        1,
+        2,
+        1,
+        2
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgba(11,150,150,0.01)",
+      "borderColor": "#979797",
+      "gradient": "linear.north",
+      "gradientColor": "rgba(24,215,240,0.44)",
+      "points": [
+        120.20416,
+        127.76532,
+        220.20416,
+        127.76532,
+        240.20416,
+        146.89979,
+        100.20416,
+        146.89979
+      ]
+    }
+  ]
+}

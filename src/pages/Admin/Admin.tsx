@@ -21,9 +21,12 @@ function Admin({ users, projects }: any) {
             <TabPane tab="프로젝트" key="1">
               <ProjectTab />
             </TabPane>
+
+            {localStorage.getItem('is_admin') === 'true' && 
             <TabPane tab="사용자" key="2">
               <UserTab />
-            </TabPane>
+            </TabPane>}
+
             <TabPane tab="공사구간 및 센서" key="3">
               <SectionTab />
             </TabPane>

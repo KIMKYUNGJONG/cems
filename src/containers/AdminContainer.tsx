@@ -8,13 +8,12 @@ import { getProjectList } from '../redux/projectSlice';
 
 function AdminContainer(props: any) {
   const dispatch = useAppDispatch();
-  const fetchUserList = useAppSelector((state:any) => state.user.user);
-  const fetchProjectList = useAppSelector((state:any)=> state.project.project);
+  const fetchUserList = useAppSelector((state: any) => state.user.user);
+  const fetchProjectList = useAppSelector((state: any) => state.project.project);
+
   useEffect(() => {
     dispatch(getUserList());
     dispatch(getProjectList());
-    console.log(fetchUserList, '====fetchUserList');
-    console.log(fetchProjectList, '====fetchProjectList');
   }, [dispatch]);
 
   return <Admin users={fetchUserList} projects={fetchProjectList} />;

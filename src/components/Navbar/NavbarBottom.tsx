@@ -1,4 +1,4 @@
-import { Switch } from 'antd';
+import { Button, Switch } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -7,12 +7,22 @@ function NavbarBottom({
 }: {
   changeTheme: (checked: boolean) => void
 }) {
+  const userName = sessionStorage.getItem('isAdmin');
+  console.log(sessionStorage);
   return (
     <>
       <UserText>
-        <p>안녕하세요. 000님</p>
+        {
+          sessionStorage.getItem('isAuthorized') === 'true' ?
+            <>
+              <p>안녕하세요. {userName === 'true' ? '관리자' : '사용자' }님</p>
+              {/* <AvatarImg /> */}
+              <Button>Logout</Button>
+            </> :
+            <></> 
+        }
       </UserText>
-      <AvatarImg />
+      
 
       <SwitchBlock>
         <span>Theme</span>
@@ -48,7 +58,7 @@ const AvatarImg = styled.div`
 `;
 const UserText = styled.div`
     display: flex;
-    
+    align-items: center;
     & p {
       font-size: 14px;
       margin-right: 10px;

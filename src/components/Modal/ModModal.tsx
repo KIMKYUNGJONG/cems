@@ -8,6 +8,7 @@ const ModModal = (props: any) => {
   const formRef = React.createRef<FormInstance>();
   const { label } = props.formType;
   const { modVisible, handleVisible } = props;
+
   return (
     <>
       {(label === 'user') ?

@@ -15,7 +15,7 @@ export const UserTab = () => {
   }, [fetchUser]);
   const { form } = fetchUser;
   const [userData, getData] = useState();
-  // 현재는 리덕스 스테이트에서 가지고오고있음. 
+  // 현재는 리덕스 스테이트에서 가지고오고있음
   // 추후 api를 통한 백단에서 가지고 오도록 수정
   const dispatch = useAppDispatch();
 

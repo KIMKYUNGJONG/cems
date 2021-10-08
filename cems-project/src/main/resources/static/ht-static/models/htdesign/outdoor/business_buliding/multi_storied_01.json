@@ -1,0 +1,21 @@
+{
+  "modelType": "obj",
+  "obj": "assets/htdesign/objs/outdoor/business_buliding/multi_storied_01.obj",
+  "mtl": "assets/htdesign/objs/outdoor/business_buliding/multi_storied_01.mtl",
+  "image": "",
+  "prefix": "assets/htdesign/objs/outdoor/business_buliding/",
+  "center": true,
+  "reverseFlipMtls": "*",
+  "ignoreImage": false,
+  "ignoreColor": false,
+  "s3": [
+    20,
+    20,
+    20
+  ],
+  "r3": [
+    0,
+    0,
+    0
+  ]
+}

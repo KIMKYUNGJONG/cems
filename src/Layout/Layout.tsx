@@ -10,7 +10,7 @@ import LoginContainer from '../containers/LoginContainer';
 import ReportContainer from '../containers/ReportContainer';
 import AdminContainer from '../containers/AdminContainer';
 
-import AuthenticcateRoute from '../Routes/AuthenticateRoute';
+import AuthenticateRoute from '../Routes/AuthenticateRoute';
 
 const Layout = ({ match }: any) => {
   const [theme, setTheme] = useState<Theme>('light');
@@ -44,18 +44,18 @@ const Layout = ({ match }: any) => {
           {(isAdmin === 'true') ? <Redirect to="/admin" /> : <Redirect to="/dashboard" />}
         </Route>
         <Route path={'/login'} component={LoginContainer} />
-        <AuthenticcateRoute
+        <AuthenticateRoute
           exact
           isLogin={isLogin}
           path={'/dashboard'}
           render={() => <DashboardContainer htValue={graphValue} handleGraphView={handleGraphView} scene={scene} />}
         />
-        <AuthenticcateRoute
+        <AuthenticateRoute
           path={'/report'}
           isLogin={isLogin}
           render={() => <ReportContainer />}
         />
-        <AuthenticcateRoute
+        <AuthenticateRoute
           path={'/admin'}
           isLogin={isLogin}
           render={() => <AdminContainer />}

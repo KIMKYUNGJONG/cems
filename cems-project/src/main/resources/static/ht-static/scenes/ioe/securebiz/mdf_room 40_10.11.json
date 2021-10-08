@@ -1,0 +1,5587 @@
+{
+  "v": "7.0.9",
+  "p": {
+    "background": "rgba(124,146,156,0.1)",
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": true,
+    "postProcessingData": {
+      "bloom": {
+        "strength": 0.36
+      },
+      "dof": {
+        "aperture": 0.003,
+        "image": "assets/htdesign/scene/vague/Axialshift_01.png"
+      }
+    }
+  },
+  "a": {
+    "sceneBloomStrength": 0.36,
+    "sceneBloomThreshold": 0.55,
+    "sceneBloomRadius": 0.4,
+    "sceneBloomOverrideAlpha": true,
+    "sceneDofAperture": 0.003,
+    "sceneDofMaxblur": 1,
+    "sceneDofImage": "assets/htdesign/scene/vague/Axialshift_01.png",
+    "sceneHighlightMode": "style",
+    "sceneHighlightColor": "rgba(190, 210, 250, 1)",
+    "sceneHighlightWidth": 0.8,
+    "sceneDashEnable": false,
+    "sceneHeadlightEnable": true,
+    "sceneHeadlightRange": 0,
+    "sceneHeadlightColor": "rgb(255,255,255)",
+    "sceneHeadlightIntensity": 1,
+    "sceneHeadlightAmbientIntensity": 0.7,
+    "sceneFogEnable": false,
+    "sceneFogColor": "white",
+    "sceneFogNear": 1,
+    "sceneFogFar": 2000,
+    "sceneDof": false,
+    "sceneBloom": false,
+    "custom.initFunc": "__ht__function() {\n\n}",
+    "sceneNear": 100,
+    "sceneFar": 100000,
+    "gridBlockCount": 50,
+    "gridAngle": 1.5708
+  },
+  "d": [
+    {
+      "c": "ht.Node",
+      "i": 187050,
+      "p": {
+        "displayName": "Blue_Skybox",
+        "position": {
+          "x": 33,
+          "y": 0
+        },
+        "width": 100000,
+        "height": 100000,
+        "tall": 100000
+      },
+      "s": {
+        "shape3d": "sphere",
+        "shape3d.color": "#DDDDDD",
+        "shape3d.reverse.flip": true,
+        "shape3d.image": "assets/background/迷雾.jpg",
+        "2d.visible": false,
+        "shape3d.blend": null,
+        "shape3d.image.cache": true,
+        "shape3d.opacity": 1,
+        "shape3d.reverse.color": null,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 187051,
+      "p": {
+        "displayName": "Base_Floor",
+        "position": {
+          "x": 200,
+          "y": -150
+        },
+        "anchorElevation": 0,
+        "width": 2300,
+        "height": 1900,
+        "tall": 30,
+        "elevation": -35,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -950,
+              "y": -1094.70752,
+              "e": 0
+            },
+            {
+              "x": -950,
+              "y": 794.70752,
+              "e": 0
+            },
+            {
+              "x": 1350,
+              "y": 800,
+              "e": 0
+            },
+            {
+              "x": 1345.57692,
+              "y": -1100,
+              "e": 0
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "rgba(95,170,250,0.3)",
+        "shape3d.top.color": "",
+        "shape3d.bottom.color": "",
+        "shape.background": "#EEEEEE",
+        "shape3d.bottom.visible": false,
+        "shape3d.opacity": 1,
+        "shape3d.transparent": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.top.image": "assets/securebiz/rooms/Floor_4.png",
+        "shape3d.top.uv.scale": [
+          10,
+          8
+        ],
+        "shape3d.reverse.cull": true,
+        "shape3d.reverse.color": "",
+        "shape3d.from.color": "",
+        "shape3d.to.color": "",
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 187052,
+      "p": {
+        "displayName": "MDF_Floor",
+        "position": {
+          "x": 170.23198,
+          "y": 236.78561
+        },
+        "anchorElevation": 0,
+        "width": 673.53603,
+        "height": 943.57122,
+        "tall": 4,
+        "elevation": -5,
+        "segments": {
+          "__a": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 50,
+              "y": -235,
+              "e": 0
+            },
+            {
+              "x": 50,
+              "y": 200,
+              "e": 0
+            },
+            {
+              "x": -166.53603,
+              "y": 200,
+              "e": 0
+            },
+            {
+              "x": -166.53603,
+              "y": 705.46737,
+              "e": 0
+            },
+            {
+              "x": 507,
+              "y": 708.57122,
+              "e": 0
+            },
+            {
+              "x": 507,
+              "y": -235,
+              "e": 0
+            }
+          ]
+        },
+        "thickness": -1
+      },
+      "s": {
+        "shape3d.color": "#EEEEEE",
+        "shape3d.top.color": "#EEEEEE",
+        "shape3d.bottom.color": "#EEEEEE",
+        "shape.background": "#EEEEEE",
+        "shape3d.visible": false,
+        "shape3d.bottom.visible": false,
+        "shape3d.from.visible": false,
+        "shape3d.to.visible": false,
+        "shape3d.top.image": "assets/securebiz/sngz.jpg",
+        "shape3d.top.uv.scale": [
+          8,
+          12
+        ],
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187053,
+      "p": {
+        "displayName": "Entry1",
+        "rotation": 4.71239,
+        "position": {
+          "x": 958.16347,
+          "y": -934.29924
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": -1,
+          "y": 1
+        },
+        "width": 181.46768,
+        "height": 99.76685,
+        "tall": 130
+      },
+      "s": {
+        "shape3d": "models/客运中心/检票闸机.json",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187054,
+      "p": {
+        "displayName": "Entry2",
+        "rotation": 4.71239,
+        "position": {
+          "x": 1107.93051,
+          "y": -934.29924
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": -1,
+          "y": 1
+        },
+        "width": 181.46768,
+        "height": 99.76685,
+        "tall": 130
+      },
+      "s": {
+        "shape3d": "models/客运中心/检票闸机.json",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187055,
+      "p": {
+        "displayName": "Entry3",
+        "rotation": 4.71239,
+        "position": {
+          "x": 1258.16347,
+          "y": -934.29924
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": -1,
+          "y": 1
+        },
+        "width": 181.46768,
+        "height": 99.76685,
+        "tall": 130
+      },
+      "s": {
+        "shape3d": "models/客运中心/检票闸机.json",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187056,
+      "p": {
+        "position": {
+          "x": 138,
+          "y": -107
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 4.6,
+          "y": 4.6
+        },
+        "scaleTall": 3,
+        "width": 337
+      },
+      "s": {
+        "shape3d": "models/securebiz/mdf_room4-2.json",
+        "2d.movable": false,
+        "3d.movable": false,
+        "shape3d.blend": "rgb(124,145,155)",
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187057,
+      "p": {
+        "position": {
+          "x": 185.9048,
+          "y": 6
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 4.6,
+          "y": 4.6
+        },
+        "scaleTall": 3,
+        "tall": 99,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/securebiz/mdf_room4-1.json",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187058,
+      "p": {
+        "displayName": "M_R_1_1",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 171.02548,
+          "y": 532.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "select.brightness": 1,
+        "shape3d.blend": "",
+        "wf.color": "rgb(26,189,156)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected",
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187059,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187058
+        },
+        "host": {
+          "__i": 187058
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 229,
+          "y": 531.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187060,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187058
+        },
+        "host": {
+          "__i": 187058
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 227,
+          "y": 532.25492
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187061,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187058
+        },
+        "host": {
+          "__i": 187058
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.83776,
+          "y": 518.29124
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187062,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187058
+        },
+        "host": {
+          "__i": 187058
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.24137,
+          "y": 546.2185
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187063,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187058
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187058
+        },
+        "position": {
+          "x": 171,
+          "y": 532.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "1-0"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187064,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187058
+        },
+        "host": {
+          "__i": 187058
+        },
+        "position": {
+          "x": 125,
+          "y": 532.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187065,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187058
+        },
+        "host": {
+          "__i": 187058
+        },
+        "position": {
+          "x": 215,
+          "y": 532.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187066,
+      "p": {
+        "displayName": "M_R_1_2",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 171.02548,
+          "y": 467.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "wf.visible": "selected",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187067,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187066
+        },
+        "host": {
+          "__i": 187066
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 229,
+          "y": 466.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187068,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187066
+        },
+        "host": {
+          "__i": 187066
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 227,
+          "y": 467.25492
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187069,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187066
+        },
+        "host": {
+          "__i": 187066
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.83776,
+          "y": 453.29124
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187070,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187066
+        },
+        "host": {
+          "__i": 187066
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.24137,
+          "y": 481.2185
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187071,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187066
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187066
+        },
+        "position": {
+          "x": 171,
+          "y": 467.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "1-1"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187072,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187066
+        },
+        "host": {
+          "__i": 187066
+        },
+        "position": {
+          "x": 125,
+          "y": 467.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187073,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187066
+        },
+        "host": {
+          "__i": 187066
+        },
+        "position": {
+          "x": 215,
+          "y": 467.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187074,
+      "p": {
+        "displayName": "M_R_1_3",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 171.02548,
+          "y": 402.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "wf.visible": "selected",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187075,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187074
+        },
+        "host": {
+          "__i": 187074
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 229,
+          "y": 401.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187076,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187074
+        },
+        "host": {
+          "__i": 187074
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 227,
+          "y": 402.25492
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187077,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187074
+        },
+        "host": {
+          "__i": 187074
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.83776,
+          "y": 388.29124
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187078,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187074
+        },
+        "host": {
+          "__i": 187074
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.24137,
+          "y": 416.2185
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187079,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187074
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187074
+        },
+        "position": {
+          "x": 171,
+          "y": 404.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "1-2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187080,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187074
+        },
+        "host": {
+          "__i": 187074
+        },
+        "position": {
+          "x": 125,
+          "y": 402.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187081,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187074
+        },
+        "host": {
+          "__i": 187074
+        },
+        "position": {
+          "x": 215,
+          "y": 402.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187082,
+      "p": {
+        "displayName": "M_R_1_4",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 171.02548,
+          "y": 337.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "wf.visible": "selected",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187083,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187082
+        },
+        "host": {
+          "__i": 187082
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 229,
+          "y": 336.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187084,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187082
+        },
+        "host": {
+          "__i": 187082
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 227,
+          "y": 337.25492
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187085,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187082
+        },
+        "host": {
+          "__i": 187082
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.83776,
+          "y": 323.29124
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187086,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187082
+        },
+        "host": {
+          "__i": 187082
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.24137,
+          "y": 351.2185
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187087,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187082
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187082
+        },
+        "position": {
+          "x": 171,
+          "y": 337.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "1-3"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187088,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187082
+        },
+        "host": {
+          "__i": 187082
+        },
+        "position": {
+          "x": 125,
+          "y": 337.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187089,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187082
+        },
+        "host": {
+          "__i": 187082
+        },
+        "position": {
+          "x": 215,
+          "y": 337.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187090,
+      "p": {
+        "displayName": "M_R_1_5",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 171.02548,
+          "y": 272.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "wf.visible": "selected",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187091,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187090
+        },
+        "host": {
+          "__i": 187090
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 229,
+          "y": 271.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187092,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187090
+        },
+        "host": {
+          "__i": 187090
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 227,
+          "y": 272.25492
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187093,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187090
+        },
+        "host": {
+          "__i": 187090
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.83776,
+          "y": 258.29124
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187094,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187090
+        },
+        "host": {
+          "__i": 187090
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.24137,
+          "y": 286.2185
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187095,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187090
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187090
+        },
+        "position": {
+          "x": 171,
+          "y": 272.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "1-4"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187096,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187090
+        },
+        "host": {
+          "__i": 187090
+        },
+        "position": {
+          "x": 125,
+          "y": 272.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187097,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187090
+        },
+        "host": {
+          "__i": 187090
+        },
+        "position": {
+          "x": 215,
+          "y": 272.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187098,
+      "p": {
+        "displayName": "M_R_1_6",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 171.02548,
+          "y": 207.25484
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "wf.visible": "selected",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187099,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187098
+        },
+        "host": {
+          "__i": 187098
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 229,
+          "y": 206.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187100,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187098
+        },
+        "host": {
+          "__i": 187098
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 227,
+          "y": 207.25488
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187101,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187098
+        },
+        "host": {
+          "__i": 187098
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.83774,
+          "y": 193.29119
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187102,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187098
+        },
+        "host": {
+          "__i": 187098
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.24135,
+          "y": 221.21846
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187103,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187098
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187098
+        },
+        "position": {
+          "x": 171,
+          "y": 207.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "1-5"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187104,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187098
+        },
+        "host": {
+          "__i": 187098
+        },
+        "position": {
+          "x": 125,
+          "y": 207.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187105,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187098
+        },
+        "host": {
+          "__i": 187098
+        },
+        "position": {
+          "x": 215,
+          "y": 207.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187106,
+      "p": {
+        "displayName": "M_R_1_7",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 171.02548,
+          "y": 142.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "wf.visible": "selected",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187107,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187106
+        },
+        "host": {
+          "__i": 187106
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 229,
+          "y": 141.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187108,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187106
+        },
+        "host": {
+          "__i": 187106
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 227,
+          "y": 142.25492
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187109,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187106
+        },
+        "host": {
+          "__i": 187106
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.83776,
+          "y": 128.29124
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187110,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187106
+        },
+        "host": {
+          "__i": 187106
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.24137,
+          "y": 156.2185
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187111,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187106
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187106
+        },
+        "position": {
+          "x": 171,
+          "y": 142.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "1-6"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187112,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187106
+        },
+        "host": {
+          "__i": 187106
+        },
+        "position": {
+          "x": 125,
+          "y": 142.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187113,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187106
+        },
+        "host": {
+          "__i": 187106
+        },
+        "position": {
+          "x": 215,
+          "y": 142.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187114,
+      "p": {
+        "displayName": "M_R_1_8",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 171.02548,
+          "y": 77.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "select.brightness": 1,
+        "shape3d.blend": "",
+        "shape3d.color": "rgb(247,247,247)",
+        "shape3d.opacity": 1,
+        "wf.color": "rgb(26,189,156)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected",
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187115,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187114
+        },
+        "host": {
+          "__i": 187114
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 229,
+          "y": 76.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187116,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187114
+        },
+        "host": {
+          "__i": 187114
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 227,
+          "y": 77.25492
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187117,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187114
+        },
+        "host": {
+          "__i": 187114
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.83776,
+          "y": 63.29124
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187118,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187114
+        },
+        "host": {
+          "__i": 187114
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.24137,
+          "y": 91.2185
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187119,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187114
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187114
+        },
+        "position": {
+          "x": 171,
+          "y": 77.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "1-7"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187120,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187114
+        },
+        "host": {
+          "__i": 187114
+        },
+        "position": {
+          "x": 125,
+          "y": 77.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187121,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187114
+        },
+        "host": {
+          "__i": 187114
+        },
+        "position": {
+          "x": 215,
+          "y": 77.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187122,
+      "p": {
+        "displayName": "M_R_1_9",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 171.02548,
+          "y": 12.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "wf.visible": "selected",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187123,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187122
+        },
+        "host": {
+          "__i": 187122
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 229,
+          "y": 11.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187124,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187122
+        },
+        "host": {
+          "__i": 187122
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 227,
+          "y": 12.25492
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187125,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187122
+        },
+        "host": {
+          "__i": 187122
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.83774,
+          "y": -1.70877
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187126,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187122
+        },
+        "host": {
+          "__i": 187122
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.24135,
+          "y": 26.2185
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187127,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187122
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187122
+        },
+        "position": {
+          "x": 171,
+          "y": 12.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "1-8"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187128,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187122
+        },
+        "host": {
+          "__i": 187122
+        },
+        "position": {
+          "x": 125,
+          "y": 12.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187129,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187122
+        },
+        "host": {
+          "__i": 187122
+        },
+        "position": {
+          "x": 215,
+          "y": 12.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187130,
+      "p": {
+        "displayName": "M_R_1_10",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 171.02548,
+          "y": -52.74512
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "wf.visible": "selected",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187131,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187130
+        },
+        "host": {
+          "__i": 187130
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 229,
+          "y": -52.52579
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187132,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187130
+        },
+        "host": {
+          "__i": 187130
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 227,
+          "y": -52.74508
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187133,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187130
+        },
+        "host": {
+          "__i": 187130
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.83774,
+          "y": -66.70878
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187134,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187130
+        },
+        "host": {
+          "__i": 187130
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 111.24135,
+          "y": -38.7815
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187135,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187130
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187130
+        },
+        "position": {
+          "x": 171,
+          "y": -52.52579
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "1-9"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187136,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187130
+        },
+        "host": {
+          "__i": 187130
+        },
+        "position": {
+          "x": 125,
+          "y": -52.52579
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187137,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187130
+        },
+        "host": {
+          "__i": 187130
+        },
+        "position": {
+          "x": 215,
+          "y": -52.52579
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187138,
+      "p": {
+        "displayName": "M_R_2_1",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 393.0085,
+          "y": 532.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "select.brightness": 1,
+        "shape3d.blend": "",
+        "shape3d.color": "rgb(247,247,247)",
+        "shape3d.opacity": 1,
+        "wf.color": "rgb(26,189,156)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected",
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187139,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187138
+        },
+        "host": {
+          "__i": 187138
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 335,
+          "y": 531.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187140,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187138
+        },
+        "host": {
+          "__i": 187138
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 337,
+          "y": 532.25484
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187141,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187138
+        },
+        "host": {
+          "__i": 187138
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.19623,
+          "y": 546.21852
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187142,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187138
+        },
+        "host": {
+          "__i": 187138
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.79262,
+          "y": 518.29126
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187143,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187138
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187138
+        },
+        "position": {
+          "x": 393,
+          "y": 532.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "2-1"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187144,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187138
+        },
+        "host": {
+          "__i": 187138
+        },
+        "position": {
+          "x": 438,
+          "y": 532.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187145,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187138
+        },
+        "host": {
+          "__i": 187138
+        },
+        "position": {
+          "x": 350,
+          "y": 532.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187146,
+      "p": {
+        "displayName": "M_R_2_2",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 393.0085,
+          "y": 467.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "wf.visible": "selected",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187147,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187146
+        },
+        "host": {
+          "__i": 187146
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 335,
+          "y": 466.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187148,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187146
+        },
+        "host": {
+          "__i": 187146
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 337,
+          "y": 467.25484
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187149,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187146
+        },
+        "host": {
+          "__i": 187146
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.19623,
+          "y": 481.21852
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187150,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187146
+        },
+        "host": {
+          "__i": 187146
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.79262,
+          "y": 453.29126
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187151,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187146
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187146
+        },
+        "position": {
+          "x": 393,
+          "y": 467.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "2-2"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187152,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187146
+        },
+        "host": {
+          "__i": 187146
+        },
+        "position": {
+          "x": 438,
+          "y": 467.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187153,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187146
+        },
+        "host": {
+          "__i": 187146
+        },
+        "position": {
+          "x": 350,
+          "y": 467.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187154,
+      "p": {
+        "displayName": "M_R_2_3",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 393.0085,
+          "y": 402.25492
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "wf.visible": "selected",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187155,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187154
+        },
+        "host": {
+          "__i": 187154
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 335,
+          "y": 401.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187156,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187154
+        },
+        "host": {
+          "__i": 187154
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 337,
+          "y": 402.25488
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187157,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187154
+        },
+        "host": {
+          "__i": 187154
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.19625,
+          "y": 416.21857
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187158,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187154
+        },
+        "host": {
+          "__i": 187154
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.79264,
+          "y": 388.2913
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187159,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187154
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187154
+        },
+        "position": {
+          "x": 393,
+          "y": 404.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      },
+      "a": {
+        "name": "2-3"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187160,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187154
+        },
+        "host": {
+          "__i": 187154
+        },
+        "position": {
+          "x": 438,
+          "y": 402.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187161,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187154
+        },
+        "host": {
+          "__i": 187154
+        },
+        "position": {
+          "x": 350,
+          "y": 402.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187162,
+      "p": {
+        "displayName": "M_R_2_4",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 393.0085,
+          "y": 337.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "wf.visible": "selected",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187163,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187162
+        },
+        "host": {
+          "__i": 187162
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 335,
+          "y": 336.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187164,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187162
+        },
+        "host": {
+          "__i": 187162
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 337,
+          "y": 337.25484
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187165,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187162
+        },
+        "host": {
+          "__i": 187162
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.19623,
+          "y": 351.21852
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187166,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187162
+        },
+        "host": {
+          "__i": 187162
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.79262,
+          "y": 323.29126
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187167,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187162
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187162
+        },
+        "position": {
+          "x": 393,
+          "y": 337.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "2-4"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187168,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187162
+        },
+        "host": {
+          "__i": 187162
+        },
+        "position": {
+          "x": 438,
+          "y": 337.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187169,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187162
+        },
+        "host": {
+          "__i": 187162
+        },
+        "position": {
+          "x": 350,
+          "y": 337.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187170,
+      "p": {
+        "displayName": "M_R_2_5",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 393.0085,
+          "y": 272.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "wf.visible": "selected",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187171,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187170
+        },
+        "host": {
+          "__i": 187170
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 335,
+          "y": 271.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187172,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187170
+        },
+        "host": {
+          "__i": 187170
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 337,
+          "y": 272.25484
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187173,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187170
+        },
+        "host": {
+          "__i": 187170
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.19623,
+          "y": 286.21852
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187174,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187170
+        },
+        "host": {
+          "__i": 187170
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.79262,
+          "y": 258.29126
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187175,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187170
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187170
+        },
+        "position": {
+          "x": 393,
+          "y": 272.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      },
+      "a": {
+        "name": "2-5"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187176,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187170
+        },
+        "host": {
+          "__i": 187170
+        },
+        "position": {
+          "x": 438,
+          "y": 272.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187177,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187170
+        },
+        "host": {
+          "__i": 187170
+        },
+        "position": {
+          "x": 350,
+          "y": 272.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187178,
+      "p": {
+        "displayName": "M_R_2_6",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 393.0085,
+          "y": 207.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "wf.visible": "selected",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187179,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187178
+        },
+        "host": {
+          "__i": 187178
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 335,
+          "y": 206.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187180,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187178
+        },
+        "host": {
+          "__i": 187178
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 337,
+          "y": 207.25484
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187181,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187178
+        },
+        "host": {
+          "__i": 187178
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.19623,
+          "y": 221.21852
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187182,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187178
+        },
+        "host": {
+          "__i": 187178
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.79262,
+          "y": 193.29126
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187183,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187178
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187178
+        },
+        "position": {
+          "x": 393,
+          "y": 207.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "2-6"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187184,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187178
+        },
+        "host": {
+          "__i": 187178
+        },
+        "position": {
+          "x": 438,
+          "y": 207.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187185,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187178
+        },
+        "host": {
+          "__i": 187178
+        },
+        "position": {
+          "x": 350,
+          "y": 207.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187186,
+      "p": {
+        "displayName": "M_R_2_7",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 393.0085,
+          "y": 142.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "wf.visible": "selected",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187187,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187186
+        },
+        "host": {
+          "__i": 187186
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 335,
+          "y": 141.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187188,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187186
+        },
+        "host": {
+          "__i": 187186
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 337,
+          "y": 142.25484
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187189,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187186
+        },
+        "host": {
+          "__i": 187186
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.19623,
+          "y": 156.21852
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187190,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187186
+        },
+        "host": {
+          "__i": 187186
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.79262,
+          "y": 128.29126
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187191,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187186
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187186
+        },
+        "position": {
+          "x": 393,
+          "y": 142.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "2-7"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187192,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187186
+        },
+        "host": {
+          "__i": 187186
+        },
+        "position": {
+          "x": 438,
+          "y": 142.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187193,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187186
+        },
+        "host": {
+          "__i": 187186
+        },
+        "position": {
+          "x": 350,
+          "y": 142.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187194,
+      "p": {
+        "displayName": "M_R_2_8",
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 393.0085,
+          "y": 77.25488
+        },
+        "anchorElevation": 0,
+        "width": 60,
+        "height": 120,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Frame.json",
+        "select.brightness": 1,
+        "shape3d.blend": "",
+        "wf.color": "rgb(26,189,156)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected",
+        "interactive": true
+      },
+      "a": {
+        "type": "cabinet"
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187195,
+      "p": {
+        "displayName": "Rack_Front_Door",
+        "parent": {
+          "__i": 187194
+        },
+        "host": {
+          "__i": 187194
+        },
+        "rotation": -1.5708,
+        "position": {
+          "x": 335,
+          "y": 76.47421
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Door.json",
+        "dw.axis": "right",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187196,
+      "p": {
+        "displayName": "Rack_Front_Cover",
+        "parent": {
+          "__i": 187194
+        },
+        "host": {
+          "__i": 187194
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 337,
+          "y": 77.25484
+        },
+        "width": 55.85438,
+        "height": 4.96185,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Front_Cover.json",
+        "dw.end": -2.00713,
+        "select.brightness": 1,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187197,
+      "p": {
+        "displayName": "Rack_Rear_Left",
+        "parent": {
+          "__i": 187194
+        },
+        "host": {
+          "__i": 187194
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.19623,
+          "y": 91.21852
+        },
+        "width": 27.92719,
+        "height": 1.67452,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Left.json",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.DoorWindow",
+      "i": 187198,
+      "p": {
+        "displayName": "Rack_Rear_Right",
+        "parent": {
+          "__i": 187194
+        },
+        "host": {
+          "__i": 187194
+        },
+        "rotation": -1.57079,
+        "position": {
+          "x": 452.79262,
+          "y": 63.29126
+        },
+        "width": 27.92719,
+        "height": 3.18038,
+        "tall": 190,
+        "elevation": 97
+      },
+      "s": {
+        "shape3d": "models/ioe/Rack_Rear_Right.json",
+        "dw.axis": "right",
+        "select.brightness": 1,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187199,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187194
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187194
+        },
+        "position": {
+          "x": 393,
+          "y": 77.47421
+        },
+        "anchorElevation": 0,
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "elevation": 199
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_002.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "2-8"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187200,
+      "p": {
+        "displayName": "RearSignal",
+        "parent": {
+          "__i": 187194
+        },
+        "host": {
+          "__i": 187194
+        },
+        "position": {
+          "x": 438,
+          "y": 77.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187201,
+      "p": {
+        "displayName": "FrontSignal",
+        "parent": {
+          "__i": 187194
+        },
+        "host": {
+          "__i": 187194
+        },
+        "position": {
+          "x": 350,
+          "y": 77.47421
+        },
+        "anchorElevation": 0,
+        "width": 20,
+        "height": 40,
+        "tall": 2,
+        "elevation": 199
+      },
+      "s": {
+        "all.color": "rgb(100,100,100)",
+        "2d.movable": false,
+        "3d.movable": false,
+        "wf.visible": "selected"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187202,
+      "p": {
+        "displayName": "M_T_1_1",
+        "parent": {
+          "__i": 187057
+        },
+        "tag": "M_T_1_1",
+        "host": {
+          "__i": 187057
+        },
+        "rotation": 3.14159,
+        "position": {
+          "x": 283.0084,
+          "y": 675.9298
+        },
+        "anchor": {
+          "x": 0.5,
+          "y": 0.46496
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.3,
+          "y": 1
+        },
+        "scaleTall": 1.2,
+        "width": 120,
+        "height": 60,
+        "tall": 200,
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/机房/温度控制/空调.json",
+        "wf.color": "rgb(26,189,156)",
+        "shape3d.blend": "rgb(247,247,247)",
+        "shape3d.opacity": 0.8,
+        "wf.visible": "selected",
+        "2d.movable": false,
+        "3d.movable": false,
+        "interactive": true,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187203,
+      "p": {
+        "displayName": "Label",
+        "parent": {
+          "__i": 187202
+        },
+        "image": "symbols/htdesign/3d/text/0_4_002.json",
+        "host": {
+          "__i": 187202
+        },
+        "position": {
+          "x": 284.93896,
+          "y": 672.34467
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 1.5,
+          "y": 1.5
+        },
+        "scaleTall": 2,
+        "width": 120,
+        "height": 50,
+        "tall": 2,
+        "elevation": 239
+      },
+      "s": {
+        "shape3d": "plane",
+        "shape3d.image": "symbols/htdesign/3d/text/0_4_003.json",
+        "shape3d.transparent": true,
+        "shadow.cast": false,
+        "shape3d.image.cache": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false
+      },
+      "a": {
+        "name": "AR-MBUS6"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187204,
+      "p": {
+        "parent": {
+          "__i": 187057
+        },
+        "host": {
+          "__i": 187057
+        },
+        "rotation": 1.5708,
+        "position": {
+          "x": 155.29895,
+          "y": -185.74736
+        },
+        "anchorElevation": 0,
+        "scale": {
+          "x": 0.8,
+          "y": 0.9
+        },
+        "elevation": -1
+      },
+      "s": {
+        "shape3d": "models/ioe/책상.json",
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 187205,
+      "p": {
+        "position": {
+          "x": 515.08678,
+          "y": 557.49077
+        },
+        "width": 20,
+        "height": 300,
+        "tall": 300,
+        "elevation": 146,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 515.08678,
+              "y": 407.49077
+            },
+            {
+              "x": 515.08678,
+              "y": 707.49077
+            }
+          ]
+        },
+        "thickness": "36"
+      },
+      "s": {
+        "all.color": "rgba(100,115,161,0.3)",
+        "shape.background": null,
+        "shape.border.width": 14,
+        "shape.border.color": "#DDDDDD",
+        "all.reverse.color": "rgb(201,203,209)",
+        "wf.color": "rgb(124,145,155)",
+        "wf.combineTriangle": 3,
+        "top.color": "rgb(247,247,247)",
+        "left.transparent": false,
+        "right.transparent": false,
+        "front.transparent": true,
+        "back.transparent": true,
+        "bottom.transparent": false,
+        "all.reverse.flip": true,
+        "all.reverse.cull": true,
+        "front.image": "assets/securebiz/rooms/wall.jpg",
+        "left.image": "assets/securebiz/rooms/wall.jpg",
+        "right.image": "assets/securebiz/rooms/wall.jpg",
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 187206,
+      "p": {
+        "position": {
+          "x": 168,
+          "y": 704.76234
+        },
+        "width": 728,
+        "height": 6,
+        "tall": 300,
+        "elevation": 146,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -196,
+              "y": 707.76235
+            },
+            {
+              "x": 532,
+              "y": 701.76235
+            }
+          ]
+        },
+        "thickness": 16
+      },
+      "s": {
+        "all.color": "rgba(100,115,161,0.3)",
+        "shape.background": null,
+        "shape.border.width": 14,
+        "shape.border.color": "#DDDDDD",
+        "all.reverse.color": "rgb(201,203,209)",
+        "wf.color": "rgb(124,145,155)",
+        "wf.combineTriangle": 3,
+        "top.color": "rgb(245,245,245)",
+        "left.transparent": false,
+        "right.transparent": false,
+        "front.transparent": true,
+        "back.transparent": true,
+        "bottom.transparent": false,
+        "all.reverse.flip": true,
+        "all.reverse.cull": true,
+        "back.color": "",
+        "back.visible": true,
+        "back.image": "assets/securebiz/rooms/wall.jpg",
+        "front.visible": true,
+        "left.image": "assets/securebiz/rooms/wall.jpg",
+        "right.image": "assets/securebiz/rooms/wall.jpg",
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 187207,
+      "p": {
+        "position": {
+          "x": -178.82383,
+          "y": 449.90906
+        },
+        "width": 20,
+        "height": 504,
+        "tall": 300,
+        "elevation": 145,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -178.82383,
+              "y": 197.90906
+            },
+            {
+              "x": -178.82383,
+              "y": 701.90906
+            }
+          ]
+        },
+        "thickness": 35
+      },
+      "s": {
+        "all.color": "rgba(100,115,161,0.3)",
+        "shape.background": null,
+        "shape.border.width": 14,
+        "shape.border.color": "#DDDDDD",
+        "all.reverse.color": "rgb(201,203,209)",
+        "wf.color": "rgb(124,145,155)",
+        "wf.combineTriangle": 3,
+        "top.color": "rgb(247,247,247)",
+        "left.transparent": false,
+        "right.transparent": false,
+        "front.transparent": true,
+        "back.transparent": true,
+        "bottom.transparent": false,
+        "all.reverse.flip": true,
+        "all.reverse.cull": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "back.image": "assets/securebiz/rooms/wall.jpg",
+        "left.image": "assets/securebiz/rooms/wall.jpg",
+        "right.image": "assets/securebiz/rooms/wall.jpg",
+        "left.visible": true,
+        "right.visible": true,
+        "2d.editable": false,
+        "3d.editable": false,
+        "2d.selectable": false,
+        "3d.selectable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 187208,
+      "p": {
+        "position": {
+          "x": -398,
+          "y": 709.76234
+        },
+        "width": 406,
+        "height": 6,
+        "tall": 300,
+        "elevation": 146,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -601,
+              "y": 712.76235
+            },
+            {
+              "x": -195,
+              "y": 706.76235
+            }
+          ]
+        },
+        "thickness": 16
+      },
+      "s": {
+        "all.color": "rgba(100,115,161,0.3)",
+        "shape.background": null,
+        "shape.border.width": 14,
+        "shape.border.color": "#DDDDDD",
+        "all.reverse.color": "rgb(201,203,209)",
+        "wf.color": "rgb(124,145,155)",
+        "wf.combineTriangle": 3,
+        "top.color": "rgb(102,118,125)",
+        "left.transparent": true,
+        "right.transparent": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "bottom.transparent": false,
+        "all.reverse.flip": true,
+        "all.reverse.cull": true,
+        "back.color": "rgb(102,119,126)",
+        "back.visible": true,
+        "front.visible": true,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 187209,
+      "p": {
+        "position": {
+          "x": 714,
+          "y": 699.76234
+        },
+        "width": 363,
+        "height": 6,
+        "tall": 300,
+        "elevation": 146,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": 532.5,
+              "y": 702.76235
+            },
+            {
+              "x": 895.5,
+              "y": 696.76235
+            }
+          ]
+        },
+        "thickness": 16
+      },
+      "s": {
+        "all.color": "rgba(100,115,161,0.3)",
+        "shape.background": null,
+        "shape.border.width": 14,
+        "shape.border.color": "#DDDDDD",
+        "all.reverse.color": "rgb(201,203,209)",
+        "wf.color": "rgb(124,145,155)",
+        "wf.combineTriangle": 3,
+        "top.color": "rgb(102,118,125)",
+        "left.transparent": true,
+        "right.transparent": true,
+        "front.transparent": true,
+        "back.transparent": true,
+        "bottom.transparent": false,
+        "all.reverse.flip": true,
+        "all.reverse.cull": true,
+        "back.color": "rgb(102,119,126)",
+        "back.visible": true,
+        "front.visible": true,
+        "top.transparent": true,
+        "right.color": null,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 187210,
+      "p": {
+        "displayName": "PaintWall",
+        "position": {
+          "x": 0,
+          "y": -695.41866
+        },
+        "width": 400,
+        "height": 30,
+        "tall": 300,
+        "elevation": 145,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -200,
+              "y": -695.41866
+            },
+            {
+              "x": 200,
+              "y": -695.41866
+            }
+          ]
+        },
+        "thickness": "2."
+      },
+      "s": {
+        "all.color": "rgb(102,119,126)",
+        "shape.background": null,
+        "shape.border.width": 14,
+        "shape.border.color": "#DDDDDD",
+        "all.reverse.cull": true,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 187211,
+      "p": {
+        "displayName": "PaintWall",
+        "position": {
+          "x": -69.53603,
+          "y": 186
+        },
+        "width": 252,
+        "height": 30,
+        "tall": 301,
+        "elevation": 146,
+        "segments": {
+          "__a": [
+            1,
+            2
+          ]
+        },
+        "points": {
+          "__a": [
+            {
+              "x": -195.53604,
+              "y": 186
+            },
+            {
+              "x": 56.46397,
+              "y": 186
+            }
+          ]
+        },
+        "thickness": "30"
+      },
+      "s": {
+        "all.color": "rgb(102,119,126)",
+        "shape.background": null,
+        "shape.border.width": 14,
+        "shape.border.color": "#DDDDDD",
+        "all.reverse.cull": true,
+        "all.reverse.flip": true,
+        "front.image": "assets/securebiz/rooms2/wall.jpg",
+        "left.image": "assets/securebiz/rooms2/wall.jpg",
+        "right.image": "assets/securebiz/rooms2/wall.jpg",
+        "top.image": "assets/securebiz/rooms2/wall.jpg",
+        "bottom.image": "assets/securebiz/rooms2/wall.jpg",
+        "2d.selectable": false,
+        "3d.selectable": false,
+        "2d.movable": false,
+        "3d.movable": false,
+        "2d.editable": false,
+        "3d.editable": false
+      }
+    }
+  ],
+  "scene": {
+    "eye": [
+      155.88016,
+      1359.33609,
+      1418.10719
+    ],
+    "center": [
+      166.01738,
+      -56.20234,
+      31.18936
+    ],
+    "near": 10,
+    "far": 1000000,
+    "background": "rgba(124,146,156,0.1)",
+    "gridVisible": false,
+    "editHelperDisabled": false
+  }
+}

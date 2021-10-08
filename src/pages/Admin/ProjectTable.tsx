@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { Table, Space, Button, Popconfirm, message } from 'antd';
 
 function ProjectTable({ dataSource, handleModify, handleDelete }: any) {
+  console.log('ProjectTable dataSource', dataSource);
+
+
   function confirm(e: any, record: any) {
     console.log(record);
     handleDelete('project', record);
@@ -71,11 +74,11 @@ function ProjectTable({ dataSource, handleModify, handleDelete }: any) {
       dataIndex: 'url',
       key: 'url',
     },
-    {
-      title: '사용자 ID',
-      dataIndex: 'user_id',
-      key: 'user_id',
-    },
+    // {
+    //   title: '사용자 ID',
+    //   dataIndex: 'user_id',
+    //   key: 'user_id',
+    // },
     {
       title: '노트',
       dataIndex: 'note',
@@ -108,7 +111,7 @@ function ProjectTable({ dataSource, handleModify, handleDelete }: any) {
 
   return (
     <>
-      <Table size="small" dataSource={dataSource} columns={columns} />
+      <Table size="small" rowKey={(record: any) => record.id} dataSource={dataSource} columns={columns} />
     </>
   );
 }

@@ -15,6 +15,16 @@ interface Section {
   projectName: string
   asset: Asset[]
 }
+interface SectionList {
+  id: string | number
+  section_name: string
+  node_list: string[]
+}
+interface SensorList {
+  id: string | number
+  sensor_type: string
+  max_value: string | number
+}
 interface Form {
   type: string
   mode: string
@@ -37,9 +47,28 @@ interface Asset {
 }
 interface State {
   section: Section[]
+  sectionList: SectionList[]
+  sensorList: SensorList[]
   form: Form
 }
-const demoSection = {
+const demoSectionList:SectionList = {
+  id: '1',
+  section_name: '공사구간A',
+  node_list: ['node_A', 'node_B']
+};
+const demoSensorList:SensorList[] = [
+  {
+    id: '1',
+    sensor_type: '지진계',
+    max_value: '1000025'
+  },
+  {
+    id: '2',
+    sensor_type: '구조물경사계',
+    max_value: '100'
+  }
+];
+const demoSection:Section = {
   projectName: '새만금 프로젝트',
   asset: [
     {
@@ -61,6 +90,8 @@ const demoSection = {
 };
 const initialState: State = {
   section: [demoSection],
+  sectionList: [demoSectionList],
+  sensorList: demoSensorList,
   form: {
     type: '',
     mode: 'add',
@@ -78,7 +109,7 @@ const sectionSlice = createSlice({
     },
     updateSection(state, action: PayloadAction<Section>) {
       // 섹션[]을 맵으로 나눈다.
-      const updateSection = state.section.map((item:Section)=> {
+      const updateSection = state.section.map((item:Section, idx)=> {
         // 해당 인덱스 섹션의 에셋 배열을 맵으로 나눈다.
         if (item.projectName === action.payload.projectName) {
           // 만약 해당 에셋의 노드 아이디와 페이로드의 노드아이디가 같다면,
@@ -87,6 +118,60 @@ const sectionSlice = createSlice({
         } else return item;
       });
       state.section = updateSection;
+    },
+    addSectionList(state, action: PayloadAction<SectionList>) {
+      state.sectionList.push(action.payload);
+    },
+    updateSectionList(state, action:PayloadAction<SectionList>) {
+      const updateSectionList = state.sectionList.map((item:SectionList)=>{
+        if (item.id === action.payload.id) {
+          return { ...item, ...action.payload };
+        } else return item;
+      });
+      state.sectionList = updateSectionList;
+    },
+    updateSectionName(state, action: PayloadAction<any>) {
+      const updateSectionName = state.sectionList.map((item)=> {
+        if (item.id === action.payload.id) {
+          const newItem = Object.assign({}, item);
+          newItem.section_name = action.payload.section_name;
+          return newItem;
+        }
+        else {
+          return item;
+        }
+      });
+      state.sectionList = updateSectionName;
+    },
+    updateNodeList(state, action: PayloadAction<any>) {
+      const updateNodeList = state.sectionList.map((item)=> {
+        if (item.id === action.payload.id) {
+          const newItem = Object.assign({}, item);
+          newItem.node_list = action.payload.node_list;
+          return newItem;
+        }
+        else {
+          return item;
+        }
+      });
+      state.sectionList = updateNodeList;
+    },
+    updateSensorValue(state, action: PayloadAction<SensorList>) {
+      const updateSensorValue = state.sensorList.map((item)=> {
+        if (item.id === action.payload.id) {
+          const newItem = Object.assign({}, item);
+          newItem.max_value = action.payload.max_value;
+          return newItem;
+        }
+        else {
+          return item;
+        }
+      });
+      state.sensorList = updateSensorValue;
+    },
+    deleteSectionList(state, action: PayloadAction<SectionList>) {
+      const newSectionList = state.sectionList.filter((item)=> item.id !== action.payload.id);
+      state.sectionList = newSectionList;
     },
     openSection(state, action: PayloadAction<boolean>) {
       state.form.visible = action.payload;
@@ -105,3 +190,4 @@ const sectionSlice = createSlice({
 
 export default sectionSlice.reducer;
 export const { addSection, updateSection, openSection, setForm } = sectionSlice.actions;
+export const { addSectionList, updateSectionList, updateNodeList, updateSectionName, deleteSectionList, updateSensorValue } = sectionSlice.actions;

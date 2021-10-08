@@ -5,6 +5,7 @@ import { Table, Input, Select, } from 'antd';
 import { sensorData } from '../../constant/Admin';
 import { updateSection } from '../../redux/sectionSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { debug } from 'console';
 const { Option } = Select;
 
 function SectionTable({ dataSource, handleSensorData }: any) {
@@ -18,44 +19,68 @@ function SectionTable({ dataSource, handleSensorData }: any) {
    * data 부분만 업데이트를 한다. 업데이트 할 위치를 받기 위해서는
    * 해당하는 프로젝트의 아이디를 기억하고 해야한다.
    */
-  const fetchSection = useAppSelector(state => state.section);
   const dispatch = useAppDispatch();
-  console.log(dataSource); // fetchSection.section
+  const fetchSection = useAppSelector(state => state.section);
+  useEffect(() => {
+    console.log('changed', fetchSection.section);
+  }, [fetchSection.section]);
   const [data, setData] = useState(fetchSection.section[0].asset);
   const [projectName, setPjName] = useState(fetchSection.section[0].projectName);
-
   //dataSource 는 [ {projectName, asset[] } ] 구조
+  const handleProject = (value: any) => {
+    fetchSection.section.map((project) => project.projectName === value ? setPjName(value) : console.log('error'));
+  };
+
+  const openInput = (e: any) => {
+    e.target.disabled = false;
+    e.target.focus();
+  };
+
   function changeValue(obj: any, keyName: string, value: any) {
     const newValue: any = {};
     for (const key in obj) {
       if (key === keyName) {
-        console.log(obj[key], keyName, '일치함');
-        //obj[key] = value;
         newValue[keyName] = value;
       }
     }
     return { ...obj, ...newValue };
   }
-  function handleSelect(value: any, key: number, keyName: any) {
-    const newData: any = sensorData[0].asset[0];
-    console.log(keyName, key, value);
-    const newValue = changeValue(data[key], keyName, value);
-    console.log(newValue, '바뀜');
+  function handleSelect(row: any, value: any, key: number, keyName: any) {
+    const newData = [...data]; //fetchSection.section[0].asset
+    const index = newData.findIndex((item: any) => row[keyName] === item[keyName]);
+    const item = newData[index];
+    const calcVal = changeValue(row, keyName, value);
+    newData.splice(index, 1, {
+      ...item,
+      ...calcVal,
+    });
+    setData(newData);
     const sectionObj = {
       projectName,
-      asset: newValue
+      asset: newData
     };
     // asset을 넘긴다
     dispatch(updateSection(sectionObj));
   }
   // 셀렉트값 변경시
-  function handleInput(e: any, key: number, keyName: any) {
-    const newData: any = sensorData[0].asset[key];
-    const index = newData.hasOwnProperty(keyName) ?
-      newData[keyName] = e.target.value : null;
-    //handleSensorData(newData);
-    console.log(newData);
-    dispatch(updateSection(newData));
+  function handleInput(row: any, e: any, key: number, keyName: any) {
+    // 확실하게 구분 짓기
+    e.target.disabled = true;
+    const newData = [...data];
+    const index = newData.findIndex((item: any) => row[keyName] === item[keyName]);
+    const item = newData[index];
+    const calcVal = changeValue(row, keyName, e.target.value);
+    newData.splice(index, 1, {
+      ...item,
+      ...calcVal,
+    });
+    setData(newData);
+    const sectionObj = {
+      projectName,
+      asset: newData
+    };
+    // asset을 넘긴다
+    dispatch(updateSection(sectionObj));
   }
   // 인풋 값 변경시
 
@@ -77,9 +102,9 @@ function SectionTable({ dataSource, handleSensorData }: any) {
           dataIndex: 'adc1_type',
           key: 'adc1_type',
           width: 110,
-          render: (adc1_type: string, record: string, key: any) => {
+          render: (adc1_type: string, record: any, key: any) => {
             return (
-              <Select key={adc1_type} defaultValue={adc1_type} style={{ width: '100%' }} onChange={(value) => handleSelect(value, key, 'adc1_type')}>
+              <Select key={adc1_type} defaultValue={record.adc1_type} style={{ width: '100%' }} onChange={(value) => handleSelect(record, value, key, 'adc1_type')}>
                 <Option key={`${adc1_type}_1`} value="지진계">지진계</Option>
                 <Option key={`${adc1_type}_2`} value="t-1">t-1</Option>
                 <Option key={`${adc1_type}_3`} value="t-2">t-2</Option>
@@ -94,7 +119,9 @@ function SectionTable({ dataSource, handleSensorData }: any) {
           width: 110,
           render: (adc1_name: string, record: any, key: any) => {
             return (
-              <Input key={adc1_name} defaultValue={adc1_name} style={{ width: '100%' }} onChange={(e: any) => handleInput(e, key, 'adc1_name')} />
+              <Input key={adc1_name} disabled={false} defaultValue={record.adc1_name || ''} style={{ width: '100%' }}
+                onClick={e => openInput(e)}
+                onBlur={e => handleInput(record, e, key, 'adc1_name')} />
             );
           }
         }
@@ -109,9 +136,10 @@ function SectionTable({ dataSource, handleSensorData }: any) {
           dataIndex: 'adc2_type',
           key: 'adc2_type',
           width: 110,
-          render: (adc2_type: string, record: string, key: any) => {
+          render: (adc2_type: string, record: any, key: any) => {
             return (
-              <Select key={adc2_type} defaultValue={adc2_type} style={{ width: '100%' }} onChange={(value) => handleSelect(value, key, 'adc2_type')}>
+              <Select key={adc2_type} defaultValue={record.adc2_type} style={{ width: '100%' }}
+                onChange={(value) => handleSelect(record, value, key, 'adc2_type')}>
                 <Option key={`${adc2_type}_1`} value="구조물경사계">구조물경사계</Option>
                 <Option key={`${adc2_type}_2`} value="t-1">t-1</Option>
                 <Option key={`${adc2_type}_3`} value="t-2">t-2</Option>
@@ -126,7 +154,9 @@ function SectionTable({ dataSource, handleSensorData }: any) {
           width: 110,
           render: (adc2_name: string, record: any, key: any) => {
             return (
-              <Input key={adc2_name} defaultValue={adc2_name} style={{ width: '100%' }} onChange={(e: any) => handleInput(e, key, 'adc2_name')} />
+              <Input key={adc2_name} disabled={false} defaultValue={record.adc2_name} style={{ width: '100%' }}
+                onClick={e => openInput(e)}
+                onBlur={e => handleInput(record, e, key, 'adc2_name')} />
             );
           }
         }
@@ -141,9 +171,9 @@ function SectionTable({ dataSource, handleSensorData }: any) {
           dataIndex: 'adc3_type',
           key: 'adc3_type',
           width: 110,
-          render: (adc3_type: string, record: string, key: any) => {
+          render: (adc3_type: string, record: any, key: any) => {
             return (
-              <Select key={adc3_type} defaultValue={adc3_type} style={{ width: '100%' }} onChange={(value) => handleSelect(value, key, 'adc3_type')}>
+              <Select key={adc3_type} defaultValue={record.adc3_type} style={{ width: '100%' }} onChange={(value) => handleSelect(record, value, key, 'adc3_type')}>
                 <Option key={`${adc3_type}_1`} value="N/A">N/A</Option>
                 <Option key={`${adc3_type}_2`} value="W-1">W-1</Option>
                 <Option key={`${adc3_type}_3`} value="W-2">W-2</Option>
@@ -158,7 +188,9 @@ function SectionTable({ dataSource, handleSensorData }: any) {
           width: 110,
           render: (adc3_name: string, record: any, key: any) => {
             return (
-              <Input key={adc3_name} defaultValue={adc3_name} style={{ width: '100%' }} onChange={(e: any) => handleInput(e, key, 'adc3_name')} />
+              <Input key={adc3_name} disabled={false} defaultValue={record.adc3_name} style={{ width: '100%' }}
+                onClick={e => openInput(e)}
+                onBlur={e => handleInput(record, e, key, 'adc3_name')} />
             );
           }
         }
@@ -173,9 +205,9 @@ function SectionTable({ dataSource, handleSensorData }: any) {
           dataIndex: 'adc4_type',
           key: 'adc4_type',
           width: 110,
-          render: (adc4_type: string, record: string, key: any) => {
+          render: (adc4_type: string, record: any, key: any) => {
             return (
-              <Select key={adc4_type} defaultValue={adc4_type} style={{ width: '100%' }} onChange={(value) => handleSelect(value, key, 'adc4_type')}>
+              <Select key={adc4_type} defaultValue={record.adc4_type} style={{ width: '100%' }} onChange={(value) => handleSelect(record, value, key, 'adc4_type')}>
                 <Option key={`${adc4_type}_1`} value="N/A">N/A</Option>
                 <Option key={`${adc4_type}_2`} value="W-1">W-1</Option>
                 <Option key={`${adc4_type}_3`} value="W-2">W-2</Option>
@@ -190,7 +222,9 @@ function SectionTable({ dataSource, handleSensorData }: any) {
           width: 110,
           render: (adc4_name: string, record: any, key: any) => {
             return (
-              <Input key={adc4_name} defaultValue={adc4_name} style={{ width: '100%' }} onChange={(e: any) => handleInput(e, key, 'adc4_name')} />
+              <Input key={adc4_name} disabled={false} defaultValue={record.adc4_name} style={{ width: '100%' }}
+                onClick={e => openInput(e)}
+                onBlur={e => handleInput(record, e, key, 'adc4_name')} />
             );
           }
         }
@@ -205,9 +239,9 @@ function SectionTable({ dataSource, handleSensorData }: any) {
           dataIndex: 'adcDiff12_type',
           key: 'adcDiff12_type',
           width: 110,
-          render: (adcDiff12_type: string, record: string, key: any) => {
+          render: (adcDiff12_type: string, record: any, key: any) => {
             return (
-              <Select key={adcDiff12_type} defaultValue={adcDiff12_type} style={{ width: '100%' }} onChange={(value) => handleSelect(value, key, 'adcDiff12_type')}>
+              <Select key={adcDiff12_type} defaultValue={record.adcDiff12_type} style={{ width: '100%' }} onChange={(value) => handleSelect(record, value, key, 'adcDiff12_type')}>
                 <Option key={`${adcDiff12_type}_1`} value="N/A">N/A</Option>
                 <Option key={`${adcDiff12_type}_2`} value="W-1">W-1</Option>
                 <Option key={`${adcDiff12_type}_3`} value="W-2">W-2</Option>
@@ -222,7 +256,9 @@ function SectionTable({ dataSource, handleSensorData }: any) {
           width: 110,
           render: (adcDiff12_name: string, record: any, key: any) => {
             return (
-              <Input key={adcDiff12_name} defaultValue={adcDiff12_name} style={{ width: '100%' }} onChange={(e: any) => handleInput(e, key, 'adcDiff12_name')} />
+              <Input key={adcDiff12_name} disabled={false} defaultValue={record.adcDiff12_name} style={{ width: '100%' }}
+                onClick={e => openInput(e)}
+                onBlur={e => handleInput(record, e, key, 'adcDiff12_name')} />
             );
           }
         }
@@ -237,9 +273,9 @@ function SectionTable({ dataSource, handleSensorData }: any) {
           dataIndex: 'adcDiff34_type',
           key: 'adcDiff34_type',
           width: 110,
-          render: (adcDiff34_type: string, record: string, key: any) => {
+          render: (adcDiff34_type: string, record: any, key: any) => {
             return (
-              <Select key={adcDiff34_type} defaultValue={adcDiff34_type} style={{ width: '100%' }} onChange={(value) => handleSelect(value, key, 'adcDiff12_type')}>
+              <Select key={adcDiff34_type} defaultValue={record.adcDiff34_type} style={{ width: '100%' }} onChange={(value) => handleSelect(record, value, key, 'adcDiff12_type')}>
                 <Option key={`${adcDiff34_type}_1`} value="N/A">N/A</Option>
                 <Option key={`${adcDiff34_type}_2`} value="W-1">W-1</Option>
                 <Option key={`${adcDiff34_type}_3`} value="W-2">W-2</Option>
@@ -252,20 +288,21 @@ function SectionTable({ dataSource, handleSensorData }: any) {
           dataIndex: 'adcDiff34_name',
           key: 'adcDiff34_name',
           width: 110,
-          render: (adcDiff12_name: string, record: any, key: any) => {
+          render: (adcDiff34_name: string, record: any, key: any) => {
             return (
-              <Input key={adcDiff12_name} defaultValue={adcDiff12_name} style={{ width: '100%' }} onChange={(e: any) => handleInput(e, key, 'adcDiff34_name')} />
+              <Input key={adcDiff34_name} disabled={false} defaultValue={record.adcDiff34_name} style={{ width: '100%' }}
+                onClick={e => openInput(e)}
+                onBlur={e => handleInput(record, e, key, 'adcDiff34_name')} />
             );
           }
         }
       ]
     },
   ];
-
   return (
     <TableWrapper>
-      <Select key={'Project_list'} defaultValue={projectName} style={{ width: '100%' }} onChange={(value) => setPjName(value)}>
-        {fetchSection.section.map((item: any) => {
+      <Select key={'Project_list'} defaultValue={projectName} style={{ width: '10%', marginBottom: '10px' }} onChange={(value) => handleProject(value)}>
+        {dataSource.map((item: any) => {
           return <Option key={`${item.projectName}_1`} value={item.projectName}>{item.projectName}</Option>;
         })}
       </Select>

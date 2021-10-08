@@ -12,29 +12,22 @@ import { setForm } from '../../../redux/sectionSlice';
 
 export const SectionTab = () => {
   const fetchSection = useAppSelector(state => state.section);
-  useEffect(() => {
-    console.log(fetchSection, 'changed');
-  }, [fetchSection]);
   const { form } = fetchSection;
   const [sectionData, getData] = useState();
-  // 현재는 리덕스 스테이트에서 가지고오고있음. 
-  // 추후 api를 통한 백단에서 가지고 오도록 수정
+  // 현재는 리덕스 스테이트에서 가지고오고있음
+  // 추후 api를 통한 백단에서 가지고 오도록 수정 getList()
   const dispatch = useAppDispatch();
 
   const handleForm = (type: string) => {
     dispatch(setForm({ type, mode: 'add', visible: true }));
   };
-  const handleModify = (type: string, record: any) => {
-    dispatch(setForm({ type, mode: 'modify', visible: true }));
-    getData(record);
-    console.log(record);
-  };
+
   const handleDelete = (type: string, record: any) => {
     //dispatch(deleteSection(record));
   };
   return (
     <>
-      <SectionModal type={form.type} handleData={sectionData} />
+      <SectionModal type={form.type} />
       <TitleWrapper>
         <Breadcrumb className="page-title" style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>공사구간 및 센서 관리</Breadcrumb.Item>
@@ -45,10 +38,10 @@ export const SectionTab = () => {
 
         <ButtonWrapper>
           <ButtonGroup>
-            <AddButton name={'공사구간 관리'} type={'section'} handleForm={handleForm} />
-            <AddButton name={'임계치 관리'} type={'limiter'} handleForm={handleForm} />
+            <AddButton name={'공사구간 관리'} style={{ borderRadius: '10px' }} type={'section'} handleForm={handleForm} />
+            <AddButton name={'임계치 관리'} style={{ borderRadius: '10px' }} type={'limiter'} handleForm={handleForm} />
           </ButtonGroup>
-          <Button name={'저장'} style={{ borderRadius: '15' }} type={'primary'} onClick={() => { console.log('변경된 데이타 읽기', fetchSection.section); }}>
+          <Button name={'저장'} shape="round" type={'primary'} onClick={() => { console.log('변경된 데이타 읽기', fetchSection.section); }}>
             <SaveOutlined /> 저장
           </Button>
         </ButtonWrapper>
@@ -78,5 +71,6 @@ const ButtonWrapper = styled.div`
 
   & .ant-btn-group > button {
     margin-right: 6px !important;
+    border-radius: 40px !important;
   }
 `;

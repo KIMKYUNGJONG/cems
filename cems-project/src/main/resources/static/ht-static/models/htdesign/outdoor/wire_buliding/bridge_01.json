@@ -1,0 +1,21 @@
+{
+  "modelType": "obj",
+  "obj": "assets/htdesign/objs/outdoor/wire_buliding/bridge_01.obj",
+  "mtl": "assets/htdesign/objs/outdoor/wire_buliding/bridge_01.mtl",
+  "image": "",
+  "prefix": "assets/htdesign/objs/outdoor/wire_buliding/",
+  "center": true,
+  "reverseFlipMtls": "*",
+  "ignoreImage": true,
+  "ignoreColor": true,
+  "s3": [
+    1,
+    1,
+    1
+  ],
+  "r3": [
+    0,
+    0,
+    0
+  ]
+}
